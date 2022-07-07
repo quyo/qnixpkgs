@@ -98,11 +98,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1657189580,
-        "narHash": "sha256-G0A8DD2AkgmpQqEFr4E/T0W4tQQphYka42PcLinKOgI=",
+        "lastModified": 1657190503,
+        "narHash": "sha256-fSL8tc+WuqM2lI73foi/y3A9pJdKhi6FwahK3d3Fmm8=",
         "owner": "Samayel",
         "repo": "shellscripts.nix",
-        "rev": "6be1d002834251539667034743265671fc3fe9a6",
+        "rev": "4d7d59baccbf0310c82e6e723ea18edb95abc194",
         "type": "github"
       },
       "original": {
