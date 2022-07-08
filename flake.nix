@@ -12,17 +12,35 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, shellscripts, mersenneforumorg }:
-    flake-utils.lib.simpleFlake {
-      inherit self nixpkgs;
-      name = "qnixpkgs-flake";
-      config = { };
-      overlay = import ./overlay.nix (
-        shellscripts.packages.x86_64-linux //
-        mersenneforumorg.legacyPackages.x86_64-linux
-      );
-      systems = [ "x86_64-linux" ];
-    } // {
-      packages.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.hello;
-    };
+    {
+      overlays = {
+        duply = import duply/overlay.nix;
+      };
+    }
+    //
+    flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
+      let
+
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = (builtins.attrValues self.overlays) ++ [
+            shellscripts.overlay
+            mersenneforumorg.overlay
+          ];
+        };
+
+      in {
+
+        packages =
+          with pkgs; {
+            inherit duply;
+          }
+          //
+          shellscripts.packages.${system}
+          //
+          mersenneforumorg.packages.${system};
+
+      }
+    );
 
 }

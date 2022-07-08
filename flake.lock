@@ -2,8 +2,27 @@
   "nodes": {
     "devshell": {
       "inputs": {
-        "flake-utils": "flake-utils_3",
-        "nixpkgs": "nixpkgs_2"
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1655976588,
+        "narHash": "sha256-VreHyH6ITkf/1EX/8h15UqhddJnUleb0HgbC3gMkAEQ=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "899ca4629020592a13a46783587f6e674179d1db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "devshell",
+        "type": "github"
+      }
+    },
+    "devshell_2": {
+      "inputs": {
+        "flake-utils": "flake-utils_4",
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1655976588,
@@ -36,6 +55,21 @@
     },
     "flake-utils_2": {
       "locked": {
+        "lastModified": 1642700792,
+        "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "846b2ae0fc4cc943637d3d1def4454213e203cba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "flake-utils_3": {
+      "locked": {
         "lastModified": 1656928814,
         "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
         "owner": "numtide",
@@ -49,7 +83,7 @@
         "type": "github"
       }
     },
-    "flake-utils_3": {
+    "flake-utils_4": {
       "locked": {
         "lastModified": 1642700792,
         "narHash": "sha256-XqHrk7hFb+zBvRg6Ghl+AZDq03ov6OshJLiSWOoX5es=",
@@ -64,7 +98,7 @@
         "type": "github"
       }
     },
-    "flake-utils_4": {
+    "flake-utils_5": {
       "locked": {
         "lastModified": 1656928814,
         "narHash": "sha256-RIFfgBuKz6Hp89yRr7+NR5tzIAbn52h8vT6vXkYjZoM=",
@@ -81,17 +115,18 @@
     },
     "mersenneforumorg": {
       "inputs": {
-        "flake-utils": "flake-utils_2",
+        "devshell": "devshell",
+        "flake-utils": "flake-utils_3",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1657044417,
-        "narHash": "sha256-+7uqKx2LGdn8GGx8XB+eXIfwbe5ZMCSJVoGkI+uNNDI=",
+        "lastModified": 1657284415,
+        "narHash": "sha256-GsyEPTV0hs8Fc87ZfS12pYRJKunW07NolJ+il8KrZio=",
         "owner": "Samayel",
         "repo": "mersenneforumorg.nix",
-        "rev": "01609fca0918867b887bb3262cf1ce0bd26902f4",
+        "rev": "e829ec3e93ad2e27395506dcfa8e86728fd2f77c",
         "type": "github"
       },
       "original": {
@@ -102,11 +137,27 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1657258320,
-        "narHash": "sha256-MIuNXWxz4fx4FvW+aDiHfrDOA8AnJXW5SArNsCayz3o=",
+        "lastModified": 1643381941,
+        "narHash": "sha256-pHTwvnN4tTsEKkWlXQ8JMY423epos8wUOhthpwJjtpc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5efc8ca954272c4376ac929f4c5ffefcc20551d5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1657296039,
+        "narHash": "sha256-Ghh39+aS+pw5sTP/ZO8VIKE6sBhMadDaQZtf+3yu4Vc=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "12a974e4b4ed5b4b9262ee26ed6f6175c0e11ef6",
+        "rev": "71d7a4c037dc4f3e98d5c4a81b941933cf5bf675",
         "type": "github"
       },
       "original": {
@@ -116,7 +167,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1643381941,
         "narHash": "sha256-pHTwvnN4tTsEKkWlXQ8JMY423epos8wUOhthpwJjtpc=",
@@ -136,24 +187,24 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "mersenneforumorg": "mersenneforumorg",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "shellscripts": "shellscripts"
       }
     },
     "shellscripts": {
       "inputs": {
-        "devshell": "devshell",
-        "flake-utils": "flake-utils_4",
+        "devshell": "devshell_2",
+        "flake-utils": "flake-utils_5",
         "nixpkgs": [
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1657274578,
-        "narHash": "sha256-jSFY7oqEUfhrzuEq12iWROvFMtOOyw/TkG8VrnVYDZQ=",
+        "lastModified": 1657275236,
+        "narHash": "sha256-asLeYIUGJBg3kI7FlwfWE0FZqc9ziuqAOFROx0vGYmU=",
         "owner": "Samayel",
         "repo": "shellscripts.nix",
-        "rev": "a175e88f568666ce52039994c807a568f7da6ef7",
+        "rev": "53da8702ac2e0bd8caed4ce92ee82c2630c6c23b",
         "type": "github"
       },
       "original": {
