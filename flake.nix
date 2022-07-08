@@ -17,7 +17,7 @@
       name = "qnixpkgs-flake";
       config = { };
       overlay = import ./overlay.nix (
-        shellscripts.legacyPackages.x86_64-linux //
+        shellscripts.packages.x86_64-linux //
         mersenneforumorg.legacyPackages.x86_64-linux
       );
       systems = [ "x86_64-linux" ];
