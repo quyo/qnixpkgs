@@ -23,9 +23,10 @@
 
         pkgs = import nixpkgs {
           inherit system;
-          overlays = (builtins.attrValues self.overlays) ++ [
-            shellscripts.overlay
-            mersenneforumorg.overlay
+          overlays = with builtins; concatMap attrValues [
+            self.overlays
+            shellscripts.overlays
+            mersenneforumorg.overlays
           ];
         };
 
