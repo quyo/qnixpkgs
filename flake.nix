@@ -32,8 +32,8 @@
       in {
 
         packages =
-          with pkgs; {
-            inherit duply;
+          {
+            inherit (pkgs) duply;
           }
           //
           shellscripts.packages.${system}
