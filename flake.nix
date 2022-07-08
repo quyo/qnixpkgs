@@ -30,9 +30,7 @@
           ];
         };
 
-      in {
-
-        packages =
+        flakePkgs =
           {
             inherit (pkgs) duply;
           }
@@ -41,7 +39,15 @@
           //
           mersenneforumorg.packages.${system};
 
-        defaultPackage = pkgs.hello;
+      in {
+
+        packages = flakePkgs
+          //
+          {
+            default = pkgs.hello.overrideAttrs (oldAttrs: {
+              nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs);
+            });
+          };
 
       }
     );
