@@ -1,11 +1,11 @@
-self: super:
+final: prev:
 
 {
 
-  duplicity = super.duplicity.overrideAttrs (oldAttrs: {
-    pythonPath = (oldAttrs.pythonPath or []) ++ [ super.python3.pkgs.boto ];
+  duplicity = prev.duplicity.overrideAttrs (oldAttrs: {
+    pythonPath = (oldAttrs.pythonPath or []) ++ [ prev.python3.pkgs.boto ];
   });
 
-  duply = super.duply.override { duplicity = self.duplicity; };
+  duply = prev.duply.override { duplicity = final.duplicity; };
 
 }
