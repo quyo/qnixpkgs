@@ -41,6 +41,8 @@
           //
           mersenneforumorg.packages.${system};
 
+        defaultPackage = pkgs.hello;
+
       }
     );
 
