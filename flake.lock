@@ -122,11 +122,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1657303407,
-        "narHash": "sha256-8ECjhEc6gA2a/98ejjhSxOZa7puHOrB/BCIhqtnMk1U=",
+        "lastModified": 1657315424,
+        "narHash": "sha256-FRHpQpCVdm6UTEynggqb3+N7Ew9nM+eC1AQBLylGlWQ=",
         "owner": "Samayel",
         "repo": "mersenneforumorg.nix",
-        "rev": "e06be0c5bd0ffc75ae99fb344eedb4b6865da212",
+        "rev": "f99f4a57039dd6d87aff047670b72046096bef5d",
         "type": "github"
       },
       "original": {
