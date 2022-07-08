@@ -30,13 +30,8 @@ jobs:
         run: |
           nix build --eval-store auto --store ssh-ng://eu.nixbuild.net .
 
-      - name: Build Nix flake "locally"
-        working-directory: .
-        run: |
-          nix build .
-
-      - name: Upload Nix flake
+      - name: Upload Nix flake to Cachix
         working-directory: .
         run: |
           nix profile install .#cachixsh
-          cachix-push-flake-runtime-closures-all .
+          CACHIX_AUTH_TOKEN=${{ secrets.cachix_auth_token }} cachix-push-flake-runtime-closures-all .
