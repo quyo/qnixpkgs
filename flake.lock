@@ -122,11 +122,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1657315424,
-        "narHash": "sha256-FRHpQpCVdm6UTEynggqb3+N7Ew9nM+eC1AQBLylGlWQ=",
+        "lastModified": 1657404656,
+        "narHash": "sha256-Npno89od92DLeGdfcFHNCyT+ymkzlehDuTj/Vr1nFXY=",
         "owner": "Samayel",
         "repo": "mersenneforumorg.nix",
-        "rev": "f99f4a57039dd6d87aff047670b72046096bef5d",
+        "rev": "cdace91f8cebfe70ff71b5e22f40ebfad00fac09",
         "type": "github"
       },
       "original": {
@@ -153,11 +153,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1657317313,
-        "narHash": "sha256-cMGsBqqPhylel/iubtxWn4ytxt0N+WGXf3d+Ulx62z4=",
+        "lastModified": 1657399715,
+        "narHash": "sha256-7YX+I8FP3/iJTRs33VhIbdx91YWlZQf8zaEEeM97964=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "2708fb3afb126a5d3b89ab7205358833aa8ffa16",
+        "rev": "0ad6eae04953060dff8ba28af158799c3e13878d",
         "type": "github"
       },
       "original": {
@@ -200,11 +200,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1657317892,
-        "narHash": "sha256-JA0jKk2o/X7E1eKyC4Z7bg8/mOP4mjy7aqQBpu9/xi4=",
+        "lastModified": 1657404195,
+        "narHash": "sha256-kNSa0rGxxGswWE7lGi22ZUMcWWh3SQGfXZe8sKq+6H0=",
         "owner": "Samayel",
         "repo": "shellscripts.nix",
-        "rev": "006fc773461ce43861fb0dd7a0c36d4bde206e79",
+        "rev": "f8dbf40d4f2147e19035929f6400b69668cc9e83",
         "type": "github"
       },
       "original": {
