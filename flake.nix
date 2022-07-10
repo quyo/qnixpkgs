@@ -44,9 +44,7 @@
         packages = flakePkgs
           //
           {
-            default = pkgs.hello.overrideAttrs (oldAttrs: {
-              nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs);
-            });
+            default = pkgs.linkFarmFromDrvs "qnixpkgs-packages-all" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
           };
 
       }
