@@ -2,16 +2,20 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
     flake-utils.url = "github:numtide/flake-utils";
 
     shellscripts.url = "github:Samayel/shellscripts.nix";
     shellscripts.inputs.nixpkgs.follows = "nixpkgs";
+    shellscripts.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
 
     mersenneforumorg.url = "github:Samayel/mersenneforumorg.nix";
     mersenneforumorg.inputs.nixpkgs.follows = "nixpkgs";
+    mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
   };
 
-  outputs = { self, nixpkgs, flake-utils, shellscripts, mersenneforumorg }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg }:
     {
       overlays = {
         duply = import duply/overlay.nix;
@@ -21,13 +25,23 @@
     flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
       let
 
+        flakeOverlays = with builtins; concatMap attrValues [
+          self.overlays
+          shellscripts.overlays
+          mersenneforumorg.overlays
+        ];
+
+        # can now use "pkgs.package" or "pkgs.unstable.package"
+        unstableOverlay = final: prev: {
+          unstable = import nixpkgs-unstable {
+            inherit system;
+            overlays = flakeOverlays;
+          };
+        };
+
         pkgs = import nixpkgs {
           inherit system;
-          overlays = with builtins; concatMap attrValues [
-            self.overlays
-            shellscripts.overlays
-            mersenneforumorg.overlays
-          ];
+          overlays = [ unstableOverlay ] ++ flakeOverlays;
         };
 
         flakePkgs =
