@@ -37,5 +37,5 @@ jobs:
       - name: Upload Nix flake to Cachix
         working-directory: .
         run: |
-          nix profile install .#cachixsh
-          CACHIX_AUTH_TOKEN=${{ secrets.cachix_auth_token }} cachix-push-flake-runtime-closures-all .
+          CACHIX_AUTH_TOKEN=${{ secrets.cachix_auth_token }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-inputs .
+          CACHIX_AUTH_TOKEN=${{ secrets.cachix_auth_token }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closures-all .
