@@ -47,6 +47,16 @@
             default = pkgs.linkFarmFromDrvs "qnixpkgs-packages-all" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
           };
 
+        apps = removeAttrs
+          (
+            (import ./apps.nix self system)
+            //
+            shellscripts.apps.${system}
+            //
+            mersenneforumorg.apps.${system}
+          )
+          [ "default" ];
+
       }
     );
 
