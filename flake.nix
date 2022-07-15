@@ -31,6 +31,7 @@
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
     {
       overlays = {
+        cas = import cas/overlay.nix;
         duply = import duply/overlay.nix;
       };
     }
@@ -59,7 +60,11 @@
 
         flakePkgs =
           {
-            inherit (pkgs) duply;
+            inherit (pkgs)
+              duply;
+
+            inherit (pkgs.unstable)
+              cas;
           }
           //
           shellscripts.packages.${system}
