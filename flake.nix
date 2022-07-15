@@ -10,17 +10,22 @@
     devshell.inputs.nixpkgs.follows = "nixpkgs";
     devshell.inputs.flake-utils.follows = "flake-utils";
 
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-compat.flake = false;
+
     shellscripts.url = "github:Samayel/shellscripts.nix";
     shellscripts.inputs.nixpkgs.follows = "nixpkgs";
     shellscripts.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     shellscripts.inputs.flake-utils.follows = "flake-utils";
     shellscripts.inputs.devshell.follows = "devshell";
+    shellscripts.inputs.flake-compat.follows = "flake-compat";
 
     mersenneforumorg.url = "github:Samayel/mersenneforumorg.nix";
     mersenneforumorg.inputs.nixpkgs.follows = "nixpkgs";
     mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     mersenneforumorg.inputs.flake-utils.follows = "flake-utils";
     mersenneforumorg.inputs.devshell.follows = "devshell";
+    mersenneforumorg.inputs.flake-compat.follows = "flake-compat";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
