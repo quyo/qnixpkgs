@@ -23,7 +23,7 @@
     mersenneforumorg.inputs.devshell.follows = "devshell";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
     {
       overlays = {
         duply = import duply/overlay.nix;
