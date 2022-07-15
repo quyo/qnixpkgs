@@ -15,7 +15,7 @@ jobs:
     secrets:
       nixbuild_ssh_key: ${{ secrets.nixbuild_ssh_key }}
     with:
-      filter_builds: '.name == "ci-build"'
+      filter_builds: '.attr == "ci-build"'
 
   upload:
     name: Upload flake
