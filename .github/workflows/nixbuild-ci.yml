@@ -15,7 +15,7 @@ jobs:
     secrets:
       nixbuild_ssh_key: ${{ secrets.nixbuild_ssh_key }}
     with:
-      filter_builds: '.top_attr == "packages"'
+      filter_builds: '.name == "ci-build"'
 
   upload:
     name: Upload flake
@@ -42,4 +42,4 @@ jobs:
       - name: Upload flake outputs to Cachix
         working-directory: .
         run: |
-          CACHIX_AUTH_TOKEN=${{ secrets.cachix_auth_token }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closures-all .
+          CACHIX_AUTH_TOKEN=${{ secrets.cachix_auth_token }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closure-single .#ci-publish

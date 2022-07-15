@@ -75,8 +75,10 @@
 
         packages = flakePkgs
           //
-          {
+          rec {
             default = pkgs.linkFarmFromDrvs "qnixpkgs-packages-all" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
+            ci-build = default;
+            ci-publish = pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (builtins.filter (x: x != "cas") (builtins.attrNames flakePkgs)));
           };
 
         apps = removeAttrs
