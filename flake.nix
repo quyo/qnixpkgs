@@ -6,13 +6,21 @@
 
     flake-utils.url = "github:numtide/flake-utils";
 
+    devshell.url = "github:numtide/devshell";
+    devshell.inputs.nixpkgs.follows = "nixpkgs";
+    devshell.inputs.flake-utils.follows = "flake-utils";
+
     shellscripts.url = "github:Samayel/shellscripts.nix";
     shellscripts.inputs.nixpkgs.follows = "nixpkgs";
     shellscripts.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    shellscripts.inputs.flake-utils.follows = "flake-utils";
+    shellscripts.inputs.devshell.follows = "devshell";
 
     mersenneforumorg.url = "github:Samayel/mersenneforumorg.nix";
     mersenneforumorg.inputs.nixpkgs.follows = "nixpkgs";
     mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    mersenneforumorg.inputs.flake-utils.follows = "flake-utils";
+    mersenneforumorg.inputs.devshell.follows = "devshell";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg }:
