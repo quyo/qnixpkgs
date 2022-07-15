@@ -12,13 +12,16 @@ in
     preferLocalBuild = false;
     allowSubstitutes = true;
 
-    paths = with prev; [
+    paths = with final; [
       maxima
       octave
       pari
+      pari-galdata
+      pari-seadata-small
       py3
-#     sagetex
-#     sageWithDoc
+      sagetex
+      sageWithDoc
+      singular
       yacas
     ];
   };
