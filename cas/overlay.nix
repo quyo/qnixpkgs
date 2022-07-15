@@ -19,9 +19,9 @@ in
       pari-galdata
       pari-seadata-small
       py3
-      sage
-#     sagetex
-#     sageWithDoc
+#     sage
+      sagetex
+      sageWithDoc
       singular
       yacas
     ];
