@@ -13,12 +13,22 @@
     flake-compat.url = "github:edolstra/flake-compat";
     flake-compat.flake = false;
 
+    qnixpkgs.url = "github:Samayel/qnixpkgs";
+    qnixpkgs.inputs.nixpkgs.follows = "nixpkgs";
+    qnixpkgs.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    qnixpkgs.inputs.flake-utils.follows = "flake-utils";
+    qnixpkgs.inputs.devshell.follows = "devshell";
+    qnixpkgs.inputs.flake-compat.follows = "flake-compat";
+    qnixpkgs.inputs.shellscripts.follows = "shellscripts";
+    qnixpkgs.inputs.mersenneforumorg.follows = "mersenneforumorg";
+
     shellscripts.url = "github:Samayel/shellscripts.nix";
     shellscripts.inputs.nixpkgs.follows = "nixpkgs";
     shellscripts.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     shellscripts.inputs.flake-utils.follows = "flake-utils";
     shellscripts.inputs.devshell.follows = "devshell";
     shellscripts.inputs.flake-compat.follows = "flake-compat";
+    shellscripts.inputs.qnixpkgs.follows = "qnixpkgs";
 
     mersenneforumorg.url = "github:Samayel/mersenneforumorg.nix";
     mersenneforumorg.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,6 +36,7 @@
     mersenneforumorg.inputs.flake-utils.follows = "flake-utils";
     mersenneforumorg.inputs.devshell.follows = "devshell";
     mersenneforumorg.inputs.flake-compat.follows = "flake-compat";
+    mersenneforumorg.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
