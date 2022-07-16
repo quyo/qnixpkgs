@@ -92,6 +92,12 @@
           {
           };
 
+        flakePkgsNoBuild = builtins.attrNames
+          {
+          }
+          ++
+          flakePkgsNoDefault;
+
         flakePkgsNoPublish = builtins.attrNames
           {
             inherit (flakePkgs)
@@ -107,7 +113,7 @@
           {
             default = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-default" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoDefault) (attrNames flakePkgs)));
 
-            ci-build = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-ci-build"; });
+            ci-build = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-build" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoBuild) (attrNames flakePkgs)));
             ci-publish = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoPublish) (attrNames flakePkgs)));
 
             docker = import ./docker.nix pkgs;
