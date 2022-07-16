@@ -84,7 +84,7 @@
               qshell;
           };
 
-        flakesPksNoPublish = builtins.attrNames
+        flakesPkgsNoPublish = builtins.attrNames
           {
             inherit (flakePkgs)
               cas;
