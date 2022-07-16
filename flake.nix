@@ -101,6 +101,8 @@
 
             ci-build = self.packages.${system}.default;
             ci-publish = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoPublish) (attrNames flakePkgs)));
+
+            docker = import ./docker.nix pkgs;
           };
 
         apps = removeAttrs
