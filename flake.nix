@@ -63,6 +63,9 @@
           {
             inherit (pkgs)
               duply
+              qshell-minimal
+              qshell-standard
+              qshell-full
               qshell;
 
             inherit (pkgs.unstable)
