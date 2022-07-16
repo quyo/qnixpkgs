@@ -33,6 +33,7 @@
       overlays = {
         cas = import cas/overlay.nix;
         duply = import duply/overlay.nix;
+        qshell = import qshell/overlay.nix;
       };
     }
     //
@@ -61,7 +62,8 @@
         flakePkgs =
           {
             inherit (pkgs)
-              duply;
+              duply
+              qshell;
 
             inherit (pkgs.unstable)
               cas;
@@ -75,9 +77,9 @@
 
         packages = flakePkgs
           //
-          rec {
+          {
             default = pkgs.linkFarmFromDrvs "qnixpkgs-packages-all" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
-            ci-build = default;
+            ci-build = self.packages.${system}.default;
             ci-publish = pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (builtins.filter (x: x != "cas") (builtins.attrNames flakePkgs)));
           };
 

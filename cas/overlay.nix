@@ -1,7 +1,7 @@
 final: prev:
 
 let
-  py3 = prev.python3.withPackages (p: with p; [ gmpy2 mpmath ]);
+  py3 = prev.python3.withPackages (p: with p; [ gmpy2 mpmath sympy ]);
 in
 
 {
