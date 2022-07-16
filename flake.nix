@@ -84,11 +84,13 @@
               qshell;
           };
 
-        flakesPkgsNoPublish = builtins.attrNames
+        flakePkgsNoPublish = builtins.attrNames
           {
             inherit (flakePkgs)
               cas;
-          };
+          }
+          ++
+          flakePkgsNoDefault;
 
       in {
 
