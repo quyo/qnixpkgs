@@ -76,14 +76,29 @@
           //
           mersenneforumorg.packages.${system};
 
+        flakePkgsNoDefault = builtins.attrNames
+          {
+            inherit (flakePkgs)
+              qshell-minimal
+              qshell-standard
+              qshell;
+          };
+
+        flakesPksNoPublish = builtins.attrNames
+          {
+            inherit (flakePkgs)
+              cas;
+          };
+
       in {
 
         packages = flakePkgs
           //
           {
-            default = pkgs.linkFarmFromDrvs "qnixpkgs-packages-all" (map (x: flakePkgs.${x}) (builtins.attrNames flakePkgs));
+            default = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-all" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoDefault) (attrNames flakePkgs)));
+
             ci-build = self.packages.${system}.default;
-            ci-publish = pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (builtins.filter (x: x != "cas") (builtins.attrNames flakePkgs)));
+            ci-publish = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoPublish) (attrNames flakePkgs)));
           };
 
         apps = removeAttrs
