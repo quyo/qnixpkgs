@@ -40,6 +40,6 @@ final: prev:
     ];
   });
 
-  qshell = final.qshell-standard;
+  qshell = final.qshell-standard.overrideAttrs (oldAttrs: { name = "qshell"; });
 
 }

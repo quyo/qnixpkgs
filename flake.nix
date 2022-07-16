@@ -19,6 +19,7 @@
     qnixpkgs.inputs.flake-utils.follows = "flake-utils";
     qnixpkgs.inputs.devshell.follows = "devshell";
     qnixpkgs.inputs.flake-compat.follows = "flake-compat";
+    qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
     qnixpkgs.inputs.shellscripts.follows = "shellscripts";
     qnixpkgs.inputs.mersenneforumorg.follows = "mersenneforumorg";
 
@@ -89,10 +90,6 @@
 
         flakePkgsNoDefault = builtins.attrNames
           {
-            inherit (flakePkgs)
-              qshell-minimal
-              qshell-standard
-              qshell;
           };
 
         flakePkgsNoPublish = builtins.attrNames
@@ -108,9 +105,9 @@
         packages = flakePkgs
           //
           {
-            default = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-all" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoDefault) (attrNames flakePkgs)));
+            default = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-default" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoDefault) (attrNames flakePkgs)));
 
-            ci-build = self.packages.${system}.default;
+            ci-build = self.packages.${system}.default.overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-ci-build"; });
             ci-publish = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoPublish) (attrNames flakePkgs)));
 
             docker = import ./docker.nix pkgs;
