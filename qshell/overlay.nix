@@ -2,13 +2,13 @@ version: final: prev:
 
 {
 
-  qshell-minimal = prev.symlinkJoin
+  qshell-minimal = final.symlinkJoin
   {
     name = "qshell-minimal-${version}";
     preferLocalBuild = false;
     allowSubstitutes = true;
 
-    paths = with prev; [
+    paths = with final; [
       bashInteractive
       coreutils
       less
@@ -18,7 +18,7 @@ version: final: prev:
 
   qshell-standard = final.qshell-minimal.overrideAttrs (oldAttrs: {
     name = "qshell-standard-${version}";
-    paths = with prev; (oldAttrs.paths or []) ++ [
+    paths = with final; (oldAttrs.paths or []) ++ [
       findutils
       gawk
       gnugrep
@@ -31,7 +31,7 @@ version: final: prev:
 
   qshell-full = final.qshell-standard.overrideAttrs (oldAttrs: {
     name = "qshell-full-${version}";
-    paths = with prev; (oldAttrs.paths or []) ++ [
+    paths = with final; (oldAttrs.paths or []) ++ [
       gawk-with-extensions
       joe
       mc
