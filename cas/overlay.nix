@@ -1,4 +1,4 @@
-final: prev:
+version: final: prev:
 
 let
   py3 = prev.python3.withPackages (p: with p; [ gmpy2 mpmath sympy ]);
@@ -8,7 +8,7 @@ in
 
   cas = prev.symlinkJoin
   {
-    name = "cas";
+    name = "cas-${version}";
     preferLocalBuild = false;
     allowSubstitutes = true;
 

@@ -1,10 +1,10 @@
-final: prev:
+version: final: prev:
 
 {
 
   qshell-minimal = prev.symlinkJoin
   {
-    name = "qshell-minimal";
+    name = "qshell-minimal-${version}";
     preferLocalBuild = false;
     allowSubstitutes = true;
 
@@ -17,7 +17,7 @@ final: prev:
   };
 
   qshell-standard = final.qshell-minimal.overrideAttrs (oldAttrs: {
-    name = "qshell-standard";
+    name = "qshell-standard-${version}";
     paths = with prev; (oldAttrs.paths or []) ++ [
       findutils
       gawk
@@ -30,7 +30,7 @@ final: prev:
   });
 
   qshell-full = final.qshell-standard.overrideAttrs (oldAttrs: {
-    name = "qshell-full";
+    name = "qshell-full-${version}";
     paths = with prev; (oldAttrs.paths or []) ++ [
       gawk-with-extensions
       joe
@@ -40,6 +40,6 @@ final: prev:
     ];
   });
 
-  qshell = final.qshell-standard.overrideAttrs (oldAttrs: { name = "qshell"; });
+  qshell = final.qshell-standard.overrideAttrs (oldAttrs: { name = "qshell-${version}"; });
 
 }

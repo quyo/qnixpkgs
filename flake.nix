@@ -41,11 +41,14 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
+    let
+      version = builtins.substring 0 8 self.lastModifiedDate;
+    in
     {
       overlays = {
-        cas = import cas/overlay.nix;
+        cas = import cas/overlay.nix version;
         duply = import duply/overlay.nix;
-        qshell = import qshell/overlay.nix;
+        qshell = import qshell/overlay.nix version;
       };
     }
     //
@@ -71,6 +74,15 @@
           overlays = [ unstableOverlay ] ++ flakeOverlays;
         };
 
+        flakePkgsNoExternal = builtins.attrNames
+          {
+            inherit (self.packages.${system})
+              default
+              ci-build
+              ci-publish
+              docker;
+          };
+
         flakePkgs =
           {
             inherit (pkgs)
@@ -84,9 +96,9 @@
               cas;
           }
           //
-          shellscripts.packages.${system}
+          (removeAttrs shellscripts.packages.${system} flakePkgsNoExternal)
           //
-          mersenneforumorg.packages.${system};
+          (removeAttrs mersenneforumorg.packages.${system} flakePkgsNoExternal);
 
         flakePkgsNoDefault = builtins.attrNames
           {
@@ -116,7 +128,7 @@
             ci-build = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-build" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoBuild) (attrNames flakePkgs)));
             ci-publish = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoPublish) (attrNames flakePkgs)));
 
-            docker = import ./docker.nix pkgs;
+            docker = (import ./docker.nix pkgs).overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-docker"; });
           };
 
         apps = removeAttrs
