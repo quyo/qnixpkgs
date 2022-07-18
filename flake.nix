@@ -48,6 +48,7 @@
       overlays = {
         cas = import cas/overlay.nix version;
         duply = import duply/overlay.nix;
+        linac = import linac/overlay.nix;
         qshell = import qshell/overlay.nix version;
       };
     }
@@ -87,6 +88,7 @@
           {
             inherit (pkgs)
               duply
+              linac
               qshell-minimal
               qshell-standard
               qshell-full
