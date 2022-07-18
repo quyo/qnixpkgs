@@ -118,6 +118,10 @@
           ++
           flakePkgsNoDefault;
 
+        callPackage = path: overrides:
+          let f = import path;
+          in f ((builtins.intersectAttrs (builtins.functionArgs f) (pkgs // flakePkgs)) // overrides);
+
       in {
 
         packages = flakePkgs
@@ -128,12 +132,12 @@
             ci-build = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-build" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoBuild) (attrNames flakePkgs)));
             ci-publish = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoPublish) (attrNames flakePkgs)));
 
-            docker = (import ./docker.nix pkgs).overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-docker"; });
+            docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-docker"; });
           };
 
         apps = removeAttrs
           (
-            (import ./apps.nix self system)
+            (callPackage ./apps.nix { })
             //
             shellscripts.apps.${system}
             //

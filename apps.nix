@@ -1,11 +1,9 @@
-self: system:
+{ duply }:
 
 let
 
-  pkgs = self.packages.${system};
-
-  apps = with pkgs; {
-    duply = { type = "app"; program = "${pkgs.duply}/bin/duply"; };
+  apps = {
+    duply = { type = "app"; program = "${duply}/bin/duply"; };
   };
 
 in
