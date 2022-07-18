@@ -55,7 +55,7 @@
     flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
       let
 
-        flakeOverlays = with builtins; concatMap attrValues [
+        flakeOverlays = builtins.concatMap builtins.attrValues [
           self.overlays
           shellscripts.overlays
           mersenneforumorg.overlays
@@ -124,16 +124,22 @@
 
       in {
 
-        packages = flakePkgs
-          //
-          {
-            default = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-default" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoDefault) (attrNames flakePkgs)));
+        packages =
+          let
+            inherit (builtins) all attrNames filter;
+            inherit (pkgs) linkFarmFromDrvs;
+            mapfilterFlakePkgs = exclude: map (x: flakePkgs.${x}) (filter (x: all (y: x != y) exclude) (attrNames flakePkgs));
+          in
+            flakePkgs
+            //
+            {
+              default = linkFarmFromDrvs "qnixpkgs-packages-default" (mapfilterFlakePkgs flakePkgsNoDefault);
 
-            ci-build = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-build" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoBuild) (attrNames flakePkgs)));
-            ci-publish = with builtins; pkgs.linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (map (x: flakePkgs.${x}) (filter (x: all (y: x != y) flakePkgsNoPublish) (attrNames flakePkgs)));
+              ci-build = linkFarmFromDrvs "qnixpkgs-packages-ci-build" (mapfilterFlakePkgs flakePkgsNoBuild);
+              ci-publish = linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (mapfilterFlakePkgs flakePkgsNoPublish);
 
-            docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-docker"; });
-          };
+              docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-docker"; });
+            };
 
         apps = removeAttrs
           (
