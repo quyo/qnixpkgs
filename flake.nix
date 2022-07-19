@@ -46,6 +46,7 @@
     in
     {
       overlays = {
+        axonsh = import axon.sh/overlay.nix;
         cas = import cas/overlay.nix version;
         duply = import duply/overlay.nix;
         linac = import linac/overlay.nix;
@@ -87,6 +88,7 @@
         flakePkgs =
           {
             inherit (pkgs)
+              axonsh
               duply
               linac
               qshell-minimal
