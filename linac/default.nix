@@ -1,4 +1,4 @@
-{ stdenv, coreutils, findutils, gnugrep, gnused }:
+{ stdenv, bash, coreutils, findutils, gnugrep, gnused }:
 
 let
   pname = "linac";
@@ -12,9 +12,9 @@ in
 
 stdenv.mkDerivation {
   inherit pname version src;
-  inherit coreutils findutils gnugrep gnused;
+  inherit bash coreutils findutils gnugrep gnused;
 
-  buildInputs = [ coreutils findutils gnugrep gnused ];
+  buildInputs = [ bash coreutils findutils gnugrep gnused ];
 
   dontUnpack = true;
 

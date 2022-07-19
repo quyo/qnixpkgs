@@ -1,5 +1,11 @@
---- linac/linac.orig	2022-07-19 09:31:22.195180000 +0200
-+++ linac/linac	2022-07-19 10:11:57.435180000 +0200
+--- linac.orig	2022-07-19 10:18:26.615180000 +0200
++++ linac	2022-07-19 10:19:24.855180000 +0200
+@@ -1,4 +1,4 @@
+-#!/bin/bash
++#!@bash@/bin/bash
+ # shellcheck disable=SC1090,SC2004
+ projectName='LINAC'
+ projectDescription='LINAC is not a compiler'
 @@ -22,25 +22,25 @@
    if [ -f "${config[config_path]}"/"${config[config_file]}" ]; then
      while read -r line
