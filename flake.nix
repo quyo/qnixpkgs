@@ -42,7 +42,7 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
     let
-      version = "0.0.${builtins.substring 0 8 self.lastModifiedDate}.${self.shortRev or "dirty"}";
+      version = "0.${builtins.substring 0 8 self.lastModifiedDate}.${builtins.substring 8 6 self.lastModifiedDate}.${self.shortRev or "dirty"}";
     in
     {
       overlays = {
