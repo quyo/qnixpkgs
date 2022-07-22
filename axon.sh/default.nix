@@ -1,4 +1,4 @@
-{ stdenv, fetchgit, linac, coreutils, curl, gnugrep, jq }:
+{ lib, stdenv, fetchgit, makeWrapper, linac, coreutils, curl, gnugrep, jq }:
 
 let
   pname = "axon.sh";
@@ -14,14 +14,12 @@ stdenv.mkDerivation {
     sha256 = "py77Z4c4NWKVKj3iaALfn3RqABxP9U12nOcmrgWxrTo=";
   };
 
-  nativeBuildInputs = [ linac ];
+  nativeBuildInputs = [ linac makeWrapper ];
 
   buildPhase = ''
     runHook preBuild
 
     linac build axon.sh.build
-
-    sed -i -e '2s|^|PATH="${coreutils}/bin:${curl}/bin:${gnugrep}/bin:${jq}/bin"\n|' build/axon.sh
 
     runHook postBuild
   '';
@@ -32,5 +30,10 @@ stdenv.mkDerivation {
     install -Dt $out/bin -m755 build/axon.sh
 
     runHook postInstall
+  '';
+
+  postInstall = ''
+    wrapProgram $out/bin/axon.sh \
+      --prefix PATH : ${lib.makeBinPath [ coreutils curl gnugrep jq ]}
   '';
 }

@@ -1,4 +1,4 @@
-{ stdenv, coreutils, findutils, gnugrep, gnused }:
+{ lib, stdenv, makeWrapper, coreutils, findutils, gnugrep, gnused }:
 
 let
   pname = "linac";
@@ -13,23 +13,20 @@ in
 stdenv.mkDerivation {
   inherit pname version src;
 
+  nativeBuildInputs = [ makeWrapper ];
+
   dontUnpack = true;
-
-  patchPhase = ''
-    runHook prePatch
-
-    cp ${src} linac
-
-    sed -i -e '3s|^|PATH="${coreutils}/bin:${findutils}/bin:${gnugrep}/bin:${gnused}/bin"\n|' linac
-
-    runHook postPatch
-  '';
 
   installPhase = ''
     runHook preInstall
 
-    install -Dt $out/bin -m755 linac
+    install -D -m755 ${src} $out/bin/linac
 
     runHook postInstall
+  '';
+
+  postInstall = ''
+    wrapProgram $out/bin/linac \
+      --prefix PATH : ${lib.makeBinPath [ coreutils findutils gnugrep gnused ]}
   '';
 }
