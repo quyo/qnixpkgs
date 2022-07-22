@@ -1,34 +1,8 @@
-{ stdenv, fetchgit, linac, bash, coreutils, curl, gnugrep, jq }:
+{ stdenv, fetchgit, linac, coreutils, curl, gnugrep, jq }:
 
 let
   pname = "axon.sh";
   version = "0.17.0";
-
-  cmd2pkg = {
-    curl = curl;
-    cut = coreutils;
-    date = coreutils;
-    echo = coreutils;
-    fold = coreutils;
-    grep = gnugrep;
-    head = coreutils;
-    jq = jq;
-    mkdir = coreutils;
-    printf = coreutils;
-    shuf = coreutils;
-    touch = coreutils;
-    tr = coreutils;
-  };
-
-  cmdPatch =
-    let inherit (builtins) attrValues concatStringsSep mapAttrs;
-    in concatStringsSep "\n"
-      (attrValues
-        (mapAttrs
-          (cmd: pkg: "find ./src -type f -exec sed -z -i -e 's|\\([([:space:]]\\)${cmd}\\([)[:space:]]\\)|\\1${pkg}/bin/${cmd}\\2|g' {} +")
-          cmd2pkg
-        )
-      );
 in
 
 stdenv.mkDerivation {
@@ -41,24 +15,13 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = [ linac ];
-  buildInputs = [ bash coreutils curl gnugrep jq ];
-
-  patchPhase = ''
-    runHook prePatch
-
-    ${cmdPatch}
-
-    # revert "overpatching"
-    find ./src -type f -exec sed -z -i -e 's|${coreutils}/bin/date or timestamp|date or timestamp|g' {} +
-    find ./src -type f -exec sed -z -i -e 's|${jq}/bin/jq returned message|jq returned message|g' {} +
-
-    runHook postPatch
-  '';
 
   buildPhase = ''
     runHook preBuild
 
     linac build axon.sh.build
+
+    sed -i -e '2s|^|PATH="${coreutils}/bin:${curl}/bin:${gnugrep}/bin:${jq}/bin"\n|' build/axon.sh
 
     runHook postBuild
   '';
