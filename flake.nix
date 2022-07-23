@@ -100,11 +100,11 @@
               qshell-minimal
               qshell-standard
               qshell-full
-              qshell
-              userprofile;
+              qshell;
 
             inherit (pkgs.unstable)
-              cas;
+              cas
+              userprofile;
           }
           //
           (removeAttrs shellscripts.packages.${system} flakePkgsNoExternal)

@@ -14,7 +14,6 @@ version: final: prev:
       docker-compose
       dockersh
       dtach
-      duply
       git
       hstr
       htop
