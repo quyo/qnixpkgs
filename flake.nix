@@ -113,21 +113,21 @@
 
         flakePkgsNoDefault = builtins.attrNames
           {
-          };
-
-        flakePkgsNoBuild = builtins.attrNames
-          {
-          }
-          ++
-          flakePkgsNoDefault;
-
-        flakePkgsNoPublish = builtins.attrNames
-          {
             inherit (flakePkgs)
               cas;
+          };
+
+        flakePkgsNoCIBuild = builtins.attrNames
+          {
           }
           ++
           flakePkgsNoDefault;
+
+        flakePkgsNoCIPublish = builtins.attrNames
+          {
+          }
+          ++
+          flakePkgsNoCIBuild;
 
         callPackage = path: overrides:
           let
@@ -149,8 +149,8 @@
             {
               default = linkFarmFromDrvs "qnixpkgs-packages-default" (mapfilterFlakePkgs flakePkgsNoDefault);
 
-              ci-build = linkFarmFromDrvs "qnixpkgs-packages-ci-build" (mapfilterFlakePkgs flakePkgsNoBuild);
-              ci-publish = linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (mapfilterFlakePkgs flakePkgsNoPublish);
+              ci-build = linkFarmFromDrvs "qnixpkgs-packages-ci-build" (mapfilterFlakePkgs flakePkgsNoCIBuild);
+              ci-publish = linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (mapfilterFlakePkgs flakePkgsNoCIPublish);
 
               docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-docker"; });
             };
