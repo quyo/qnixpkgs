@@ -42,7 +42,12 @@
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
     let
-      version = "0.${builtins.substring 0 8 self.lastModifiedDate}.${builtins.substring 8 6 self.lastModifiedDate}.${self.shortRev or "dirty"}";
+      version =
+        let
+          inherit (builtins) substring;
+          inherit (self) lastModifiedDate;
+        in
+          "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
     in
     {
       overlays = {
@@ -123,8 +128,11 @@
           flakePkgsNoDefault;
 
         callPackage = path: overrides:
-          let f = import path;
-          in f ((builtins.intersectAttrs (builtins.functionArgs f) (pkgs // flakePkgs)) // overrides);
+          let
+            f = import path;
+            inherit (builtins) functionArgs intersectAttrs;
+          in
+            f ((intersectAttrs (functionArgs f) (pkgs // flakePkgs)) // overrides);
 
       in {
 
