@@ -46,6 +46,7 @@ version: final: prev:
       screen
       tmux
       traceroute
+      tree
       vim
       wget
       which
