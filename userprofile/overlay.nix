@@ -24,6 +24,7 @@ version: final: prev:
       jq
       mc
       nano
+      nix
       nix-direnv
       nix-tree
       nixbuildsh
