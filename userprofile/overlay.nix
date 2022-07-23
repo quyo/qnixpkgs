@@ -22,6 +22,7 @@ version: final: prev:
       iftop
       iotop
       joe
+      jq
       mc
       nano
       nix-direnv
