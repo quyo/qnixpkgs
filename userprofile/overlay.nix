@@ -10,11 +10,19 @@ version: final: prev:
 
     paths = with final; [
       cachixsh
+      coreutils
       curl
       docker-compose
       dockersh
       dtach
+      findutils
+      gawk
+      gawk-with-extensions
       git
+      gnugrep
+      gnused
+      gnutar
+      gzip
       hstr
       htop
       httpie
@@ -22,7 +30,9 @@ version: final: prev:
       iotop
       joe
       jq
+      less
       mc
+      moreutils
       nano
       nix
       nix-direnv
@@ -34,6 +44,7 @@ version: final: prev:
       traceroute
       vim
       wget
+      which
       whois
     ];
   };
