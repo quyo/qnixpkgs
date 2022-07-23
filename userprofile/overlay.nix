@@ -9,9 +9,11 @@ version: final: prev:
     allowSubstitutes = true;
 
     paths = with final; [
+      bzip2
       cachixsh
       coreutils
       curl
+      diffutils
       docker-compose
       dockersh
       dtach
@@ -20,6 +22,7 @@ version: final: prev:
       gawk-with-extensions
       git
       gnugrep
+      gnumake
       gnused
       gnutar
       gzip
@@ -39,6 +42,7 @@ version: final: prev:
       nix-tree
       nixbuildsh
       nixsh
+      patch
       screen
       tmux
       traceroute
@@ -46,6 +50,7 @@ version: final: prev:
       wget
       which
       whois
+      xz
     ];
   };
 
