@@ -56,6 +56,7 @@
         duply = import duply/overlay.nix;
         linac = import linac/overlay.nix;
         qshell = import qshell/overlay.nix version;
+        userprofile = import userprofile/overlay.nix version;
       };
     }
     //
@@ -99,7 +100,8 @@
               qshell-minimal
               qshell-standard
               qshell-full
-              qshell;
+              qshell
+              userprofile;
 
             inherit (pkgs.unstable)
               cas;
