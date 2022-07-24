@@ -1,15 +1,15 @@
 {
-  axonsh,
+# axonsh,
   duply,
-  linac
+# linac
 }:
 
 let
 
   apps = {
-    axonsh = { type = "app"; program = "${axonsh}/bin/axon.sh"; };
+#   axonsh = { type = "app"; program = "${axonsh}/bin/axon.sh"; };
     duply = { type = "app"; program = "${duply}/bin/duply"; };
-    linac = { type = "app"; program = "${linac}/bin/linac"; };
+#   linac = { type = "app"; program = "${linac}/bin/linac"; };
   };
 
 in
