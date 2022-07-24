@@ -10,12 +10,11 @@ version: final: prev:
 
     paths = with final; [
       bzip2
-      cachixsh
       coreutils
+      croc
       curl
       diffutils
       docker-compose
-      dockersh
       dtach
       findutils
       gawk
@@ -40,10 +39,9 @@ version: final: prev:
       nix
       nix-direnv
       nix-tree
-      nixbuildsh
-      nixsh
       patch
       screen
+      shellscripts
       tmux
       traceroute
       tree

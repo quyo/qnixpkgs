@@ -149,12 +149,12 @@
             flakePkgs
             //
             {
-              default = linkFarmFromDrvs "qnixpkgs-packages-default" (mapfilterFlakePkgs flakePkgsNoDefault);
+              default = linkFarmFromDrvs "qnixpkgs-default-${version}" (mapfilterFlakePkgs flakePkgsNoDefault);
 
-              ci-build = linkFarmFromDrvs "qnixpkgs-packages-ci-build" (mapfilterFlakePkgs flakePkgsNoCIBuild);
-              ci-publish = linkFarmFromDrvs "qnixpkgs-packages-ci-publish" (mapfilterFlakePkgs flakePkgsNoCIPublish);
+              ci-build = linkFarmFromDrvs "qnixpkgs-ci-build-${version}" (mapfilterFlakePkgs flakePkgsNoCIBuild);
+              ci-publish = linkFarmFromDrvs "qnixpkgs-ci-publish-${version}" (mapfilterFlakePkgs flakePkgsNoCIPublish);
 
-              docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-packages-docker"; });
+              docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-docker-${version}"; });
             };
 
         apps = removeAttrs
