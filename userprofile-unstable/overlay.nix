@@ -4,7 +4,7 @@ version: final: prev:
 
   userprofile-unstable = final.symlinkJoin
   {
-    name = "userprofile-unstable-${version}";
+    name = "userprofile-global-unstable-${version}";
     preferLocalBuild = false;
     allowSubstitutes = true;
 
