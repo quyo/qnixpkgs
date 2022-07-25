@@ -2,12 +2,9 @@ version: final: prev:
 
 {
 
-  qshell-minimal = final.symlinkJoin
+  qshell-minimal = final.buildEnv
   {
     name = "qshell-minimal-${version}";
-    preferLocalBuild = false;
-    allowSubstitutes = true;
-
     paths = with final; [
       bashInteractive
       coreutils

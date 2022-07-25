@@ -108,11 +108,9 @@
             inherit (pkgs.unstable)
               cas;
 
-            userprofile = pkgs.symlinkJoin
+            userprofile = pkgs.buildEnv
             {
               name = "userprofile-global-${version}";
-              preferLocalBuild = false;
-              allowSubstitutes = true;
               paths = [
                 pkgs.userprofile-stable
                 pkgs.unstable.userprofile-unstable

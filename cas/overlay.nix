@@ -6,12 +6,9 @@ in
 
 {
 
-  cas = final.symlinkJoin
+  cas = final.buildEnv
   {
     name = "cas-${version}";
-    preferLocalBuild = false;
-    allowSubstitutes = true;
-
     paths = with final; [
       maxima
       octave

@@ -54,7 +54,7 @@
       {
         packages =
           {
-            default = pkgs.symlinkJoin
+            default = pkgs.buildEnv
             {
               name = "userprofile-local-${version}";
               paths = [

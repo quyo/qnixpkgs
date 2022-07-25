@@ -2,12 +2,9 @@ version: final: prev:
 
 {
 
-  userprofile-unstable = final.symlinkJoin
+  userprofile-unstable = final.buildEnv
   {
     name = "userprofile-global-unstable-${version}";
-    preferLocalBuild = false;
-    allowSubstitutes = true;
-
     paths = with final; [
       bzip2
       coreutils
@@ -39,6 +36,7 @@ version: final: prev:
       nix-direnv
       nix-tree
       patch
+      ripgrep
       screen
       shellscripts
       tmux

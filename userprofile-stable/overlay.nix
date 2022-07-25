@@ -2,12 +2,9 @@ version: final: prev:
 
 {
 
-  userprofile-stable = final.symlinkJoin
+  userprofile-stable = final.buildEnv
   {
     name = "userprofile-global-stable-${version}";
-    preferLocalBuild = false;
-    allowSubstitutes = true;
-
     paths = with final; [
     ];
   };
