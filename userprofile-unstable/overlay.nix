@@ -14,7 +14,6 @@ version: final: prev:
       croc
       curl
       diffutils
-      docker-compose
       dtach
       findutils
       gawk

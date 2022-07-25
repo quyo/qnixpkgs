@@ -9,7 +9,6 @@ version: final: prev:
     allowSubstitutes = true;
 
     paths = with final; [
-      hello
     ];
   };
 
