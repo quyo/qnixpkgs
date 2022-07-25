@@ -21,48 +21,39 @@
           inherit (self) lastModifiedDate;
         in
           "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
+
+      json = nixpkgs.lib.importJSON ./packages.json;
+
+      getFlakePkgs = system: label:
+        let
+          inherit (builtins) getAttr;
+
+          outs = (getAttr label self).outputs;
+          pkgs = (outs.packages or outs.legacyPackages).${system};
+        in
+          map
+            (x: getAttr x pkgs)
+            (getAttr label json);
+
+      getAllPkgs = system:
+        let inherit (builtins) attrNames concatMap;
+        in concatMap (getFlakePkgs system) (attrNames json);
     in
     {
-      overlays = {
-        userprofile-local-stable = import ./overlay-stable.nix version;
-        userprofile-local-unstable = import ./overlay-unstable.nix version;
-      };
+      # needed by (getAttr label self) in getFlakePkgs
+      inherit nixpkgs nixpkgs-unstable qnixpkgs;
     }
     //
     flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
       let
-
-        flakeOverlays = builtins.concatMap builtins.attrValues [
-          self.overlays
-          qnixpkgs.overlays
-        ];
-
-        # can now use "pkgs.package" or "pkgs.unstable.package"
-        unstableOverlay = final: prev: {
-          unstable = import nixpkgs-unstable {
-            inherit system;
-            overlays = flakeOverlays;
-          };
-        };
-
-        pkgs = import nixpkgs {
-          inherit system;
-          overlays = [ unstableOverlay ] ++ flakeOverlays;
-        };
-
+        inherit (nixpkgs.outputs.legacyPackages.${system}) buildEnv;
       in
       {
-        packages =
-          {
-            default = pkgs.buildEnv
-            {
-              name = "userprofile-local-${version}";
-              paths = [
-                pkgs.userprofile-local-stable
-                pkgs.unstable.userprofile-local-unstable
-              ];
-            };
-          };
+        packages.default = buildEnv
+        {
+          name = "userprofile-local-${version}";
+          paths = getAllPkgs system;
+        };
       }
     );
 
