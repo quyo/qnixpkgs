@@ -142,12 +142,8 @@
           ++
           flakePkgsNoCIBuild;
 
-        callPackage = path: overrides:
-          let
-            f = import path;
-            inherit (builtins) functionArgs intersectAttrs;
-          in
-            f ((intersectAttrs (functionArgs f) (pkgs // flakePkgs)) // overrides);
+        callPackage = pkgs.lib.callPackageWith (pkgs // flakePkgs);
+        callPackageNonOverridable = fn: args: removeAttrs (callPackage fn args) [ "override" "overrideDerivation" ];
 
       in {
 
@@ -170,7 +166,7 @@
 
         apps = removeAttrs
           (
-            (callPackage ./apps.nix { })
+            (callPackageNonOverridable ./apps.nix { })
             //
             shellscripts.apps.${system}
             //
