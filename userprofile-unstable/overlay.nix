@@ -13,7 +13,6 @@ version: final: prev:
       diffutils
       dtach
       findutils
-      gawk
       gawk-with-extensions
       git
       gnugrep
