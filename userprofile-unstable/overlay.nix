@@ -2,9 +2,9 @@ version: final: prev:
 
 {
 
-  userprofile = final.symlinkJoin
+  userprofile-unstable = final.symlinkJoin
   {
-    name = "userprofile-${version}";
+    name = "userprofile-unstable-${version}";
     preferLocalBuild = false;
     allowSubstitutes = true;
 

@@ -58,7 +58,8 @@
         duply = import duply/overlay.nix;
         linac = import linac/overlay.nix;
         qshell = import qshell/overlay.nix version;
-        userprofile = import userprofile/overlay.nix version;
+        userprofile-stable = import userprofile-stable/overlay.nix version;
+        userprofile-unstable = import userprofile-unstable/overlay.nix version;
       };
     }
     //
@@ -105,8 +106,18 @@
               qshell;
 
             inherit (pkgs.unstable)
-              cas
-              userprofile;
+              cas;
+
+            userprofile = pkgs.symlinkJoin
+            {
+              name = "userprofile-global-${version}";
+              preferLocalBuild = false;
+              allowSubstitutes = true;
+              paths = [
+                pkgs.userprofile-stable
+                pkgs.unstable.userprofile-unstable
+              ];
+            };
           }
           //
           (removeAttrs shellscripts.packages.${system} flakePkgsNoExternal)
