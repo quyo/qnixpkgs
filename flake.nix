@@ -53,6 +53,8 @@
     in
     {
       overlays = {
+        prefer-remote-fetch = import ./prefer-remote-fetch.nix;
+
         axonsh = import axon.sh/overlay.nix;
         cas = import cas/overlay.nix version;
         duply = import duply/overlay.nix;
