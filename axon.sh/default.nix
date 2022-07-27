@@ -1,11 +1,11 @@
-{ lib, stdenv, fetchgit, makeWrapper, linac, coreutils, curl, gnugrep, jq }:
+{ lib, stdenvNoCC, fetchgit, makeWrapper, linac, coreutils, curl, gnugrep, jq }:
 
 let
   pname = "axon.sh";
   version = "0.17.0";
 in
 
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   inherit pname version;
 
   src = fetchgit {

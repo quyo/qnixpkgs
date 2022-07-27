@@ -1,0 +1,16 @@
+--- cronic	2022-07-27 17:55:44.701059600 +0200
++++ cronic.mod	2022-07-27 17:53:00.391059600 +0200
+@@ -16,6 +16,13 @@
+ RESULT=$?
+ set -e
+ 
++if [[ -v CRONIC_IGNORE ]]; then
++  readarray -t LINES <<< $(echo "$CRONIC_IGNORE" | grep -Ev '^$')
++  for LINE in "${LINES[@]}"; do
++    sed -i -e "/$LINE/d" $TRACE
++  done
++fi
++
+ PATTERN="^${PS4:0:1}\\+${PS4:1}"
+ if grep -aq "$PATTERN" $TRACE
+ then

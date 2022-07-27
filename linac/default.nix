@@ -1,4 +1,4 @@
-{ lib, stdenv, makeWrapper, coreutils, findutils, gnugrep, gnused }:
+{ lib, stdenvNoCC, makeWrapper, coreutils, findutils, gnugrep, gnused }:
 
 let
   pname = "linac";
@@ -10,7 +10,7 @@ let
   };
 in
 
-stdenv.mkDerivation {
+stdenvNoCC.mkDerivation {
   inherit pname version src;
 
   nativeBuildInputs = [ makeWrapper ];

@@ -55,6 +55,7 @@
       overlays = {
         axonsh = import axon.sh/overlay.nix;
         cas = import cas/overlay.nix version;
+        cronic = import cronic/overlay.nix;
         duply = import duply/overlay.nix;
         linac = import linac/overlay.nix;
         qshell = import qshell/overlay.nix version;
@@ -98,7 +99,9 @@
           {
             inherit (pkgs)
               axonsh
+              cronic
               duply
+              duply-cronic
               linac
               qshell-minimal
               qshell-standard
