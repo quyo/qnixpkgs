@@ -15,7 +15,7 @@ in
   ''
     CRONIC_IGNORE='
     ^\/nix\/store\/[a-z0-9.-]*\/bin\/\.duply-wrapped: line [0-9]*: WARNING:: command not found$
-    ' ${final.cronic}/bin/cronic ${final.duply}/bin/duply "$@"
+    ' exec -a "$0" ${final.cronic}/bin/cronic ${final.duply}/bin/duply "$@"
   '';
 
 }

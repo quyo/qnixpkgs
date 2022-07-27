@@ -3,14 +3,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-
     flake-utils.url = "github:numtide/flake-utils";
-
     qnixpkgs.url = "github:Samayel/qnixpkgs";
-    qnixpkgs.inputs.nixpkgs.follows = "nixpkgs";
-    qnixpkgs.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
-    qnixpkgs.inputs.flake-utils.follows = "flake-utils";
-    qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, qnixpkgs, ... }:
