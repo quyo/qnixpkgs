@@ -14,6 +14,7 @@ version: final: prev:
       dtach
       findutils
       gawk-with-extensions
+      gdu
       git
       gnugrep
       gnumake
