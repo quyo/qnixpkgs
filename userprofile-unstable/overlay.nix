@@ -28,6 +28,7 @@ version: final: prev:
       iotop
       joe
       jq
+      kakoune
       less
       mc
       moreutils

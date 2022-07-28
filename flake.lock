@@ -149,11 +149,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1658927676,
-        "narHash": "sha256-u2zBVuOIgo+s/Hg/xhXzb+k9LuPkRu/sDHuj5R8AZ/8=",
+        "lastModified": 1659015633,
+        "narHash": "sha256-p/9boXceLdUlm2iCEPWfITt4v9TYoyuvgZnFegFd3Qg=",
         "owner": "Samayel",
         "repo": "qnixpkgs",
-        "rev": "51cc36e8879df143ccad3b27f33e0efdd8711b26",
+        "rev": "79c85a6c74c560defa68ff1ec9445d2dd7ba6dfd",
         "type": "github"
       },
       "original": {

@@ -57,6 +57,7 @@
         cas = import cas/overlay.nix version;
         cronic = import cronic/overlay.nix;
         duply = import duply/overlay.nix;
+        kakoune = import kakoune/overlay.nix;
         linac = import linac/overlay.nix;
         qshell = import qshell/overlay.nix version;
         userprofile-stable = import userprofile-stable/overlay.nix version;
@@ -102,6 +103,7 @@
               cronic
               duply
               duply-cronic
+              kakoune
               linac
               qshell-minimal
               qshell-standard
