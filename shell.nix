@@ -9,4 +9,4 @@ let
   };
   compat = import compatSrc { src = ./.; };
 in
-  compat.shellNix
+compat.shellNix

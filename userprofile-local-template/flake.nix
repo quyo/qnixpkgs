@@ -1,5 +1,4 @@
 {
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -14,7 +13,7 @@
           inherit (builtins) substring;
           inherit (self) lastModifiedDate;
         in
-          "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
+        "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
 
       json = nixpkgs.lib.importJSON ./packages.json;
 
@@ -25,9 +24,9 @@
           outs = (getAttr label self).outputs;
           pkgs = (outs.packages or outs.legacyPackages).${system};
         in
-          map
-            (x: getAttr x pkgs)
-            (getAttr label json);
+        map
+          (x: getAttr x pkgs)
+          (getAttr label json);
 
       getAllPkgs = system:
         let inherit (builtins) attrNames concatMap;
@@ -44,11 +43,10 @@
       in
       {
         packages.default = buildEnv
-        {
-          name = "userprofile-local-${version}";
-          paths = getAllPkgs system;
-        };
+          {
+            name = "userprofile-local-${version}";
+            paths = getAllPkgs system;
+          };
       }
     );
-
 }

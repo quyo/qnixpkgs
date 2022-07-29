@@ -5,23 +5,21 @@ let
 in
 
 {
-
   cas = final.buildEnv
-  {
-    name = "cas-${version}";
-    paths = with final; [
-      maxima
-      octave
-      pari
-      pari-galdata
-      pari-seadata-small
-      py3
-#     sage
-      sagetex
-      sageWithDoc
-      singular
-      yacas
-    ];
-  };
-
+    {
+      name = "cas-${version}";
+      paths = with final; [
+        maxima
+        octave
+        pari
+        pari-galdata
+        pari-seadata-small
+        py3
+        # sage
+        sagetex
+        sageWithDoc
+        singular
+        yacas
+      ];
+    };
 }

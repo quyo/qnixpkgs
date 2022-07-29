@@ -1,9 +1,8 @@
 {
-
   inputs = {
-#   nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
+    # nixpkgs.url = "github:nixos/nixpkgs/release-22.05";
     nixpkgs.url = "github:nixos/nixpkgs/d4f600ec45d9a14d41a4d5a61c034fa1bd819f88";
-#   nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/f4a4245e55660d0a590c17bab40ed08a1d010787";
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -49,7 +48,7 @@
           inherit (builtins) substring;
           inherit (self) lastModifiedDate;
         in
-          "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
+        "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
     in
     {
       overlays = {
@@ -67,7 +66,6 @@
     //
     flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
       let
-
         flakeOverlays = builtins.concatMap builtins.attrValues [
           self.overlays
           shellscripts.overlays
@@ -114,13 +112,13 @@
               cas;
 
             userprofile = pkgs.buildEnv
-            {
-              name = "userprofile-global-${version}";
-              paths = [
-                pkgs.userprofile-stable
-                pkgs.unstable.userprofile-unstable
-              ];
-            };
+              {
+                name = "userprofile-global-${version}";
+                paths = [
+                  pkgs.userprofile-stable
+                  pkgs.unstable.userprofile-unstable
+                ];
+              };
           }
           //
           (removeAttrs shellscripts.packages.${system} flakePkgsNoExternal)
@@ -133,39 +131,32 @@
               cas;
           };
 
-        flakePkgsNoCIBuild = builtins.attrNames
-          {
-          }
-          ++
-          flakePkgsNoDefault;
+        flakePkgsNoCIBuild = flakePkgsNoDefault ++ builtins.attrNames
+          { };
 
-        flakePkgsNoCIPublish = builtins.attrNames
-          {
-          }
-          ++
-          flakePkgsNoCIBuild;
+        flakePkgsNoCIPublish = flakePkgsNoCIBuild ++ builtins.attrNames
+          { };
 
         callPackage = pkgs.lib.callPackageWith (pkgs // flakePkgs);
         callPackageNonOverridable = fn: args: removeAttrs (callPackage fn args) [ "override" "overrideDerivation" ];
-
-      in {
-
+      in
+      {
         packages =
           let
             inherit (builtins) all attrNames filter;
             inherit (pkgs) linkFarmFromDrvs;
             mapfilterFlakePkgs = exclude: map (x: flakePkgs.${x}) (filter (x: all (y: x != y) exclude) (attrNames flakePkgs));
           in
-            flakePkgs
-            //
-            {
-              default = linkFarmFromDrvs "qnixpkgs-default-${version}" (mapfilterFlakePkgs flakePkgsNoDefault);
+          flakePkgs
+          //
+          {
+            default = linkFarmFromDrvs "qnixpkgs-default-${version}" (mapfilterFlakePkgs flakePkgsNoDefault);
 
-              ci-build = linkFarmFromDrvs "qnixpkgs-ci-build-${version}" (mapfilterFlakePkgs flakePkgsNoCIBuild);
-              ci-publish = linkFarmFromDrvs "qnixpkgs-ci-publish-${version}" (mapfilterFlakePkgs flakePkgsNoCIPublish);
+            ci-build = linkFarmFromDrvs "qnixpkgs-ci-build-${version}" (mapfilterFlakePkgs flakePkgsNoCIBuild);
+            ci-publish = linkFarmFromDrvs "qnixpkgs-ci-publish-${version}" (mapfilterFlakePkgs flakePkgsNoCIPublish);
 
-              docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-docker-${version}"; });
-            };
+            docker = (callPackage ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-docker-${version}"; });
+          };
 
         apps = removeAttrs
           (
@@ -177,7 +168,7 @@
           )
           [ "default" ];
 
+        formatter = pkgs.nixpkgs-fmt;
       }
     );
-
 }
