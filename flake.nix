@@ -55,6 +55,7 @@
         axonsh = import axon.sh/overlay.nix;
         cas = import cas/overlay.nix version;
         cronic = import cronic/overlay.nix;
+        danecheck = import danecheck/overlay.nix;
         duply = import duply/overlay.nix;
         kakoune = import kakoune/overlay.nix;
         linac = import linac/overlay.nix;
@@ -99,6 +100,8 @@
             inherit (pkgs)
               axonsh
               cronic
+              danecheck
+              danecheck-cronic
               duply
               duply-cronic
               kakoune
@@ -128,7 +131,9 @@
         flakePkgsNoDefault = builtins.attrNames
           {
             inherit (flakePkgs)
-              cas;
+              cas
+              danecheck
+              danecheck-cronic;
           };
 
         flakePkgsNoCIBuild = flakePkgsNoDefault ++ builtins.attrNames
