@@ -20,7 +20,7 @@ jobs:
         echo "enforce-determinism = true" >> "$NIX_CONF_FILE"
         echo "repeat = 2" >> "$NIX_CONF_FILE"
         cat "$NIX_CONF_FILE"
-      filter_builds: '.top_attr == "packages"'
+      filter_builds: '.top_attr == "packages" and .attr != "danecheck" and .attr != "danecheck-cronic"'
 #     filter_builds: '.attr == "ci-build"'
 
   upload:
