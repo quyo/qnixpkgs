@@ -35,6 +35,7 @@ version: final: prev:
         nix-direnv
         nix-tree
         patch
+        rename
         ripgrep
         screen
         shellscripts
