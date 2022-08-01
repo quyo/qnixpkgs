@@ -1,0 +1,7 @@
+
+
+if [ -e "$HOME/.acme.sh/script/acme.sh.env" ]; then
+
+    source "$HOME/.acme.sh/script/acme.sh.env"
+
+fi
