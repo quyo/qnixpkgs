@@ -9,13 +9,15 @@ stdenvNoCC.mkDerivation {
   buildPhase = ''
     runHook preBuild
 
-    cp -rT copy/ $out
+    mkdir $out
+    cd src
 
-    cd build/
-    dirs=($(find . -mindepth 1 -maxdepth 1 -type d))
+    find . -mindepth 1 -maxdepth 1 ! -iname "*.tmpl" | xargs -i cp -r {} $out
+
+    dirs=($(find . -mindepth 1 -maxdepth 1 -type d -iname "*.tmpl"))
     for dir in ''${dirs[@]}; do
       for file in $dir/* ; do
-        cat $file >> $out/$dir
+        cat $file >> $out/''${dir/%.tmpl/}
       done
     done
 
