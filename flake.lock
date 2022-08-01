@@ -149,11 +149,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1659192304,
-        "narHash": "sha256-9REOK70OD7nGDreXvQs8hqofUcMhBo2oSzDV/jwbAp4=",
+        "lastModified": 1659368972,
+        "narHash": "sha256-Uvz3xMHfDpwpkWJ0oHdiCDFsKQCpzqlUUesMg72m3xI=",
         "owner": "Samayel",
         "repo": "qnixpkgs",
-        "rev": "6859363514ed81361bddca9e23739c642b1bb572",
+        "rev": "97ba1a3525560b47cadc1dafb4fb1ce014224d84",
         "type": "github"
       },
       "original": {
@@ -196,11 +196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1659286198,
-        "narHash": "sha256-6vmsaxS81xUuZGksCLXkXG0FCkNlSeFcVBaezOAnS8Y=",
+        "lastModified": 1659372701,
+        "narHash": "sha256-Lcyk+tW2KoeiVOV1NBUhssz5RoCR0HizURGnwpLbrtw=",
         "owner": "Samayel",
         "repo": "shellscripts.nix",
-        "rev": "afde11b098e4bc8d23509e95d80f70cd103ca1b5",
+        "rev": "8f94987286d4b96ce4f3c193d4c200452af5d382",
         "type": "github"
       },
       "original": {
