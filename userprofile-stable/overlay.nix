@@ -4,6 +4,7 @@ version: final: prev:
     {
       name = "userprofile-global-stable-${version}";
       paths = with final; [
+        dotfiles
       ];
     };
 }

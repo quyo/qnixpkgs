@@ -56,6 +56,7 @@
         cas = import cas/overlay.nix version;
         cronic = import cronic/overlay.nix;
         danecheck = import danecheck/overlay.nix;
+        dotfiles = import dotfiles/overlay.nix version;
         duply = import duply/overlay.nix;
         kakoune = import kakoune/overlay.nix;
         linac = import linac/overlay.nix;
@@ -102,6 +103,7 @@
               cronic
               danecheck
               danecheck-cronic
+              dotfiles
               duply
               duply-cronic
               kakoune

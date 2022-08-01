@@ -1,0 +1,32 @@
+[user]
+	name = Markus John
+	email = johm@quyo.de
+[color]
+	ui = auto
+[push]
+	default = simple
+[alias]
+	co = checkout
+	ci = commit
+	st = status
+	br = branch
+	hist = log --pretty=format:\"%Cred%h%Creset %Cgreen[%ad]%Creset %s%Cgreen%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=short
+	type = cat-file -t
+	dump = cat-file -p
+	undo-commit = reset --soft HEAD^
+[github]
+	user = Samayel
+[pull]
+	rebase = true
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+[color "diff"]
+#	old = red strike
+#	new = green italic
+[gist]
+	home = /home/johm/repository/gist.github.com/Samayel
+[rebase]
+	autoStash = true
