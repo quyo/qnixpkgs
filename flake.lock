@@ -6,7 +6,7 @@
           "flake-utils"
         ],
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-stable"
         ]
       },
       "locked": {
@@ -66,7 +66,7 @@
           "flake-utils"
         ],
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-stable"
         ],
         "nixpkgs-unstable": [
           "nixpkgs-unstable"
@@ -90,6 +90,22 @@
       }
     },
     "nixpkgs": {
+      "locked": {
+        "lastModified": 1658647263,
+        "narHash": "sha256-UgDHfbSx0BX5Iclwo4nboIqhMWFqUU37gdpQNTAK/g8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d4f600ec45d9a14d41a4d5a61c034fa1bd819f88",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d4f600ec45d9a14d41a4d5a61c034fa1bd819f88",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable": {
       "locked": {
         "lastModified": 1658647263,
         "narHash": "sha256-UgDHfbSx0BX5Iclwo4nboIqhMWFqUU37gdpQNTAK/g8=",
@@ -135,9 +151,7 @@
         "mersenneforumorg": [
           "mersenneforumorg"
         ],
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": [
           "nixpkgs-unstable"
         ],
@@ -168,7 +182,7 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "mersenneforumorg": "mersenneforumorg",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs-stable": "nixpkgs-stable",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "qnixpkgs": "qnixpkgs",
         "shellscripts": "shellscripts"
@@ -186,7 +200,7 @@
           "flake-utils"
         ],
         "nixpkgs": [
-          "nixpkgs"
+          "nixpkgs-stable"
         ],
         "nixpkgs-unstable": [
           "nixpkgs-unstable"

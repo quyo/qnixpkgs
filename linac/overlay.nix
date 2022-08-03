@@ -1,4 +1,4 @@
-final: prev:
+self: final: prev:
 {
   linac = final.callPackage ./. { };
 }

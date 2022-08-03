@@ -1,11 +1,16 @@
-version: final: prev:
+self: final: prev:
+
+let
+  version = final.lib.q.flakeVersion self;
+in
+
 {
   qshell-minimal = final.buildEnv
     {
       name = "qshell-minimal-${version}";
       paths = with final; [
         bashInteractive
-        coreutils
+        coreutils-full
         less
         nano
       ];

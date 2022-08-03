@@ -1,4 +1,4 @@
-final: prev:
+self: final: prev:
 
 let
   inherit (final) writeShellScriptBin;

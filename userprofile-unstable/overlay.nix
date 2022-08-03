@@ -1,11 +1,16 @@
-version: final: prev:
+self: final: prev:
+
+let
+  version = final.lib.q.flakeVersion self;
+in
+
 {
   userprofile-unstable = final.buildEnv
     {
       name = "userprofile-global-unstable-${version}";
       paths = with final; [
         bzip2
-        coreutils
+        coreutils-full
         croc
         curl
         diffutils

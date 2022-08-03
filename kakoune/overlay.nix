@@ -1,4 +1,4 @@
-final: prev:
+self: final: prev:
 {
   kakoune = prev.kakoune.override {
     plugins = with final.kakounePlugins; [
