@@ -9,6 +9,7 @@ in
     {
       name = "userprofile-global-unstable-${version}";
       paths = with final; [
+        bat
         bzip2
         coreutils-full
         croc
