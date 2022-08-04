@@ -142,7 +142,7 @@
           ci-build = linkFarmFromDrvs "qnixpkgs-ci-build-${version}" (lib.q.removeListAttrs flake-pkgs exclusions.from-ci-build);
           ci-publish = linkFarmFromDrvs "qnixpkgs-ci-publish-${version}" (lib.q.removeListAttrs flake-pkgs exclusions.from-ci-publish);
 
-          docker = (lib.callPackageWith (pkgs-stable // flake-pkgs) ./docker.nix { }).overrideAttrs (oldAttrs: { name = "qnixpkgs-docker-${version}"; });
+          docker = lib.q.overrideName (lib.callPackageWith (pkgs-stable // flake-pkgs) ./docker.nix { }) "qnixpkgs-docker" version;
         };
 
         apps = removeAttrs

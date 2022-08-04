@@ -2,43 +2,35 @@ self: final: prev:
 
 let
   version = final.lib.q.flakeVersion self;
+
+  qshell-base = final.buildEnv { name = "qshell-base"; paths = [ ]; };
 in
 
-{
-  qshell-minimal = final.buildEnv
-    {
-      name = "qshell-minimal-${version}";
-      paths = with final; [
-        bashInteractive
-        coreutils-full
-        less
-        nano
-      ];
-    };
+with final; {
+  qshell-minimal = lib.q.extendEnv qshell-base "qshell-minimal" version [
+    bashInteractive
+    coreutils-full
+    less
+    nano
+  ];
 
-  qshell-standard = final.qshell-minimal.overrideAttrs (oldAttrs: {
-    name = "qshell-standard-${version}";
-    paths = with final; (oldAttrs.paths or [ ]) ++ [
-      findutils
-      gawk
-      gnugrep
-      gnused
-      gnutar
-      gzip
-      which
-    ];
-  });
+  qshell-standard = lib.q.extendEnv qshell-minimal "qshell-standard" version [
+    findutils
+    gawk
+    gnugrep
+    gnused
+    gnutar
+    gzip
+    which
+  ];
 
-  qshell-full = final.qshell-standard.overrideAttrs (oldAttrs: {
-    name = "qshell-full-${version}";
-    paths = with final; (oldAttrs.paths or [ ]) ++ [
-      gawk-with-extensions
-      joe
-      mc
-      moreutils
-      screen
-    ];
-  });
+  qshell-full = lib.q.extendEnv qshell-standard "qshell-full" version [
+    gawk-with-extensions
+    joe
+    mc
+    moreutils
+    screen
+  ];
 
-  qshell = final.qshell-standard.overrideAttrs (oldAttrs: { name = "qshell-${version}"; });
+  qshell = lib.q.overrideName qshell-standard "qshell" version;
 }
