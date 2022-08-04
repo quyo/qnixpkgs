@@ -135,7 +135,7 @@
         };
       in
       {
-        packages = lib.q.flake.packages "qnixpkgs" version pkgs-stable flake-pkgs exclusions ./docker.nix;
+        packages = lib.q.flake.packages "qnixpkgs" version flake-pkgs exclusions ./docker.nix;
 
         apps = removeAttrs
           (
@@ -147,7 +147,7 @@
           )
           [ "default" ];
 
-        formatter = pkgs-stable.nixpkgs-fmt;
+        formatter = lib.q.flake.formatter;
       }
     );
 }

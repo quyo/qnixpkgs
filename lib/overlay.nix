@@ -19,14 +19,16 @@ let
           default = final.devshell.mkShell { imports = [ (final.devshell.importTOML devshelltoml) ]; };
         };
 
-      packages = name: version: nixpkgs: flakepkgs: exclusions: dockernix: flakepkgs //
+      formatter = final.nixpkgs-fmt;
+
+      packages = name: version: flakepkgs: exclusions: dockernix: flakepkgs //
         {
           default = final.linkFarmFromDrvs "${name}-default-${version}" (qlib.removeListAttrs flakepkgs (exclusions.from-default or [ ]));
 
           ci-build = final.linkFarmFromDrvs "${name}-ci-build-${version}" (qlib.removeListAttrs flakepkgs (exclusions.from-ci-build or [ ]));
           ci-publish = final.linkFarmFromDrvs "${name}-ci-publish-${version}" (qlib.removeListAttrs flakepkgs (exclusions.from-ci-publish or [ ]));
 
-          docker = qlib.overrideName (final.lib.callPackageWith (nixpkgs // flakepkgs) dockernix { }) "${name}-docker" version;
+          docker = qlib.overrideName (final.lib.callPackageWith (final // flakepkgs) dockernix { }) "${name}-docker" version;
         };
 
       version = flake:
