@@ -61,9 +61,9 @@
     //
     flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
       let
-        inherit (pkgs-stable) buildEnv lib linkFarmFromDrvs;
+        inherit (pkgs-stable) buildEnv lib;
 
-        version = lib.q.flakeVersion self;
+        version = lib.q.flake.version self;
 
         overlays = builtins.concatMap builtins.attrValues [
           self.overlays
@@ -135,19 +135,11 @@
         };
       in
       {
-        packages = flake-pkgs //
-        {
-          default = linkFarmFromDrvs "qnixpkgs-default-${version}" (lib.q.removeListAttrs flake-pkgs exclusions.from-default);
-
-          ci-build = linkFarmFromDrvs "qnixpkgs-ci-build-${version}" (lib.q.removeListAttrs flake-pkgs exclusions.from-ci-build);
-          ci-publish = linkFarmFromDrvs "qnixpkgs-ci-publish-${version}" (lib.q.removeListAttrs flake-pkgs exclusions.from-ci-publish);
-
-          docker = lib.q.overrideName (lib.callPackageWith (pkgs-stable // flake-pkgs) ./docker.nix { }) "qnixpkgs-docker" version;
-        };
+        packages = lib.q.flake.packages "qnixpkgs" version pkgs-stable flake-pkgs exclusions ./docker.nix;
 
         apps = removeAttrs
           (
-            (lib.q.removeOverrideFuncs (lib.callPackageWith flake-pkgs ./apps.nix { }))
+            lib.q.flake.apps flake-pkgs ./apps.nix
             //
             shellscripts.apps.${system}
             //

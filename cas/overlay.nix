@@ -2,7 +2,7 @@ self: final: prev:
 
 let
   py3 = final.python3.withPackages (p: with p; [ gmpy2 mpmath sympy ]);
-  version = final.lib.q.flakeVersion self;
+  version = final.lib.q.flake.version self;
 in
 
 {
