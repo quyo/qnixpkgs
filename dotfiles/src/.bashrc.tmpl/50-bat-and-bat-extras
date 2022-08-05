@@ -2,14 +2,18 @@
 
 if [[ -x "$(command -v bat)" || -x "$HOME/.nix-profile/bin/bat" ]]; then
 
-  alias cat='bat --paging=never'
-
   export BAT_PAGER='less -r'
+  alias cat='bat --paging=never'
 
 fi
 
-if [[ -x "$(command -v batpipe)" || -x "$HOME/.nix-profile/bin/batpipe" ]]; then
+
+if [ -x "$(command -v batpipe)" ]; then
 
   eval "$(batpipe)"
+
+elif [ -x "$HOME/.nix-profile/bin/batpipe" ]; then
+
+  eval "$($HOME/.nix-profile/bin/batpipe)"
 
 fi
