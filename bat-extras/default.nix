@@ -3,30 +3,46 @@
 , fetchFromGitHub
 , makeWrapper
 , bat
-  # batdiff, batgrep, and batwatch
+
+  # batdiff, batgrep, batwatch, and batpipe
 , coreutils
 , getconf
 , less
+
   # batgrep
 , ripgrep
+
   # prettybat
 , withShFmt ? shfmt != null
 , shfmt ? null
 , withPrettier ? nodePackages?prettier
 , nodePackages ? null
+, withBlack ? python3Packages?black
+, python3Packages ? null
 , withClangTools ? clang-tools != null
 , clang-tools ? null
 , withRustFmt ? rustfmt != null
 , rustfmt ? null
+
   # batwatch
 , withEntr ? entr != null
 , entr ? null
+
   # batdiff
 , gitMinimal
 , withDelta ? delta != null
 , delta ? null
+
   # batman
 , util-linux
+
+  # batpipe
+, fish
+, exa
+, gnutar
+, gzip
+, unzip
+, xz
 }:
 
 let
@@ -34,13 +50,13 @@ let
   # This includes the complete source so the per-script derivations can run the tests.
   core = stdenv.mkDerivation rec {
     pname = "bat-extras";
-    version = "2021.04.06";
+    version = "2022.07.27";
 
     src = fetchFromGitHub {
       owner = "eth-p";
       repo = pname;
       rev = "v${version}";
-      sha256 = "sha256-MphI2n+oHZrw8bPohNGeGdST5LS1c6s/rKqtpcR9cLo=";
+      sha256 = "sha256-YSXnOQUc9Y9GGyvgpq65i8vaKjqKT473WT4Eopi5ENI=";
       fetchSubmodules = true;
     };
 
@@ -149,10 +165,12 @@ in
   batdiff = script "batdiff" ([ less coreutils gitMinimal ] ++ optionalDep withDelta delta);
   batgrep = script "batgrep" [ less coreutils ripgrep ];
   batman = script "batman" [ util-linux ];
+  batpipe = script "batpipe" [ exa fish gnutar gzip unzip xz ];
   batwatch = script "batwatch" ([ less coreutils ] ++ optionalDep withEntr entr);
   prettybat = script "prettybat" ([ ]
     ++ optionalDep withShFmt shfmt
     ++ optionalDep withPrettier nodePackages.prettier
+    ++ optionalDep withBlack python3Packages.black
     ++ optionalDep withClangTools clang-tools
     ++ optionalDep withRustFmt rustfmt);
 }

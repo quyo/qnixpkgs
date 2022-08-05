@@ -81,7 +81,7 @@
             "batdiff"
             "batgrep"
             "batman"
-            # batpipe
+            "batpipe"
             "batwatch"
             "cas"
             "cronic"

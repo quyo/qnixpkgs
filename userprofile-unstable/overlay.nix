@@ -15,7 +15,7 @@ in
         batdiff
         batgrep
         batman
-        # batpipe
+        batpipe
         batwatch
         bzip2
         coreutils-full
@@ -56,6 +56,7 @@ in
         tmux
         traceroute
         tree
+        unzip
         vim
         wget
         which
