@@ -100,9 +100,9 @@
           ];
 
         flake-pkgs =
-          flake-pkgs-mapper pkgs-stable ""
+          flake-pkgs-mapper pkgs-stable "" ""
           //
-          flake-pkgs-mapper pkgs-unstable "-unstable"
+          flake-pkgs-mapper pkgs-unstable "" "-unstable"
           //
           {
             userprofile = buildEnv
@@ -132,7 +132,7 @@
 
           from-default = builtins.attrNames
             (
-              flake-pkgs-mapper pkgs-unstable "-unstable"
+              flake-pkgs-mapper pkgs-unstable "" "-unstable"
               //
               {
                 inherit (flake-pkgs)
