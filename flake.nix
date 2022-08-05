@@ -45,6 +45,7 @@
     {
       overlays = {
         axonsh = import axon.sh/overlay.nix self;
+        bat-extras = import bat-extras/overlay.nix self;
         cas = import cas/overlay.nix self;
         cronic = import cronic/overlay.nix self;
         danecheck = import danecheck/overlay.nix self;
@@ -74,26 +75,36 @@
         pkgs-stable = import nixpkgs-stable { inherit overlays system; };
         pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
 
+        flake-pkgs-mapper = lib.q.mapPkgs
+          [
+            "axonsh"
+            "batdiff"
+            "batgrep"
+            "batman"
+            # batpipe
+            "batwatch"
+            "cas"
+            "cronic"
+            "danecheck"
+            "danecheck-cronic"
+            "dotfiles"
+            "duply"
+            "duply-cronic"
+            "kakoune"
+            "linac"
+            "prettybat"
+            "qshell-minimal"
+            "qshell-standard"
+            "qshell-full"
+            "qshell"
+          ];
+
         flake-pkgs =
+          flake-pkgs-mapper pkgs-stable ""
+          //
+          flake-pkgs-mapper pkgs-unstable "-unstable"
+          //
           {
-            inherit (pkgs-stable)
-              axonsh
-              cronic
-              danecheck
-              danecheck-cronic
-              dotfiles
-              duply
-              duply-cronic
-              kakoune
-              linac
-              qshell-minimal
-              qshell-standard
-              qshell-full
-              qshell;
-
-            inherit (pkgs-unstable)
-              cas;
-
             userprofile = buildEnv
               {
                 name = "userprofile-global-${version}";
@@ -120,12 +131,16 @@
             };
 
           from-default = builtins.attrNames
-            {
-              inherit (flake-pkgs)
-                cas
-                danecheck
-                danecheck-cronic;
-            };
+            (
+              flake-pkgs-mapper pkgs-unstable "-unstable"
+              //
+              {
+                inherit (flake-pkgs)
+                  cas
+                  danecheck
+                  danecheck-cronic;
+              }
+            );
 
           from-ci-build = from-default ++ builtins.attrNames
             { };

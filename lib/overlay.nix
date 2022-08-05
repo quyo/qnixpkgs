@@ -35,6 +35,8 @@ let
         "0.${substring 0 8 flake.lastModifiedDate}.${substring 8 6 flake.lastModifiedDate}.${flake.shortRev or "dirty"}";
     };
 
+    mapPkgs = attrs: pkgs: suffix: builtins.listToAttrs (map (x: final.lib.attrsets.nameValuePair "${x}${suffix}" pkgs.${x}) attrs);
+
     overrideName = set: pname: version: set.overrideAttrs (oldAttrs: {
       inherit pname version;
       name = "${pname}-${version}";
