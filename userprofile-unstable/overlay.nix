@@ -2,6 +2,8 @@ self: final: prev:
 
 let
   version = final.lib.q.flake.version self;
+
+  prettybat-slim = final.prettybat.override { withClangTools = false; };
 in
 
 {
@@ -10,6 +12,11 @@ in
       name = "userprofile-global-unstable-${version}";
       paths = with final; [
         bat
+        batdiff
+        batgrep
+        batman
+        # batpipe
+        batwatch
         bzip2
         coreutils-full
         croc
@@ -41,6 +48,7 @@ in
         nix-direnv
         nix-tree
         patch
+        prettybat-slim
         rename
         ripgrep
         screen
