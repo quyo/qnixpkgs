@@ -2,7 +2,7 @@
 
 if [[ -x "$(command -v bat)" || -x "$HOME/.nix-profile/bin/bat" ]]; then
 
-  export BAT_PAGER='less -r'
+  export BAT_PAGER='less -rF'
 
   alias cat='bat --paging=never'
 
