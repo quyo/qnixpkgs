@@ -35,6 +35,7 @@ in
         hstr
         htop
         httpie
+        iconv
         iftop
         iotop
         joe
