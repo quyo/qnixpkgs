@@ -56,8 +56,17 @@ jobs:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
+      - name: Login to git.quyo.net
+        uses: docker/login-action@v2
+        with:
+          registry: git.quyo.net
+          username: ${{ secrets.GIT_QUYO_NET_USERNAME }}
+          password: ${{ secrets.GIT_QUYO_NET_ACCESS_TOKEN }}
+
       - name: Load and push docker image (qnixpkgs:latest)
         working-directory: .
         run: |
           nix run github:Samayel/shellscripts.nix#docker-load-nix-build .#docker
           docker push quyo/qnixpkgs:latest
+          docker tag quyo/qnixpkgs:latest git.quyo.net/quyo/qnixpkgs:latest
+          docker push git.quyo.net/quyo/qnixpkgs:latest
