@@ -1,0 +1,24 @@
+
+
+if [[ -x "$(command -v lsd)" || -x "$HOME/.nix-profile/bin/lsd" ]]; then
+
+  alias lsd='lsd --config-file ~/.nix-profile/etc/dotfiles/.config/lsd/config.yaml'
+  alias ls=lsd
+  alias la='ls -A'
+  alias lla='ls -lA'
+
+fi
+
+
+if [[ -x "$(command -v exa)" || -x "$HOME/.nix-profile/bin/exa" ]]; then
+
+  alias exa='exa -Fbg --group-directories-first --color-scale --git --time-style long-iso'
+  alias ls=exa
+  alias la='ls -a'
+  alias lla='ls -la'
+
+fi
+
+
+alias ll='ls -l'
+alias lt='ls --tree'

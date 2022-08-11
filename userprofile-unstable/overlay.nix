@@ -4,19 +4,29 @@ let
   version = final.lib.q.flake.version self;
 
   prettybat-slim = final.prettybat.override { withClangTools = false; };
+
+  # https://github.com/ibraheemdev/modern-unix
+  modern-unix = with final; [
+    # bat - A cat clone with syntax highlighting and Git integration.
+    bat
+    batdiff
+    batgrep
+    batman
+    batpipe
+    batwatch
+    prettybat-slim
+    # exa - A modern replacement for ls.
+    exa
+    # lsd - The next gen file listing command. Backwards compatible with ls.
+    lsd
+  ];
 in
 
 {
   userprofile-unstable = final.buildEnv
     {
       name = "userprofile-global-unstable-${version}";
-      paths = with final; [
-        bat
-        batdiff
-        batgrep
-        batman
-        batpipe
-        batwatch
+      paths = with final; modern-unix ++ [
         bzip2
         coreutils-full
         croc
@@ -49,7 +59,6 @@ in
         nix-direnv
         nix-tree
         patch
-        prettybat-slim
         rename
         ripgrep
         screen
