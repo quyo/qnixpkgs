@@ -1,0 +1,8 @@
+
+
+[ -e $HOME/.joe ]             || ln -s $HOME/.nix-profile/etc/dotfiles/.joe             $HOME/.joe
+[ -e $HOME/.direnvrc ]        || ln -s $HOME/.nix-profile/etc/dotfiles/.direnvrc        $HOME/.direnvrc
+[ -e $HOME/.gitconfig ]       || ln -s $HOME/.nix-profile/etc/dotfiles/.gitconfig       $HOME/.gitconfig
+[ -e $HOME/.joerc ]           || ln -s $HOME/.nix-profile/etc/dotfiles/.joerc           $HOME/.joerc
+[ -e $HOME/.screenrc ]        || ln -s $HOME/.nix-profile/etc/dotfiles/.screenrc        $HOME/.screenrc
+[ -e $HOME/.selected_editor ] || ln -s $HOME/.nix-profile/etc/dotfiles/.selected_editor $HOME/.selected_editor
