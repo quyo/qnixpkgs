@@ -19,6 +19,7 @@ alias br='br -ghis'
 
 if [ -e "$HOME/.nix-profile/etc/dotfiles/.config/broot/git-diff-conf.toml" ]; then
 
+  # See https://dystroy.org/blog/gg/
   # git diff before commit
   function gg {
     DELTA_PAGER='less -r' br --conf "$HOME/.nix-profile/etc/dotfiles/.config/broot/git-diff-conf.toml" --git-status
