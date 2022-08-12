@@ -1,10 +1,3 @@
-[user]
-	name = Markus John
-	email = johm@quyo.de
-[color]
-	ui = auto
-[push]
-	default = simple
 [alias]
 	co = checkout
 	ci = commit
@@ -14,19 +7,34 @@
 	type = cat-file -t
 	dump = cat-file -p
 	undo-commit = reset --soft HEAD^
-[github]
-	user = Samayel
-[pull]
-	rebase = true
+[color]
+	ui = auto
+[core]
+    pager = delta
+[delta]
+    navigate = true
+    side-by-side = true
+[diff]
+    colorMoved = default
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
-[color "diff"]
-#	old = red strike
-#	new = green italic
 [gist]
 	home = /home/johm/repository/gist.github.com/Samayel
+[github]
+	user = Samayel
+[interactive]
+    diffFilter = delta --color-only
+[merge]
+    conflictstyle = diff3
+[pull]
+	rebase = true
+[push]
+	default = simple
 [rebase]
 	autoStash = true
+[user]
+	name = Markus John
+	email = johm@quyo.de

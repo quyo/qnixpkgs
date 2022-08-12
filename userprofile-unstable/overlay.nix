@@ -19,6 +19,8 @@ let
     exa
     # lsd - The next gen file listing command. Backwards compatible with ls.
     lsd
+    # delta - A viewer for git and diff output.
+    delta
   ];
 in
 

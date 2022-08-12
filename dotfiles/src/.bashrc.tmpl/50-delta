@@ -1,0 +1,7 @@
+
+
+if [[ -x "$(command -v delta)" || -x "$HOME/.nix-profile/bin/delta" ]]; then
+
+  export DELTA_PAGER='less -rF'
+
+fi
