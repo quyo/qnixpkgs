@@ -5,13 +5,23 @@ if [ -x "$(command -v broot)" ]; then
   eval "$(broot --print-shell-function bash)"
   broot --set-install-state installed
 
-  alias br='br -s'
 
 elif [ -x "$HOME/.nix-profile/bin/broot" ]; then
 
   eval "$($HOME/.nix-profile/bin/broot --print-shell-function bash)"
   $HOME/.nix-profile/bin/broot --set-install-state installed
 
-  alias br='br -s'
+fi
+
+
+alias br='br -ghis'
+
+
+if [ -e "$HOME/.nix-profile/etc/dotfiles/.config/broot/git-diff-conf.toml" ]; then
+
+  # git diff before commit
+  function gg {
+    DELTA_PAGER='less -r' br --conf "$HOME/.nix-profile/etc/dotfiles/.config/broot/git-diff-conf.toml" --git-status
+  }
 
 fi

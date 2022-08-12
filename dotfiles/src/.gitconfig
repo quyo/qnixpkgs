@@ -1,40 +1,41 @@
 [alias]
-	co = checkout
-	ci = commit
-	st = status
-	br = branch
-	hist = log --pretty=format:\"%Cred%h%Creset %Cgreen[%ad]%Creset %s%Cgreen%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=short
-	type = cat-file -t
-	dump = cat-file -p
-	undo-commit = reset --soft HEAD^
+    co = checkout
+    ci = commit
+    st = status
+    br = branch
+    hist = log --pretty=format:\"%Cred%h%Creset %Cgreen[%ad]%Creset %s%Cgreen%d%Creset %C(bold blue)<%an>%Creset\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+    undo-commit = reset --soft HEAD^
 [color]
-	ui = auto
+    ui = auto
 [core]
     pager = delta
 [delta]
     navigate = true
     side-by-side = true
+    paging = always
 [diff]
     colorMoved = default
 [filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
 [gist]
-	home = /home/johm/repository/gist.github.com/Samayel
+    home = /home/johm/repository/gist.github.com/Samayel
 [github]
-	user = Samayel
+    user = Samayel
 [interactive]
     diffFilter = delta --color-only
 [merge]
     conflictstyle = diff3
 [pull]
-	rebase = true
+    rebase = true
 [push]
-	default = simple
+    default = simple
 [rebase]
-	autoStash = true
+    autoStash = true
 [user]
-	name = Markus John
-	email = johm@quyo.de
+    name = Markus John
+    email = johm@quyo.de
