@@ -82,16 +82,18 @@ jobs:
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
-            extra-substituters = https://quyo-public.cachix.org ssh://eu.nixbuild.net?priority=90
-            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= quyo-public.cachix.org-1:W83ifK7/6EvKU4Q2ZxvHRAkiIRzPeXYnp9LWHezs5U0= nixbuild.net/quyo-1:TaAsUc6SBQnXhUQJM4s+1oQlTKa1e3M0u3Zqb36fbRc=
+            extra-substituters = https://quyo-public.cachix.org
+            trusted-public-keys = cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY= quyo-public.cachix.org-1:W83ifK7/6EvKU4Q2ZxvHRAkiIRzPeXYnp9LWHezs5U0=
             require-sigs = true
 
       - name: Build danecheck locally without sandbox
         working-directory: .
         run: |
           nix --no-sandbox build .#danecheck
+          nix --no-sandbox build .#danecheck-unstable
 
       - name: Upload danecheck outputs to Cachix
         working-directory: .
         run: |
           CACHIX_AUTH_TOKEN=${{ secrets.CACHIX_AUTH_TOKEN }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closure-single .#danecheck
+          CACHIX_AUTH_TOKEN=${{ secrets.CACHIX_AUTH_TOKEN }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closure-single .#danecheck-unstable
