@@ -11,14 +11,14 @@ in
       name = "cas-${version}";
       paths = with final; [
         maxima
-        octave
+        # octave
         pari
         pari-galdata
         pari-seadata-small
         py3
         # sage
-        sagetex
-        sageWithDoc
+        # sagetex
+        # sageWithDoc
         singular
         yacas
       ];
