@@ -55,6 +55,7 @@
         kakoune = import kakoune/overlay.nix self;
         lib = import lib/overlay.nix self;
         linac = import linac/overlay.nix self;
+        overrides = import ./overrides.nix self;
         qshell = import qshell/overlay.nix self;
         userprofile-stable = import userprofile-stable/overlay.nix self;
         userprofile-unstable = import userprofile-unstable/overlay.nix self;
@@ -77,14 +78,13 @@
         pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
 
         flake-pkgs-mapper = lib.q.mapPkgs
-          [
+          ([
             "axonsh"
             "batdiff"
             "batgrep"
             "batman"
             "batpipe"
             "batwatch"
-            "cas"
             "cronic"
             "danecheck"
             "danecheck-cronic"
@@ -93,12 +93,16 @@
             "duply-cronic"
             "kakoune"
             "linac"
-            "prettybat"
             "qshell-minimal"
             "qshell-standard"
             "qshell-full"
             "qshell"
-          ];
+          ]
+          ++ lib.optionals (system != flake-utils.lib.system.armv7l-linux)
+          [
+            "cas"
+            "prettybat"
+          ]);
 
         flake-pkgs =
           flake-pkgs-mapper pkgs-stable "" ""
@@ -117,7 +121,7 @@
           }
           //
           (removeAttrs shellscripts.packages.${system} exclusions.from-external)
-          //
+          // lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
           (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external);
 
         exclusions = rec
