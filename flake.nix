@@ -162,7 +162,7 @@
             lib.q.flake.apps flake-pkgs ./apps.nix
             //
             shellscripts.apps.${system}
-            //
+            // lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
             mersenneforumorg.apps.${system}
           )
           [ "default" ];
