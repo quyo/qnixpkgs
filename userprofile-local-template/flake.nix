@@ -37,7 +37,7 @@
       inherit nixpkgs nixpkgs-unstable qnixpkgs;
     }
     //
-    flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux ] (system:
+    flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux flake-utils.lib.system.armv7l-linux ] (system:
       let
         inherit (nixpkgs.outputs.legacyPackages.${system}) buildEnv;
       in
