@@ -7,30 +7,25 @@ let
     doCheck = false;
   });
 
+  dontInstallCheck = drv: drv.overrideAttrs (oldAttrs: {
+    doInstallCheck = false;
+  });
+
+  dontCheckHaskell = prev.haskell.lib.dontCheck;
+
   dontCheckLLVM = drv: drv.overrideAttrs (oldAttrs: {
     doCheck = false;
     cmakeFlags = map (x: builtins.replaceStrings ["DLLVM_BUILD_TESTS=ON"] ["DLLVM_BUILD_TESTS=OFF"] x) oldAttrs.cmakeFlags;
   });
 
-  fixllvmPackages = llvmPkgs: llvmPkgs // rec
-  {
-    tools = llvmPkgs.tools // rec
-    {
-      libllvm = dontCheckLLVM llvmPkgs.tools.libllvm;
-      llvm = libllvm.out // { outputSpecified = false; };
-      libclang = llvmPkgs.tools.libclang.override { inherit libllvm; };
-      clang-unwrapped = libclang.out // { outputSpecified = false; };
-    };
-    libllvm = tools.libllvm;
-    llvm = tools.llvm;
-    libclang = tools.libclang;
-    clang-unwrapped = tools.clang-unwrapped;
-  };
-
-  haskellPackagesOverrides = hfinal: hprev: {
-    cryptonite = prev.haskell.lib.dontCheck hprev.cryptonite;
-  }
-  // lib.optionalAttrs (builtins.hasAttr "overrides" prev.haskellPackages) (prev.haskellPackages.overrides hfinal hprev);
+  fixllvmPackages = llvmPkgs: llvmPkgs // (
+    let
+      tools = llvmPkgs.tools.extend (tfinal: tprev: {
+        libllvm = dontCheckLLVM tprev.libllvm;
+      });
+    in
+    { inherit tools; } // tools
+  );
 in
 
 {
@@ -39,18 +34,25 @@ in
 {
   ell = dontCheck prev.ell;
 
-  haskellPackages = prev.haskellPackages.override {
-    overrides = haskellPackagesOverrides;
-  } // { overrides = haskellPackagesOverrides; };
+  haskellPackages = prev.haskellPackages.extend (hfinal: hprev: {
+    cryptonite = dontCheckHaskell hprev.cryptonite;
+  });
 
   llvmPackages = fixllvmPackages prev.llvmPackages;
   llvmPackages_12 = fixllvmPackages prev.llvmPackages_12;
   llvmPackages_13 = fixllvmPackages prev.llvmPackages_13;
   llvmPackages_14 = fixllvmPackages prev.llvmPackages_14;
+  llvmPackages_latest = fixllvmPackages prev.llvmPackages_latest;
 
-  python3 = prev.python3.override {
-    packageOverrides = pyfinal: pyprev: {
+  python3 = prev.python3 // {
+    pkgs = prev.python3.pkgs.overrideScope (pyfinal: pyprev: {
       sh = dontCheck pyprev.sh;
-    };
+    });
+  };
+
+  python39 = prev.python39 // {
+    pkgs = prev.python39.pkgs.overrideScope (pyfinal: pyprev: {
+      aiohttp = dontInstallCheck pyprev.aiohttp;
+    });
   };
 }

@@ -93,6 +93,7 @@
             "duply-cronic"
             "kakoune"
             "linac"
+            "prettybat"
             "qshell-minimal"
             "qshell-standard"
             "qshell-full"
@@ -101,7 +102,6 @@
           ++ lib.optionals (system != flake-utils.lib.system.armv7l-linux)
           [
             "cas"
-            "prettybat"
           ]);
 
         flake-pkgs =
