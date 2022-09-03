@@ -1,0 +1,3 @@
+
+
+NIX_CONFIG="builders = @$HOME/.nix-profile/etc/dotfiles/.config/nix/builders"
