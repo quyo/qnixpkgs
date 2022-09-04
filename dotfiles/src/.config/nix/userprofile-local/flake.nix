@@ -9,7 +9,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     qnixpkgs.url = "github:Samayel/qnixpkgs";
-    qnixpkgs.inputs.nixpkgs.follows = "nixpkgs";
+    qnixpkgs.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     qnixpkgs.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     qnixpkgs.inputs.flake-utils.follows = "flake-utils";
     qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
