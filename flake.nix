@@ -57,8 +57,7 @@
         linac = import linac/overlay.nix self;
         overrides = import ./overrides.nix self;
         qshell = import qshell/overlay.nix self;
-        userprofile-stable = import userprofile-stable/overlay.nix self;
-        userprofile-unstable = import userprofile-unstable/overlay.nix self;
+        userprofile = import userprofile/overlay.nix self;
       };
     }
     //
@@ -100,9 +99,9 @@
             "qshell"
           ]
           ++ lib.optionals (system != flake-utils.lib.system.armv7l-linux)
-          [
-            "cas"
-          ]);
+            [
+              "cas"
+            ]);
 
         flake-pkgs =
           flake-pkgs-mapper pkgs-stable "" ""
@@ -114,15 +113,15 @@
               {
                 name = "userprofile-global-${version}";
                 paths = [
-                  pkgs-stable.userprofile-stable
-                  pkgs-unstable.userprofile-unstable
+                  pkgs-stable.userprofile.stable
+                  pkgs-unstable.userprofile.unstable
                 ];
               };
           }
           //
           (removeAttrs shellscripts.packages.${system} exclusions.from-external)
           // lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
-          (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external);
+            (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external);
 
         exclusions = rec
         {
@@ -163,7 +162,7 @@
             //
             shellscripts.apps.${system}
             // lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
-            mersenneforumorg.apps.${system}
+              mersenneforumorg.apps.${system}
           )
           [ "default" ];
 
