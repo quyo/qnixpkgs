@@ -15,7 +15,7 @@
     qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, flake-utils, qnixpkgs, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, qnixpkgs, ... }:
     let
       version =
         let
@@ -24,7 +24,7 @@
         in
         "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
 
-      json = nixpkgs.lib.importJSON ./packages.json;
+      json = nixpkgs-stable.lib.importJSON ./packages.json;
 
       getFlakePkgs = system: label:
         let
@@ -43,12 +43,12 @@
     in
     {
       # needed by (getAttr label self) in getFlakePkgs
-      inherit nixpkgs nixpkgs-unstable qnixpkgs;
+      inherit nixpkgs-stable nixpkgs-unstable qnixpkgs;
     }
     //
     flake-utils.lib.eachSystem [ flake-utils.lib.system.x86_64-linux flake-utils.lib.system.armv7l-linux ] (system:
       let
-        inherit (nixpkgs.outputs.legacyPackages.${system}) buildEnv;
+        inherit (nixpkgs-stable.outputs.legacyPackages.${system}) buildEnv;
       in
       {
         packages.default = buildEnv
