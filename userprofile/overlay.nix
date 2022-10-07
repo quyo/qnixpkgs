@@ -36,20 +36,13 @@ in
       stable = final.buildEnv
         {
           name = "userprofile-global-stable-${version}";
-          paths = with final; [
-            dotfiles
-          ];
-        };
-
-      unstable = final.buildEnv
-        {
-          name = "userprofile-global-unstable-${version}";
           paths = with final; modern-unix ++ [
             bzip2
             coreutils-full
             croc
             curl
             diffutils
+            dotfiles
             dtach
             findutils
             gawk-with-extensions
@@ -73,7 +66,6 @@ in
             mc
             moreutils
             nano
-            nix
             nix-direnv
             nix-tree
             patch
@@ -90,6 +82,14 @@ in
             which
             whois
             xz
+          ];
+        };
+
+      unstable = final.buildEnv
+        {
+          name = "userprofile-global-unstable-${version}";
+          paths = with final; [
+            nix
           ];
         };
     };
