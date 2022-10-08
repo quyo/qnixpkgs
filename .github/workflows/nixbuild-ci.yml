@@ -106,10 +106,10 @@ jobs:
         working-directory: .
         run: |
           nix --no-sandbox build .#danecheck
-          nix --no-sandbox build .#danecheck-unstable
+#         nix --no-sandbox build .#danecheck-unstable
 
       - name: Upload danecheck outputs to Cachix
         working-directory: .
         run: |
           CACHIX_AUTH_TOKEN=${{ secrets.CACHIX_AUTH_TOKEN }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closure-single .#danecheck
-          CACHIX_AUTH_TOKEN=${{ secrets.CACHIX_AUTH_TOKEN }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closure-single .#danecheck-unstable
+#         CACHIX_AUTH_TOKEN=${{ secrets.CACHIX_AUTH_TOKEN }} nix run github:Samayel/shellscripts.nix#cachix-push-flake-runtime-closure-single .#danecheck-unstable
