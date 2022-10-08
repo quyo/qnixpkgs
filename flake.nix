@@ -109,8 +109,8 @@
         flake-pkgs =
           flake-pkgs-mapper pkgs-stable "" ""
           //
-          flake-pkgs-mapper pkgs-unstable "" "-unstable"
-          //
+#         flake-pkgs-mapper pkgs-unstable "" "-unstable"
+#         //
           {
             userprofile = buildEnv
               {
