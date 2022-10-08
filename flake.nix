@@ -1,4 +1,7 @@
 {
+  nixConfig.extra-substituters = "https://quyo-public.cachix.org";
+  nixConfig.extra-trusted-public-keys = "quyo-public.cachix.org-1:W83ifK7/6EvKU4Q2ZxvHRAkiIRzPeXYnp9LWHezs5U0=";
+
   inputs = {
     # nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.05";
     nixpkgs-stable.url = "github:nixos/nixpkgs/9ecc270f02b09b2f6a76b98488554dd842797357";
