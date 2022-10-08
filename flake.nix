@@ -123,20 +123,14 @@
                 };
             }
             //
-            (removeAttrs shellscripts.packages.${system} exclusions.from-external)
+            shellscripts.packages.${system}
             //
-            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external)
+            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.packages.${system}
           )
           exclusions.from-internal;
 
         exclusions = rec
         {
-          from-internal =
-            [
-              "batwatch-unstable"
-              "qshell-full-unstable"
-            ];
-
           from-external = builtins.attrNames
             {
               inherit (self.packages.${system})
@@ -145,6 +139,12 @@
                 ci-publish
                 docker;
             };
+
+          from-internal = from-external ++
+          [
+            "batwatch-unstable"
+            "qshell-full-unstable"
+          ];
 
           from-default = builtins.attrNames
             (
