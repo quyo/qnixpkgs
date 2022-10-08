@@ -66,6 +66,7 @@ in
             mc
             moreutils
             nano
+            nettools
             nix-direnv
             nix-tree
             patch
