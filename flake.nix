@@ -106,28 +106,37 @@
               "cas"
             ]);
 
-        flake-pkgs =
-          flake-pkgs-mapper pkgs-stable "" ""
-          //
-          lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) (flake-pkgs-mapper pkgs-unstable "" "-unstable")
-          //
-          {
-            userprofile = buildEnv
-              {
-                name = "userprofile-global-${version}";
-                paths = [
-                  pkgs-stable.userprofile.stable
-                  pkgs-unstable.userprofile.unstable
-                ];
-              };
-          }
-          //
-          (removeAttrs shellscripts.packages.${system} exclusions.from-external)
-          //
-          lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external);
+        flake-pkgs = removeAttrs
+          (
+            flake-pkgs-mapper pkgs-stable "" ""
+            //
+            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) (flake-pkgs-mapper pkgs-unstable "" "-unstable")
+            //
+            {
+              userprofile = buildEnv
+                {
+                  name = "userprofile-global-${version}";
+                  paths = [
+                    pkgs-stable.userprofile.stable
+                    pkgs-unstable.userprofile.unstable
+                  ];
+                };
+            }
+            //
+            (removeAttrs shellscripts.packages.${system} exclusions.from-external)
+            //
+            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external)
+          )
+          exclusions.from-internal;
 
         exclusions = rec
         {
+          from-internal =
+            [
+              "batwatch-unstable"
+              "qshell-full-unstable"
+            ];
+
           from-external = builtins.attrNames
             {
               inherit (self.packages.${system})
