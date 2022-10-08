@@ -32,6 +32,8 @@ in
 }
 // lib.optionalAttrs stdenv.hostPlatform.isAarch32
 {
+  duplicity = dontInstallCheck prev.duplicity;
+
   ell = dontCheck prev.ell;
 
   haskellPackages = prev.haskellPackages.extend (hfinal: hprev: {
@@ -46,7 +48,7 @@ in
 
   python3 = prev.python3 // {
     pkgs = prev.python3.pkgs.overrideScope (pyfinal: pyprev: {
-      sh = dontCheck pyprev.sh;
+      sh = dontInstallCheck pyprev.sh;
     });
   };
 
