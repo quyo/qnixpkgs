@@ -1,6 +1,6 @@
 {
-# nixConfig.extra-substituters = "https://quyo-public.cachix.org ssh://eu.nixbuild.net?priority=90";
-# nixConfig.extra-trusted-public-keys = "quyo-public.cachix.org-1:W83ifK7/6EvKU4Q2ZxvHRAkiIRzPeXYnp9LWHezs5U0= nixbuild.net/quyo-1:TaAsUc6SBQnXhUQJM4s+1oQlTKa1e3M0u3Zqb36fbRc=";
+  # nixConfig.extra-substituters = "https://quyo-public.cachix.org ssh://eu.nixbuild.net?priority=90";
+  # nixConfig.extra-trusted-public-keys = "quyo-public.cachix.org-1:W83ifK7/6EvKU4Q2ZxvHRAkiIRzPeXYnp9LWHezs5U0= nixbuild.net/quyo-1:TaAsUc6SBQnXhUQJM4s+1oQlTKa1e3M0u3Zqb36fbRc=";
 
   inputs = {
     # nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.05";
@@ -109,8 +109,8 @@
         flake-pkgs =
           flake-pkgs-mapper pkgs-stable "" ""
           //
-#         flake-pkgs-mapper pkgs-unstable "" "-unstable"
-#         //
+          lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) (flake-pkgs-mapper pkgs-unstable "" "-unstable")
+          //
           {
             userprofile = buildEnv
               {
@@ -123,8 +123,8 @@
           }
           //
           (removeAttrs shellscripts.packages.${system} exclusions.from-external)
-          // lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
-            (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external);
+          //
+          lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) (removeAttrs mersenneforumorg.packages.${system} exclusions.from-external);
 
         exclusions = rec
         {
