@@ -64,6 +64,7 @@ in
             kakoune
             less
             mc
+            mkcert
             moreutils
             nano
             nettools
