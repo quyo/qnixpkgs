@@ -127,7 +127,7 @@
           ++ lib.optionals (system != flake-utils.lib.system.armv7l-linux)
             [
               "cas"
-              "jupyterEnvironment"
+              "jupyterlabEnvironment"
             ]);
 
         flake-pkgs = removeAttrs
@@ -206,8 +206,8 @@
 
         # devShells =
         #  {
-        #    # nix develop .#jupyter   =>   generate-directory jupyterlab-ihaskell
-        #    jupyter = pkgs-stable.jupyterEnvironment.env;
+        #    # nix develop .#jupyterlab   =>   generate-directory jupyterlab-ihaskell
+        #    jupyterlab = pkgs-stable.jupyterlabEnvironment.env;
         #  };
 
         formatter = lib.q.flake.formatter;

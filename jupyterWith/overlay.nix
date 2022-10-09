@@ -14,7 +14,7 @@ let
 in
 
 {
-  jupyterEnvironment = final.jupyterlabWith {
+  jupyterlabEnvironment = final.jupyterlabWith {
     kernels = [ iPython iHaskell ];
     # directory = "./jupyterlab";
   };
