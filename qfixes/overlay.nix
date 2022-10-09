@@ -2,7 +2,7 @@ self: final: prev:
 
 let
   inherit (prev) lib stdenv;
-  inherit (prev.lib.q) dontCheck dontInstallCheck dontCheckHaskell fixllvmPackages;
+  inherit (final.lib.q) dontCheck dontInstallCheck dontCheckHaskell fixllvmPackages;
 in
 
 { }
