@@ -167,6 +167,7 @@
           from-internal = from-external ++
           [
             "batwatch-unstable"
+            "jupyterlabEnvironment-unstable"
             "qshell-full-unstable"
           ];
 
