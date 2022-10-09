@@ -88,12 +88,16 @@
 
         version = lib.q.flake.version self;
 
-        overlays = builtins.concatMap builtins.attrValues [
-          self.overlays
-          shellscripts.overlays
-          mersenneforumorg.overlays
-          jupyterWith.overlays
-        ];
+        overlays = builtins.concatMap builtins.attrValues
+          ([
+            self.overlays
+            shellscripts.overlays
+            mersenneforumorg.overlays
+          ]
+          ++ nixpkgs-stable.lib.optionals (system != flake-utils.lib.system.armv7l-linux)
+            [
+              jupyterWith.overlays
+            ]);
 
         pkgs-stable = import nixpkgs-stable { inherit overlays system; };
         pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
@@ -112,7 +116,6 @@
             "dotfiles"
             "duply"
             "duply-cronic"
-            "jupyterEnvironment"
             "kakoune"
             "linac"
             "prettybat"
@@ -124,6 +127,7 @@
           ++ lib.optionals (system != flake-utils.lib.system.armv7l-linux)
             [
               "cas"
+              "jupyterEnvironment"
             ]);
 
         flake-pkgs = removeAttrs
@@ -200,11 +204,11 @@
           )
           [ "default" ];
 
-        devShells =
-          {
-            # nix develop .#jupyter   =>   generate-directory jupyterlab-ihaskell
-            jupyter = pkgs-stable.jupyterEnvironment.env;
-          };
+        # devShells =
+        #  {
+        #    # nix develop .#jupyter   =>   generate-directory jupyterlab-ihaskell
+        #    jupyter = pkgs-stable.jupyterEnvironment.env;
+        #  };
 
         formatter = lib.q.flake.formatter;
       }

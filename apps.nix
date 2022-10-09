@@ -2,7 +2,7 @@
 , cronic
 , duply
 , duply-cronic
-, jupyterEnvironment
+, jupyterEnvironment ? null
 , kakoune
 , linac
 }:
