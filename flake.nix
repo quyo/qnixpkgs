@@ -1,6 +1,6 @@
 {
-  nixConfig.extra-substituters = "https://quyo-public.cachix.org ssh://eu.nixbuild.net?priority=90";
-  nixConfig.extra-trusted-public-keys = "quyo-public.cachix.org-1:W83ifK7/6EvKU4Q2ZxvHRAkiIRzPeXYnp9LWHezs5U0= nixbuild.net/quyo-1:TaAsUc6SBQnXhUQJM4s+1oQlTKa1e3M0u3Zqb36fbRc=";
+  nixConfig.extra-substituters = "https://quyo-public.cachix.org ssh://eu.nixbuild.net?priority=90 https://jupyterwith.cachix.org";
+  nixConfig.extra-trusted-public-keys = "quyo-public.cachix.org-1:W83ifK7/6EvKU4Q2ZxvHRAkiIRzPeXYnp9LWHezs5U0= nixbuild.net/quyo-1:TaAsUc6SBQnXhUQJM4s+1oQlTKa1e3M0u3Zqb36fbRc= jupyterwith.cachix.org-1:/kDy2B6YEhXGJuNguG1qyqIodMyO4w8KwWH4/vAc7CI=";
 
   inputs = {
     # nixpkgs-stable.url = "github:nixos/nixpkgs/release-22.05";
@@ -8,14 +8,31 @@
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/95fda953f6db2e9496d2682c4fc7b82f959878f7";
 
+    flake-compat.url = "github:edolstra/flake-compat";
+    flake-compat.flake = false;
+
     flake-utils.url = "github:numtide/flake-utils";
 
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs-stable";
     devshell.inputs.flake-utils.follows = "flake-utils";
 
-    flake-compat.url = "github:edolstra/flake-compat";
-    flake-compat.flake = false;
+    hls.url = "github:haskell/haskell-language-server";
+    hls.inputs.flake-compat.follows = "flake-compat";
+    hls.inputs.flake-utils.follows = "flake-utils";
+    hls.inputs.nixpkgs.follows = "nixpkgs-stable";
+
+    ihaskell.url = "github:gibiansky/IHaskell";
+    ihaskell.inputs.flake-compat.follows = "flake-compat";
+    ihaskell.inputs.flake-utils.follows = "flake-utils";
+    ihaskell.inputs.nixpkgs.follows = "nixpkgs-stable";
+    ihaskell.inputs.hls.follows = "hls";
+
+    jupyterWith.url = "github:tweag/jupyterWith";
+    jupyterWith.inputs.flake-compat.follows = "flake-compat";
+    jupyterWith.inputs.flake-utils.follows = "flake-utils";
+    jupyterWith.inputs.nixpkgs.follows = "nixpkgs-stable";
+    jupyterWith.inputs.ihaskell.follows = "ihaskell";
 
     qnixpkgs.url = "github:Samayel/qnixpkgs";
     qnixpkgs.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
@@ -44,7 +61,7 @@
     mersenneforumorg.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, jupyterWith, ... }:
     {
       overlays = {
         axonsh = import axon.sh/overlay.nix self;
@@ -55,6 +72,7 @@
         dotfiles = import dotfiles/overlay.nix self;
         duply = import duply/overlay.nix self;
         iconv = import iconv/overlay.nix self;
+        jupyterWith = import jupyterWith/overlay.nix self;
         kakoune = import kakoune/overlay.nix self;
         linac = import linac/overlay.nix self;
         qfixes = import qfixes/overlay.nix self;
@@ -74,6 +92,7 @@
           self.overlays
           shellscripts.overlays
           mersenneforumorg.overlays
+          jupyterWith.overlays
         ];
 
         pkgs-stable = import nixpkgs-stable { inherit overlays system; };
@@ -93,6 +112,7 @@
             "dotfiles"
             "duply"
             "duply-cronic"
+            "jupyterEnvironment"
             "kakoune"
             "linac"
             "prettybat"
@@ -179,6 +199,12 @@
             lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.apps.${system}
           )
           [ "default" ];
+
+        devShells =
+          {
+            # nix develop .#jupyter   =>   generate-directory jupyterlab-ihaskell
+            jupyter = pkgs-stable.jupyterEnvironment.env;
+          };
 
         formatter = lib.q.flake.formatter;
       }
