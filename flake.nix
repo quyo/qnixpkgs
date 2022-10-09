@@ -56,9 +56,9 @@
         duply = import duply/overlay.nix self;
         iconv = import iconv/overlay.nix self;
         kakoune = import kakoune/overlay.nix self;
-        lib = import lib/overlay.nix self;
         linac = import linac/overlay.nix self;
-        overrides = import ./overrides.nix self;
+        qfixes = import qfixes/overlay.nix self;
+        qlib = import qlib/overlay.nix self;
         qshell = import qshell/overlay.nix self;
         userprofile = import userprofile/overlay.nix self;
       };
@@ -175,8 +175,8 @@
             lib.q.flake.apps flake-pkgs ./apps.nix
             //
             shellscripts.apps.${system}
-            // lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
-              mersenneforumorg.apps.${system}
+            //
+            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.apps.${system}
           )
           [ "default" ];
 

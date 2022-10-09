@@ -3,13 +3,37 @@ self: final: prev:
 let
   inherit (builtins) all attrNames filter substring;
 
-  qlib = {
+  qlib = rec {
+
+    dontCheck = drv: drv.overrideAttrs (oldAttrs: {
+      doCheck = false;
+    });
+
+    dontInstallCheck = drv: drv.overrideAttrs (oldAttrs: {
+      doInstallCheck = false;
+    });
+
+    dontCheckHaskell = prev.haskell.lib.dontCheck;
+
+    dontCheckLLVM = drv: drv.overrideAttrs (oldAttrs: {
+      doCheck = false;
+      cmakeFlags = map (x: builtins.replaceStrings [ "DLLVM_BUILD_TESTS=ON" ] [ "DLLVM_BUILD_TESTS=OFF" ] x) oldAttrs.cmakeFlags;
+    });
 
     extendEnv = baseEnv: pname: version: paths: baseEnv.overrideAttrs (oldAttrs: {
       inherit pname version;
       name = "${pname}-${version}";
       paths = (oldAttrs.paths or [ ]) ++ paths;
     });
+
+    fixllvmPackages = llvmPkgs: llvmPkgs // (
+      let
+        tools = llvmPkgs.tools.extend (tfinal: tprev: {
+          libllvm = dontCheckLLVM tprev.libllvm;
+        });
+      in
+      { inherit tools; } // tools
+    );
 
     flake = {
       apps = flakepkgs: appsnix: qlib.removeOverrideFuncs (final.lib.callPackageWith flakepkgs appsnix { });
