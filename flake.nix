@@ -168,7 +168,7 @@
       {
         packages = lib.q.flake.packages "qnixpkgs" version flake-pkgs exclusions ./docker.nix;
 
-        legacyPackages = nixpkgs-stable.legacyPackages.${system};
+        legacyPackages = pkgs-stable;
 
         apps = removeAttrs
           (
