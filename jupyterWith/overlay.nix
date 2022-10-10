@@ -2,48 +2,48 @@ self: final: prev:
 
 let
   ansible = final.jupyterWith.kernels.ansibleKernel {
-    name = "Ansible";
+    name = "ansible";
   };
 
   bash = final.jupyterWith.kernels.bashKernel {
-    name = "Bash";
+    name = "bash";
   };
 
   c = final.jupyterWith.kernels.cKernelWith {
-    name = "C";
+    name = "c";
     packages = p: with p; [ ];
   };
 
   cpp = final.jupyterWith.kernels.xeusCling {
-    name = "C++";
+    name = "cpp";
   };
 
   go = final.jupyterWith.kernels.gophernotes {
-    name = "Go";
+    name = "go";
   };
 
   haskell = final.jupyterWith.kernels.iHaskellWith {
-    name = "Haskell";
+    name = "haskell";
     packages = p: with p; [ formatting ];
     # Optional definition of `haskellPackages` to be used.
     haskellPackages = final.haskellPackages;
   };
 
   javascript = final.jupyterWith.kernels.iJavascript {
-    name = "Javascript";
+    name = "javascript";
   };
 
   nix = final.jupyterWith.kernels.iNixKernel {
-    name = "Nix";
+    name = "nix";
   };
 
   ocaml = final.jupyterWith.kernels.ocamlWith {
-    name = "OCaml";
+    name = "ocaml";
     packages = with final; [ ];
   };
 
   python = final.jupyterWith.kernels.iPythonWith {
-    name = "Python";
+    name = "python";
     packages = p: with p; [ numpy sympy pandas ];
     # Optional definition of `python3` to be used.
     python3 = final.python3;
@@ -51,19 +51,19 @@ let
   };
 
   r = final.jupyterWith.kernels.iRWith {
-    name = "R";
+    name = "r";
     packages = p: with p; [ ggplot2 ];
     # Optional definition of `rPackages` to be used.
     rPackages = final.rPackages;
   };
 
   ruby = final.jupyterWith.kernels.iRubyWith {
-    name = "Ruby";
+    name = "ruby";
     packages = p: with p; [ ];
   };
 
   rust = final.jupyterWith.kernels.rustWith {
-    name = "Rust";
+    name = "rust";
     packages = with final; [ ];
   };
 in
