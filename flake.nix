@@ -94,7 +94,8 @@
             shellscripts.overlays
             mersenneforumorg.overlays
           ]
-          ++ nixpkgs-stable.lib.optionals (system != flake-utils.lib.system.armv7l-linux)
+          ++
+          nixpkgs-stable.lib.optionals (system != flake-utils.lib.system.armv7l-linux)
             [
               jupyterWith.overlays
             ]);
@@ -124,7 +125,8 @@
             "qshell-full"
             "qshell"
           ]
-          ++ lib.optionals (system != flake-utils.lib.system.armv7l-linux)
+          ++
+          lib.optionals (system != flake-utils.lib.system.armv7l-linux)
             [
               "cas"
               "jupyterlabEnvironment"
@@ -205,11 +207,14 @@
           )
           [ "default" ];
 
-        # devShells =
-        #  {
-        #    # nix develop .#jupyterlab   =>   generate-directory jupyterlab-ihaskell
-        #    jupyterlab = pkgs-stable.jupyterlabEnvironment.env;
-        #  };
+        devShells =
+          { }
+          //
+          lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
+            {
+              # nix develop .#jupyterlab   =>   generate-directory jupyterlab-ihaskell
+              jupyterlab = pkgs-stable.jupyterlabEnvironment.env;
+            };
 
         formatter = lib.q.flake.formatter;
       }

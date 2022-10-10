@@ -16,6 +16,6 @@ in
 {
   jupyterlabEnvironment = final.jupyterlabWith {
     kernels = [ iPython iHaskell ];
-    # directory = "./jupyterlab";
+    directory = "./jupyterlab";
   };
 }
