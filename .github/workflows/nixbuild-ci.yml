@@ -15,11 +15,6 @@ jobs:
     secrets:
       nixbuild_ssh_key: ${{ secrets.NIXBUILD_SSH_KEY }}
     with:
-      pre_build_script: |
-        NIX_CONF_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/nix/nix.conf"
-        echo "enforce-determinism = true" >> "$NIX_CONF_FILE"
-        echo "repeat = 2" >> "$NIX_CONF_FILE"
-        cat "$NIX_CONF_FILE"
       filter_builds: '.top_attr == "packages" and .attr != "danecheck" and .attr != "danecheck-cronic" and .attr != "danecheck-unstable" and .attr != "danecheck-cronic-unstable"'
 #     filter_builds: '.attr == "ci-build"'
 
