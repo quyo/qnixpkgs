@@ -518,11 +518,11 @@
         "stylish-haskell": "stylish-haskell_2"
       },
       "locked": {
-        "lastModified": 1665336737,
-        "narHash": "sha256-uACGk1k0kCH6QSFyZ54xKWN2TOUYfivJ+gMEcKsill0=",
+        "lastModified": 1665576905,
+        "narHash": "sha256-GBP/OWXtGZau8AGEjs+CFmwqcgKvzykY4jnOZMp8kdw=",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "050497a19f0c40936169b39506fce7c007595b83",
+        "rev": "55456fb281ed338ec1a333fa74f02e1d01fc4791",
         "type": "github"
       },
       "original": {
@@ -873,11 +873,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1665469683,
-        "narHash": "sha256-+suiYKNqz4jX24L7rV282N+n4ZF16R96zt6KLHdTrJs=",
+        "lastModified": 1665579812,
+        "narHash": "sha256-RbqsXNx+mLL18icBWggX73hftatSPxPpZOH5jlITxgY=",
         "owner": "Samayel",
         "repo": "qnixpkgs",
-        "rev": "449ab1f3e6655b0d65eb2ea7b4ca9b3bcf6ffcd0",
+        "rev": "0e12bafbc330798f4ea30e562a67ed09163acfc3",
         "type": "github"
       },
       "original": {
@@ -947,11 +947,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1665421478,
-        "narHash": "sha256-sE73Uvc4+eb2ybOMKUNqW6F2eucVM2kKG81EJRUxnQQ=",
+        "lastModified": 1665579462,
+        "narHash": "sha256-8uSY3uER+BNaBBjajKwLZ4PZgqOwptp3HG5fHXQ5ZQg=",
         "owner": "Samayel",
         "repo": "shellscripts.nix",
-        "rev": "85e115bb6a0e5b3789402570c10e4ba6c605cda3",
+        "rev": "7dbc2a0fb982a3fd7b00e77c3a391ced8603e994",
         "type": "github"
       },
       "original": {
