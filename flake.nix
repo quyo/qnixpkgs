@@ -28,7 +28,7 @@
     ihaskell.inputs.nixpkgs.follows = "nixpkgs-stable";
     ihaskell.inputs.hls.follows = "hls";
 
-    jupyterWith.url = "github:tweag/jupyterWith";
+    jupyterWith.url = "github:tweag/jupyterWith/9d43fdc04ef3e3b103e042e914132bca1dbf549e";
     jupyterWith.inputs.flake-compat.follows = "flake-compat";
     jupyterWith.inputs.flake-utils.follows = "flake-utils";
     jupyterWith.inputs.nixpkgs.follows = "nixpkgs-stable";
