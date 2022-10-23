@@ -304,6 +304,18 @@
         "url": "https://hackage.haskell.org/package/ghc-exactprint-1.6.0/ghc-exactprint-1.6.0.tar.gz"
       }
     },
+    "ghc-exactprint-160_2": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-6fW4KSmDo7hi5i2C1lbI/rEyFWrowSGTNyaC+f73JaE=",
+        "type": "tarball",
+        "url": "https://hackage.haskell.org/package/ghc-exactprint-1.6.0/ghc-exactprint-1.6.0.tar.gz"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://hackage.haskell.org/package/ghc-exactprint-1.6.0/ghc-exactprint-1.6.0.tar.gz"
+      }
+    },
     "ghc-exactprint_2": {
       "flake": false,
       "locked": {
@@ -513,6 +525,7 @@
         "ghc-check": "ghc-check_2",
         "ghc-exactprint": "ghc-exactprint_2",
         "ghc-exactprint-150": "ghc-exactprint-150_2",
+        "ghc-exactprint-160": "ghc-exactprint-160_2",
         "gitignore": "gitignore_2",
         "hie-bios": "hie-bios_2",
         "hiedb": "hiedb_2",
@@ -531,11 +544,11 @@
         "stylish-haskell": "stylish-haskell_2"
       },
       "locked": {
-        "lastModified": 1665749433,
-        "narHash": "sha256-MhDqhkhAmTWG9Plwr3IXIjvq5VTDXIfSh/x4MyUoXGQ=",
+        "lastModified": 1666428970,
+        "narHash": "sha256-35QfzGJap0eJBKf1IMyIWP0WR3bna5dEvajZwgs8HGA=",
         "owner": "haskell",
         "repo": "haskell-language-server",
-        "rev": "e36208bf72f14fb5779c7cfc9031ba82b2dc6fd5",
+        "rev": "d0e90556939da62d38fca79d78cc818b71721bb1",
         "type": "github"
       },
       "original": {
@@ -680,16 +693,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1665645605,
-        "narHash": "sha256-bXGHwQVTtN3QIeOhyJiO0CozJnTYMLsEPAPwqpr3Z/0=",
+        "lastModified": 1665095305,
+        "narHash": "sha256-orS9DHHSqjAPA8zoyb0ObrawjIoFCFvmvLXpZPWwxG8=",
         "owner": "tweag",
         "repo": "jupyterWith",
-        "rev": "c34b3368e3a6baa9bf49bd8eab36f4ef2e130f1a",
+        "rev": "9d43fdc04ef3e3b103e042e914132bca1dbf549e",
         "type": "github"
       },
       "original": {
         "owner": "tweag",
         "repo": "jupyterWith",
+        "rev": "9d43fdc04ef3e3b103e042e914132bca1dbf549e",
         "type": "github"
       }
     },
@@ -887,11 +901,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1665779343,
-        "narHash": "sha256-DKaps5c+DdSAee64ae0poKVhILSLoV44FkzmrUIsxbo=",
+        "lastModified": 1666530364,
+        "narHash": "sha256-7Ui30DaPw5l/WXaK0yd9Ei6yzqh2nDYcmhUQukuhvis=",
         "owner": "Samayel",
         "repo": "qnixpkgs",
-        "rev": "7d9b81c8e565cf980038d120cfaf3e959fae5a3b",
+        "rev": "c7f29a4dd54b49918f69e8b1e7588e02a89d28d8",
         "type": "github"
       },
       "original": {
@@ -961,11 +975,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1666529888,
-        "narHash": "sha256-5gs7pCIJ2XZmb00MhbHu9recOsWUKtbVzR4SUN0Sk9k=",
+        "lastModified": 1666530691,
+        "narHash": "sha256-3dNHhm5ZO64v287IqlbhepS5UZCHOYczu6YA2VuUX0Q=",
         "owner": "Samayel",
         "repo": "shellscripts.nix",
-        "rev": "a2d89a5e5c7d7967ec7350ee6d5147aafdf6d569",
+        "rev": "e33cb7f977c6213d3cdaa8676a5b60c612f73a8f",
         "type": "github"
       },
       "original": {
