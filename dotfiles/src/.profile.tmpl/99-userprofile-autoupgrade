@@ -1,0 +1,13 @@
+
+
+USERPROFILE_TIMESTAMP_FILE="${HOME}/.config/nix/userprofile-global/timestamp"
+USERPROFILE_TIMESTAMP_DIR=$(dirname "${USERPROFILE_TIMESTAMP_FILE}")
+
+grep "$(date +%F)" "${USERPROFILE_TIMESTAMP_FILE}" >/dev/null 2>&1
+
+if [ $? -ne 0 ]; then
+  mkdir -p "${USERPROFILE_TIMESTAMP_DIR}"
+  echo "$(date +%F)" >"${USERPROFILE_TIMESTAMP_FILE}"
+
+  nix-system-upgrade
+fi
