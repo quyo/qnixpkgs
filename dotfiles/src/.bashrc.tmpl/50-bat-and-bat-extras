@@ -1,6 +1,6 @@
 
 
-if [[ -x "$(command -v bat)" || -x "$HOME/.nix-profile/bin/bat" ]]; then
+if [ -x "$(command -v bat)" ]; then
 
   export BAT_PAGER='less -rF'
 
@@ -13,13 +13,8 @@ if [[ -x "$(command -v bat)" || -x "$HOME/.nix-profile/bin/bat" ]]; then
 
 fi
 
-
 if [ -x "$(command -v batpipe)" ]; then
 
   eval "$(batpipe)"
-
-elif [ -x "$HOME/.nix-profile/bin/batpipe" ]; then
-
-  eval "$($HOME/.nix-profile/bin/batpipe)"
 
 fi

@@ -1,6 +1,6 @@
 
 
-if [[ -x "$(command -v lsd)" || -x "$HOME/.nix-profile/bin/lsd" ]]; then
+if [ -x "$(command -v lsd)" ]; then
 
   alias lsd='lsd --config-file ~/.nix-profile/etc/dotfiles/.config/lsd/config.yaml'
   alias ls=lsd
@@ -10,7 +10,7 @@ if [[ -x "$(command -v lsd)" || -x "$HOME/.nix-profile/bin/lsd" ]]; then
 fi
 
 
-if [[ -x "$(command -v exa)" || -x "$HOME/.nix-profile/bin/exa" ]]; then
+if [ -x "$(command -v exa)" ]; then
 
   alias exa='exa -Fbg --group-directories-first --color-scale --git --time-style long-iso'
   alias ls=exa

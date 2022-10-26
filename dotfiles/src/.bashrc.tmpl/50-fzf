@@ -1,24 +1,15 @@
 
 
-if [[ -x "$(command -v fzf)" || -x "$HOME/.nix-profile/bin/fzf" ]]; then
+if [ -x "$(command -v fzf)" ]; then
 
-  if [[ -x "$(command -v fzf)" ]]; then
+  source "$(fzf-share)/completion.bash"
+  source "$(fzf-share)/key-bindings.bash"
 
-    source "$(fzf-share)/completion.bash"
-    source "$(fzf-share)/key-bindings.bash"
-
-  elif [[ -x "$HOME/.nix-profile/bin/fzf" ]]; then
-
-    source "$($HOME/.nix-profile/bin/fzf-share)/completion.bash"
-    source "$($HOME/.nix-profile/bin/fzf-share)/key-bindings.bash"
-
-  fi
-
+  _fzf_setup_completion path joe
 
   export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --ansi --preview "bat --style=numbers --color=always --line-range :500 {}"'
 
-
-  if [[ -x "$(command -v fd)" || -x "$HOME/.nix-profile/bin/fd" ]]; then
+  if [ -x "$(command -v fd)" ]; then
 
     export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --color=always'
     export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -37,8 +28,5 @@ if [[ -x "$(command -v fzf)" || -x "$HOME/.nix-profile/bin/fzf" ]]; then
     }
 
   fi
-
-
-  _fzf_setup_completion path joe
 
 fi

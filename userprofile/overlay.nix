@@ -52,6 +52,7 @@ in
             croc
             curl
             diffutils
+            direnv
             dotfiles
             dtach
             findutils

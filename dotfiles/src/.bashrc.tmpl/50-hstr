@@ -1,6 +1,6 @@
 
 
-if [[ -x "$(command -v hstr)" || -x "$HOME/.nix-profile/bin/hstr" ]]; then
+if [ -x "$(command -v hstr)" ]; then
 
   # HSTR configuration - add this to ~/.bashrc
   alias hh=hstr                    # hh to be alias for hstr

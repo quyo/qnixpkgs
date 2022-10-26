@@ -5,12 +5,6 @@ if [ -x "$(command -v broot)" ]; then
   eval "$(broot --print-shell-function bash)"
   broot --set-install-state installed
 
-
-elif [ -x "$HOME/.nix-profile/bin/broot" ]; then
-
-  eval "$($HOME/.nix-profile/bin/broot --print-shell-function bash)"
-  $HOME/.nix-profile/bin/broot --set-install-state installed
-
 fi
 
 
