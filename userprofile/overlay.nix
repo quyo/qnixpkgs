@@ -37,6 +37,18 @@ let
     fzf
     # mcfly - Fly through your shell history. Great Scott!
     mcfly
+    # choose - A human-friendly and fast alternative to cut and (sometimes) awk
+    choose
+    # jq - sed for JSON data.
+    jq
+    # sd - An intuitive find & replace CLI (sed alternative).
+    sd
+    # cheat - Create and view interactive cheatsheets on the command-line.
+    cheat
+    # tldr - A community effort to simplify man pages with practical examples.
+    tldr
+    # bottom - Yet another cross-platform graphical process/system monitor.
+    bottom
   ];
 in
 
@@ -70,7 +82,6 @@ in
             iftop
             iotop
             joe
-            jq
             kakoune
             less
             mc
