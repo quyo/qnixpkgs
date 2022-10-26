@@ -1,13 +1,44 @@
 
 
-if [[ -x "$(command -v fzf)" ]]; then
+if [[ -x "$(command -v fzf)" || -x "$HOME/.nix-profile/bin/fzf" ]]; then
 
-  source "$(fzf-share)/completion.bash"
-  source "$(fzf-share)/key-bindings.bash"
+  if [[ -x "$(command -v fzf)" ]]; then
 
-elif [[ -x "$HOME/.nix-profile/bin/fzf" ]]; then
+    source "$(fzf-share)/completion.bash"
+    source "$(fzf-share)/key-bindings.bash"
 
-  source "$($HOME/.nix-profile/bin/fzf-share)/completion.bash"
-  source "$($HOME/.nix-profile/bin/fzf-share)/key-bindings.bash"
+  elif [[ -x "$HOME/.nix-profile/bin/fzf" ]]; then
+
+    source "$($HOME/.nix-profile/bin/fzf-share)/completion.bash"
+    source "$($HOME/.nix-profile/bin/fzf-share)/key-bindings.bash"
+
+  fi
+
+
+  export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --ansi --preview "bat --style=numbers --color=always --line-range :500 {}"'
+
+
+  if [[ -x "$(command -v fd)" || -x "$HOME/.nix-profile/bin/fd" ]]; then
+
+    export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --color=always'
+    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+    # Use fd (https://github.com/sharkdp/fd) instead of the default find
+    # command for listing path candidates.
+    # - The first argument to the function ($1) is the base path to start traversal
+    # - See the source code (completion.{bash,zsh}) for the details.
+    _fzf_compgen_path() {
+      fd --hidden --follow --exclude .git --color=always . "$1"
+    }
+
+    # Use fd to generate the list for directory completion
+    _fzf_compgen_dir() {
+      fd --type d --hidden --follow --exclude .git --color=always . "$1"
+    }
+
+  fi
+
+
+  _fzf_setup_completion path joe
 
 fi

@@ -27,7 +27,12 @@ let
     duf
     # broot - A new way to see and navigate directory trees.
     broot
-
+    # fd - A simple, fast and user-friendly alternative to find.
+    fd
+    # ripgrep - An extremely fast alternative to grep that respects your gitignore
+    ripgrep
+    # ag / silver-searcher - A code searching tool similar to ack, but faster.
+    silver-searcher
     # fzf - A general purpose command-line fuzzy finder.
     fzf
   ];
@@ -74,7 +79,6 @@ in
             nix-tree
             patch
             rename
-            ripgrep
             screen
             shellscripts
             tmux
