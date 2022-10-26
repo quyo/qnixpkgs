@@ -27,6 +27,9 @@ let
     duf
     # broot - A new way to see and navigate directory trees.
     broot
+
+    # fzf - A general purpose command-line fuzzy finder.
+    fzf
   ];
 in
 
@@ -53,7 +56,6 @@ in
             gnused
             gnutar
             gzip
-            hstr
             htop
             httpie
             iconv
