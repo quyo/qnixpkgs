@@ -1,8 +1,13 @@
 
 
-if [[ -x "$(command -v fzf)" || -x "$HOME/.nix-profile/bin/fzf" ]]; then
+if [[ -x "$(command -v fzf)" ]]; then
 
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
+
+elif [[ -x "$HOME/.nix-profile/bin/fzf" ]]; then
+
+  source "$($HOME/.nix-profile/bin/fzf-share)/completion.bash"
+  source "$($HOME/.nix-profile/bin/fzf-share)/key-bindings.bash"
 
 fi
