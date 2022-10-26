@@ -35,6 +35,8 @@ let
     silver-searcher
     # fzf - A general purpose command-line fuzzy finder.
     fzf
+    # mcfly - Fly through your shell history. Great Scott!
+    mcfly
   ];
 in
 

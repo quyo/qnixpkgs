@@ -1,0 +1,16 @@
+
+
+if [[ -x "$(command -v mcfly)" || -x "$HOME/.nix-profile/bin/mcfly" ]]; then
+
+fi
+
+
+if [ -x "$(command -v mcfly)" ]; then
+
+  eval "$(mcfly init bash)"
+
+elif [ -x "$HOME/.nix-profile/bin/mcfly" ]; then
+
+  eval "$($HOME/.nix-profile/bin/mcfly init bash)"
+
+fi
