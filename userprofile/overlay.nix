@@ -49,6 +49,18 @@ let
     tldr
     # bottom - Yet another cross-platform graphical process/system monitor.
     bottom
+    # glances - Glances an Eye on your system. A top/htop alternative for GNU/Linux, BSD, Mac OS and Windows operating systems.
+    glances
+    # gtop - System monitoring dashboard for terminal.
+    gtop
+    # hyperfine - A command-line benchmarking tool.
+    hyperfine
+    # gping - ping, but with a graph.
+    gping
+    # procs - A modern replacement for ps written in Rust.
+    procs
+    # httpie - A modern, user-friendly command-line HTTP client for the API era.
+    httpie
   ];
 in
 
@@ -77,7 +89,6 @@ in
             gnutar
             gzip
             htop
-            httpie
             iconv
             iftop
             iotop
