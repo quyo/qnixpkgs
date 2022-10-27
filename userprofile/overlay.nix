@@ -61,6 +61,14 @@ let
     procs
     # httpie - A modern, user-friendly command-line HTTP client for the API era.
     httpie
+    # curlie - The power of curl, the ease of use of httpie.
+    curlie
+    # xh - A friendly and fast tool for sending HTTP requests. It reimplements as much as possible of HTTPie's excellent design, with a focus on improved performance.
+    xh
+    # zoxide - A smarter cd command inspired by z.
+    zoxide
+    # dog - A user-friendly command-line DNS client. dig on steroids
+    dog
   ];
 in
 
@@ -106,6 +114,7 @@ in
             rename
             screen
             shellscripts
+            testssl
             tmux
             traceroute
             tree

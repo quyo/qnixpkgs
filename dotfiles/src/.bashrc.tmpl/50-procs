@@ -1,0 +1,12 @@
+
+
+if [ -x "$(command -v procs)" ]; then
+
+  if [ ! -e "$HOME/.config/procs/config.toml" ]; then
+    mkdir -p "$HOME/.config/procs"
+    ln -s "$HOME/.nix-profile/etc/dotfiles/.config/procs/config.toml" "$HOME/.config/procs/config.toml"
+  fi
+
+  source <(procs --completion-out bash)
+
+fi
