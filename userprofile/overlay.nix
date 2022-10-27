@@ -68,7 +68,7 @@ let
     # zoxide - A smarter cd command inspired by z.
     zoxide
     # dog - A user-friendly command-line DNS client. dig on steroids
-    dog
+    dogdns
   ];
 in
 
@@ -85,6 +85,7 @@ in
             curl
             diffutils
             direnv
+            # dog
             dotfiles
             dtach
             findutils
