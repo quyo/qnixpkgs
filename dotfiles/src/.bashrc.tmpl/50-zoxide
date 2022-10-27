@@ -4,4 +4,8 @@ if [ -x "$(command -v zoxide)" ]; then
 
   eval "$(zoxide init --cmd cd bash)"
 
+  if [ -x "$(command -v fzf)" ]; then
+    _fzf_setup_completion dir cd
+  fi
+
 fi

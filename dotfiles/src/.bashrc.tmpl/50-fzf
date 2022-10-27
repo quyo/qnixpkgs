@@ -5,9 +5,22 @@ if [ -x "$(command -v fzf)" ]; then
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
 
+  export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --ansi'
+
+  # Advanced customization of fzf options via _fzf_comprun function
+  _fzf_comprun() {
+    local command=$1
+    shift
+
+    case "$command" in
+      export|unset) fzf "$@" --preview "eval 'echo \$'{}" "$@" ;;
+      *)            fzf "$@" --preview '_fzf_quyo_path_preview() { if [ -d "$@" ]; then exa -Fbg --group-directories-first --color-scale --git --time-style long-iso -la "$@" | head -500; elif [ -f "$@" ]; then bat --style=numbers --color=always --line-range :500 "$@"; else echo "Preview is not available."; fi } ; _fzf_quyo_path_preview {}' ;;
+    esac
+  }
+
+
   _fzf_setup_completion path joe
 
-  export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --ansi --preview "bat --style=numbers --color=always --line-range :500 {}"'
 
   if [ -x "$(command -v fd)" ]; then
 
