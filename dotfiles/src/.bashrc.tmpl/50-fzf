@@ -5,7 +5,11 @@ if [ -x "$(command -v fzf)" ]; then
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
 
+  FZF_QUYO_PATH_PREVIEW='_fzf_quyo_path_preview() { if [ -d "$@" ]; then exa -Fbg --group-directories-first --color-scale --git --time-style long-iso -la "$@" | head -500; elif [ -f "$@" ]; then bat --style=numbers --color=always --line-range :500 "$@"; else echo "Preview is not available."; fi } ; _fzf_quyo_path_preview {}'
+
   export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --ansi'
+  export FZF_CTRL_T_OPTS="${FZF_DEFAULT_OPTS} --preview '${FZF_QUYO_PATH_PREVIEW}'"
+  export FZF_ALT_C_OPTS="${FZF_DEFAULT_OPTS} --preview '${FZF_QUYO_PATH_PREVIEW}'"
 
   # Advanced customization of fzf options via _fzf_comprun function
   _fzf_comprun() {
@@ -14,7 +18,7 @@ if [ -x "$(command -v fzf)" ]; then
 
     case "$command" in
       export|unset) fzf "$@" --preview "eval 'echo \$'{}" "$@" ;;
-      *)            fzf "$@" --preview '_fzf_quyo_path_preview() { if [ -d "$@" ]; then exa -Fbg --group-directories-first --color-scale --git --time-style long-iso -la "$@" | head -500; elif [ -f "$@" ]; then bat --style=numbers --color=always --line-range :500 "$@"; else echo "Preview is not available."; fi } ; _fzf_quyo_path_preview {}' ;;
+      *)            fzf "$@" --preview "${FZF_QUYO_PATH_PREVIEW}" ;;
     esac
   }
 
@@ -25,7 +29,7 @@ if [ -x "$(command -v fzf)" ]; then
   if [ -x "$(command -v fd)" ]; then
 
     export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git --color=always'
-    export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+    export FZF_CTRL_T_COMMAND='fd --hidden --follow --exclude .git --color=always'
 
     # Use fd (https://github.com/sharkdp/fd) instead of the default find
     # command for listing path candidates.
