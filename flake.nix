@@ -54,6 +54,7 @@
         danecheck = import danecheck/overlay.nix self;
         dotfiles = import dotfiles/overlay.nix self;
         duply = import duply/overlay.nix self;
+        fzf-git = import fzf-git/overlay.nix self;
         iconv = import iconv/overlay.nix self;
         kakoune = import kakoune/overlay.nix self;
         linac = import linac/overlay.nix self;

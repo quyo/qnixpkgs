@@ -90,6 +90,7 @@ in
             dotfiles
             dtach
             findutils
+            fzf-git
             gawk-with-extensions
             gdu
             git

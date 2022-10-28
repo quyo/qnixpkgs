@@ -1,0 +1,7 @@
+
+
+if [ -e "$HOME/.nix-profile/share/fzf-git/fzf-git.sh" ]; then
+
+  source "$HOME/.nix-profile/share/fzf-git/fzf-git.sh"
+
+fi
