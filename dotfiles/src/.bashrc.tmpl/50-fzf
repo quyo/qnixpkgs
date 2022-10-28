@@ -79,7 +79,7 @@ if [ -x "$(command -v fzf)" ]; then
       [ -n "${selected[0]}" ] && joe "+${selected[1]}" "${selected[0]}"
     }
 
-    bind '"\C-f": "$(_fzf_quyo_search)\e\C-e\er"'
+    bind '"\C-f": "_fzf_quyo_search\n"'
 
   fi
 
