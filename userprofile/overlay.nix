@@ -31,6 +31,7 @@ let
     fd
     # ripgrep - An extremely fast alternative to grep that respects your gitignore
     ripgrep
+    ripgrep-all
     # ag / silver-searcher - A code searching tool similar to ack, but faster.
     silver-searcher
     # fzf - A general purpose command-line fuzzy finder.
