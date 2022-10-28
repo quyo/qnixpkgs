@@ -7,7 +7,7 @@ if [ -x "$(command -v fzf)" ]; then
 
   FZF_QUYO_PATH_PREVIEW='_fzf_quyo_path_preview() { if [ -d "$@" ]; then exa -Fbg --group-directories-first --color-scale --git --time-style long-iso -la "$@" | head -500; elif [ -f "$@" ]; then bat --style=numbers --color=always --line-range :500 "$@"; else echo "Preview is not available."; fi } ; _fzf_quyo_path_preview {}'
 
-  export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --border --ansi'
+  export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --info=inline --border --ansi'
   export FZF_CTRL_T_OPTS="${FZF_DEFAULT_OPTS} --preview '${FZF_QUYO_PATH_PREVIEW}'"
   export FZF_ALT_C_OPTS="${FZF_DEFAULT_OPTS} --preview '${FZF_QUYO_PATH_PREVIEW}'"
 
@@ -32,10 +32,11 @@ if [ -x "$(command -v fzf)" ]; then
     FZF_QUYO_FIND_FILES="${FZF_QUYO_FIND_ALL} --type f"
     FZF_QUYO_FIND_DIRS="${FZF_QUYO_FIND_ALL} --type d"
 
-    export FZF_CTRL_T_OPTS="${FZF_DEFAULT_OPTS} --preview '${FZF_QUYO_PATH_PREVIEW}' --prompt 'All> ' --header 'CTRL-D: Directories / CTRL-F: Files' --bind 'ctrl-d:change-prompt(Directories> )+reload(${FZF_QUYO_FIND_DIRS})' --bind 'ctrl-f:change-prompt(Files> )+reload(${FZF_QUYO_FIND_FILES})'"
+    export FZF_CTRL_T_OPTS="${FZF_CTRL_T_OPTS} --prompt 'All> ' --header 'CTRL-D: Directories / CTRL-F: Files' --bind 'ctrl-d:change-prompt(Directories> )+reload(${FZF_QUYO_FIND_DIRS})' --bind 'ctrl-f:change-prompt(Files> )+reload(${FZF_QUYO_FIND_FILES})'"
 
     export FZF_DEFAULT_COMMAND="${FZF_QUYO_FIND_FILES}"
     export FZF_CTRL_T_COMMAND="${FZF_QUYO_FIND_ALL}"
+    export FZF_ALT_C_COMMAND="${FZF_QUYO_FIND_DIRS}"
 
     # Use fd (https://github.com/sharkdp/fd) instead of the default find
     # command for listing path candidates.
