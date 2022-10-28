@@ -53,4 +53,34 @@ if [ -x "$(command -v fzf)" ]; then
 
   fi
 
+
+  if [ -x "$(command -v rg)" ]; then
+
+    _fzf_quyo_search() {
+      # Switch between Ripgrep launcher mode (CTRL-R) and fzf filtering mode (CTRL-F)
+      local RG_PREFIX="rg --column --line-number --no-heading --color=always --smart-case "
+      local INITIAL_QUERY="${*:-}"
+      IFS=: read -ra selected < <(
+        FZF_DEFAULT_COMMAND="$RG_PREFIX $(printf %q "$INITIAL_QUERY")" \
+        fzf --ansi \
+            --color "hl:-1:underline,hl+:-1:underline:reverse" \
+            --info=inline \
+            --height=100% \
+            --disabled --query "$INITIAL_QUERY" \
+            --bind "change:reload:sleep 0.1; $RG_PREFIX {q} || true" \
+            --bind "ctrl-f:unbind(change,ctrl-f)+change-prompt(fzf> )+enable-search+clear-query+rebind(ctrl-r)" \
+            --bind "ctrl-r:unbind(ctrl-r)+change-prompt(ripgrep> )+disable-search+reload($RG_PREFIX {q} || true)+rebind(change,ctrl-f)" \
+            --prompt 'ripgrep> ' \
+            --delimiter : \
+            --header '╱ CTRL-R (ripgrep mode) ╱ CTRL-F (fzf mode) ╱' \
+            --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
+            --preview-window 'up,60%,border-bottom,+{2}+3/3,~3'
+      )
+      [ -n "${selected[0]}" ] && joe "+${selected[1]}" "${selected[0]}"
+    }
+
+    bind '"\C-f": "$(_fzf_quyo_search)\e\C-e\er"'
+
+  fi
+
 fi
