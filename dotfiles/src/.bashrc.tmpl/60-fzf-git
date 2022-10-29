@@ -4,4 +4,33 @@ if [ -e "$HOME/.nix-profile/share/fzf-git/fzf-git.sh" ]; then
 
   source "$HOME/.nix-profile/share/fzf-git/fzf-git.sh"
 
+
+  _fzf_git_quyo_help() {
+    echo 'CTRL-G CTRL-F for Files'
+    echo 'CTRL-G CTRL-B for Branches'
+    echo 'CTRL-G CTRL-T for Tags'
+    echo 'CTRL-G CTRL-R for Remotes'
+    echo 'CTRL-G CTRL-H for commit Hashes'
+    echo 'CTRL-G CTRL-S for Stashes'
+    echo 'CTRL-G CTRL-E for Each ref (git for-each-ref)'
+  }
+
+  bind '"\C-g\C-g": "_fzf_git_quyo_help\n"'
+
+
+  ga() {
+    local selected=$(_fzf_git_files)
+    [ -n "$selected" ] && git add $selected
+  }
+
+  gco() {
+    local selected=$(_fzf_git_each_ref --no-multi)
+    [ -n "$selected" ] && git checkout "$selected"
+  }
+
+  gd() {
+    local selected=$(_fzf_git_hashes)
+    [ -n "$selected" ] && git diff $selected
+  }
+
 fi
