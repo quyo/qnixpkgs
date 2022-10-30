@@ -63,6 +63,14 @@
         qshell = import qshell/overlay.nix self;
         userprofile = import userprofile/overlay.nix self;
       };
+
+      templates = rec {
+        flake-project = {
+          description = "A flake project template, usage: nix flake new -t github:Samayel/qnixpkgs#flake-project .)";
+          path = ./templates/flake-project;
+        };
+        default = flake-project;
+      };
     }
     //
     flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" "armv7l-linux" ]) (system:

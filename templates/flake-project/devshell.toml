@@ -1,0 +1,22 @@
+[devshell]
+name = "my project devshell"
+packages = [ "my-project", "my-project-devenv" ]
+
+
+[[commands]]
+command = "fortune | cowsay | lolcat"
+name = "slogan"
+help = "Get your slogan."
+
+
+[[commands]]
+package = "my-project"
+name = "hello"
+help = "Hello, world."
+category = "my-project"
+
+[[commands]]
+command = "hello --greeting='Hello, project.'"
+name = "hello-project"
+help = "Hello, project."
+category = "my-project"
