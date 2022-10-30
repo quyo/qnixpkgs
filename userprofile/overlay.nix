@@ -85,6 +85,7 @@ in
             croc
             curl
             diffutils
+            direnv
             # dog
             dotfiles
             dtach
@@ -132,7 +133,6 @@ in
         {
           name = "userprofile-global-unstable-${version}";
           paths = with final; [
-            direnv
             nix
             nix-direnv
             nix-tree
