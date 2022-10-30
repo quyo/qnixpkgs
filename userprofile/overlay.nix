@@ -111,9 +111,8 @@ in
             moreutils
             nano
             nettools
-            nix-direnv
-            nix-tree
             patch
+            rdfind
             rename
             screen
             shellscripts
@@ -135,6 +134,8 @@ in
           name = "userprofile-global-unstable-${version}";
           paths = with final; [
             nix
+            nix-direnv
+            nix-tree
           ];
         };
     };
