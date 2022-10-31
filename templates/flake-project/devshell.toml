@@ -1,6 +1,6 @@
 [devshell]
 name = "my project devshell"
-packages = [ "my-project", "my-project-devenv" ]
+packages = [ "my-project-devenv" ]
 
 
 [[commands]]

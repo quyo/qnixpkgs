@@ -1,0 +1,12 @@
+{
+  "nixpkgs-stable": [
+    "cowsay",
+    "fortune",
+    "lolcat"
+  ],
+  "nixpkgs-unstable": [
+  ],
+  "self": [
+    "my-project"
+  ]
+}

@@ -8,13 +8,33 @@
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs-stable";
     devshell.inputs.flake-utils.follows = "flake-utils";
-
-    flake-compat.url = "github:edolstra/flake-compat";
-    flake-compat.flake = false;
   };
 
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, devshell, ... }:
+    let
+      inherit (builtins) attrNames concatMap getAttr substring;
+      inherit (nixpkgs-stable.lib) attrByPath importJSON;
+      inherit (self) lastModifiedDate;
+
+      version = "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
+
+      json = importJSON ./devenv-packages.json;
+
+      getFlakePkgs = system: label:
+        let
+          outs = (getAttr label self).outputs;
+          pkgs = (attrByPath [ "legacyPackages" system ] { } outs) // (attrByPath [ "packages" system ] { } outs);
+        in
+        map
+          (x: getAttr x pkgs)
+          (getAttr label json);
+
+      getAllPkgs = system: concatMap (getFlakePkgs system) (attrNames json);
+    in
     {
+      # needed by (getAttr label self) in getFlakePkgs
+      inherit nixpkgs-stable nixpkgs-unstable self;
+
       overlays = {
         default = import ./overlay.nix self;
       };
@@ -32,7 +52,11 @@
       {
         packages = rec {
           my-project = pkgs-stable.my-project;
-          my-project-devenv = pkgs-stable.my-project-devenv;
+          my-project-devenv = pkgs-stable.buildEnv
+            {
+              name = "my-project-devenv-${version}";
+              paths = getAllPkgs system;
+            };
           default = my-project;
         };
 
