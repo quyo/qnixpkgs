@@ -5,7 +5,7 @@ let
     let
       inherit (builtins) attrNames concatMap getAttr;
       inherit (final) buildEnv;
-      inherit (final.lib) attrByPath importJSON;
+      inherit (final.lib) attrByPath getAttrFromPath importJSON splitString;
 
       json = importJSON ./devenv-packages.json;
 
@@ -15,7 +15,7 @@ let
           pkgs = (attrByPath [ "legacyPackages" system ] { } outs) // (attrByPath [ "packages" system ] { } outs);
         in
         map
-          (x: getAttr x pkgs)
+          (x: getAttrFromPath (splitString "." x) pkgs)
           (getAttr label json);
 
       getAllPkgs = system: concatMap (getFlakePkgs system) (attrNames json);

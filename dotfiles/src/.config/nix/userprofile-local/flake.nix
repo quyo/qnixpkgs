@@ -13,7 +13,7 @@
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, qnixpkgs, ... }:
     let
       inherit (builtins) attrNames concatMap getAttr substring;
-      inherit (nixpkgs-stable.lib) attrByPath importJSON;
+      inherit (nixpkgs-stable.lib) attrByPath getAttrFromPath importJSON splitString;
       inherit (self) lastModifiedDate;
 
       version = "0.${substring 0 8 lastModifiedDate}.${substring 8 6 lastModifiedDate}.${self.shortRev or "dirty"}";
@@ -26,7 +26,7 @@
           pkgs = (attrByPath [ "legacyPackages" system ] { } outs) // (attrByPath [ "packages" system ] { } outs);
         in
         map
-          (x: getAttr x pkgs)
+          (x: getAttrFromPath (splitString "." x) pkgs)
           (getAttr label json);
 
       getAllPkgs = system: concatMap (getFlakePkgs system) (attrNames json);
