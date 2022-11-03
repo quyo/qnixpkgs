@@ -16,11 +16,11 @@ const app: Application = express();
 app.use(expressLayouts);
 
 // Serve static / public files
-const publicDirectoryPath = path.join(__dirname, "./public");
-app.use(express.static(publicDirectoryPath));
+const publicDirectoryPath = path.join(__dirname, "../frontend/static");
+app.use('/static', express.static(publicDirectoryPath));
 
 // Setting the root path for views directory
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, '../frontend/views'));
 
 // Setting the view engine
 app.set('view engine', 'ejs');

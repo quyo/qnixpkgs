@@ -1,7 +1,11 @@
+import path from "path";
+import url from "url";
 import webpack from "webpack";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
-// The base directory that we want to use
-const baseDirectory = "src";
+const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 export default (env, argv) => {
 
@@ -24,13 +28,24 @@ export default (env, argv) => {
 
     // The entry points ("location to store": "location to find")
     entry: {
-      "public/js/app": [`./${baseDirectory}/public/ts/app`],
+      "static/js/bundle": ["./src/frontend/static/js/app"],      
        // "other output points" : ["other entry point"] 
     },
 
-    // Using the ts-loader module
+    // The location where bundle are stored
+    output: {
+      path: path.resolve(__dirname, 'dist/frontend'),
+      publicPath: '/',
+      filename: "[name].[contenthash].js",
+    },
+
+    resolve: {
+      extensions: [".tsx", ".ts", ".js"],
+    },
+
     module: {
       rules: [
+        // Using the ts-loader module
         {
           test: /\.tsx?$/,
           use: "ts-loader",
@@ -39,14 +54,13 @@ export default (env, argv) => {
       ],
     },
 
-    resolve: {
-      extensions: [".tsx", ".ts", ".js"],
-    },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "!!raw-loader!./src/frontend/views/layout.ejs",
+        filename: 'views/layout.ejs',
+        publicPath: '/',
+      })
+    ],
 
-    // The location where bundle are stored
-    output: {
-      filename: "[name].js",
-    },
   });
-
 };
