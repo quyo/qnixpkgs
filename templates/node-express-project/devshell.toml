@@ -1,0 +1,3 @@
+[devshell]
+name = "node project devshell"
+packages = [ "node-project-devenv" ]

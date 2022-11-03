@@ -28,6 +28,5 @@ let
 in
 
 {
-  my-project = final.hello;
-  my-project-devenv = devenv ./devenv-packages.json "my-project-devenv";
+  node-project-devenv = devenv ./devenv-packages.json "node-project-devenv";
 }
