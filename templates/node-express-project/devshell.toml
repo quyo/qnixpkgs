@@ -1,3 +1,10 @@
 [devshell]
 name = "node project devshell"
 packages = [ "node-project-devenv" ]
+
+
+[[commands]]
+command = "npm run dev"
+name = "dev"
+help = "build. serve. watch."
+category = "node"

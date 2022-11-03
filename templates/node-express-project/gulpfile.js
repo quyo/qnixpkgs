@@ -5,6 +5,7 @@ import { deleteAsync } from "del";
 var tsProject = ts.createProject("tsconfig.json");
 
 
+// https://rohitlakhotia.com/blog/nodejs-ejs-typescript-using-gulp-webpack/
 
 // Task which would delete the old dist directory if present
 gulp.task("clean", function () {
