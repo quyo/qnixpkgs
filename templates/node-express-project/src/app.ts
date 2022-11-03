@@ -34,8 +34,7 @@ app.get("/", (req: Request, res: Response) => {
 const server: http.Server = http.createServer(app);
 
 // Setting the port
-//const port = debug.PORT;
-const port = 3000;
+const port = debug.PORT;
 
 // Starting the server
 server.listen(port, () => {
