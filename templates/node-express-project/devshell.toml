@@ -6,5 +6,11 @@ packages = [ "node-project-devenv" ]
 [[commands]]
 command = "npm run dev"
 name = "dev"
-help = "build. serve. watch."
+help = "build. serve. watch. (process.env.NODE_ENV === 'development')"
+category = "node"
+
+[[commands]]
+command = "npm run prod"
+name = "prod"
+help = "build. serve.        (process.env.NODE_ENV === 'production')"
 category = "node"

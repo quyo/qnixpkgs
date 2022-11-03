@@ -39,5 +39,5 @@ const port = 3000;
 
 // Starting the server
 server.listen(port, () => {
-    console.log(`SERVER RUNNING ON http://localhost:${port}`);
+    console.log(`SERVER RUNNING ON http://localhost:${port} (${process.env.NODE_ENV})`);
 });
