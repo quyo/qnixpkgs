@@ -58,14 +58,14 @@ export default (env, argv) => {
     ].concat(['static/js/app', 'static/js/another-bundle'].map((chunk) =>
       new HtmlWebpackPlugin({
         inject: false,
-        filename: `${chunk.replace("static/", "views/")}.headtags.html`,
+        filename: `${chunk.replace("static/", "views/")}.head.html`,
         templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.headTags}`,
         chunks: [chunk]
       })
     )).concat(['static/js/app', 'static/js/another-bundle'].map((chunk) =>
       new HtmlWebpackPlugin({
         inject: false,
-        filename: `${chunk.replace("static/", "views/")}.bodytags.html`,
+        filename: `${chunk.replace("static/", "views/")}.body.html`,
         templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.bodyTags}`,
         chunks: [chunk]
       })

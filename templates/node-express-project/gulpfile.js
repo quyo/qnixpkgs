@@ -27,6 +27,7 @@ gulp.task("backend", function () {
 gulp.task("frontend-assets", function () {
     return gulp
         .src([
+            "./src/frontend/static/**/*.gif",
             "./src/frontend/static/**/*.jpg",
             "./src/frontend/static/**/*.jpeg",
             "./src/frontend/static/**/*.png",

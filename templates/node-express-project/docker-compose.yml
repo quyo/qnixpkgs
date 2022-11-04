@@ -8,8 +8,8 @@ services:
     restart: 'no'
     networks:
       - external
-#   ports:
-#     - 3000:3000
+    ports:
+      - 3000:3000
 
 networks:
   external:

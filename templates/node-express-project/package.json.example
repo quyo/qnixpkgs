@@ -20,7 +20,7 @@
     "build_serve:dev": "run-s build:dev serve:dev",
     "build_serve:prod": "run-s build:prod serve:prod",
     "watch_backend": "nodemon --watch src/backend -e ts --exec run-s build_backend serve:dev",
-    "watch_frontend_assets": "nodemon --watch src/frontend/static -e jpg,jpeg,png,webp --exec npm run build_frontend_assets",
+    "watch_frontend_assets": "nodemon --watch src/frontend/static -e gif,jpg,jpeg,png,webp --exec npm run build_frontend_assets",
     "watch_frontend_views": "nodemon --watch src/frontend/views -e ejs --exec npm run build_frontend_views",
     "watch_frontend_compile": "nodemon --watch src/frontend/static -e tsx,ts,jsx,js,css,scss,sass --exec npm run build_frontend_compile:dev",
     "watch": "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile",
