@@ -28,7 +28,8 @@ export default (env, argv) => {
 
     // The entry points ("location to store": "location to find")
     entry: {
-      "static/js/bundle": ["./src/frontend/static/js/app"],      
+      "static/js/app": ["./src/frontend/static/js/app"],
+      "static/js/another-bundle": ["./src/frontend/static/js/app"],
        // "other output points" : ["other entry point"] 
     },
 
@@ -45,7 +46,6 @@ export default (env, argv) => {
 
     module: {
       rules: [
-        // Using the ts-loader module
         {
           test: /\.tsx?$/,
           use: "ts-loader",
@@ -55,12 +55,20 @@ export default (env, argv) => {
     },
 
     plugins: [
+    ].concat(['static/js/app', 'static/js/another-bundle'].map((chunk) =>
       new HtmlWebpackPlugin({
-        template: "!!raw-loader!./src/frontend/views/layout.ejs",
-        filename: 'views/layout.ejs',
-        publicPath: '/',
+        inject: false,
+        filename: `${chunk.replace("static/", "views/")}.headtags.html`,
+        templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.headTags}`,
+        chunks: [chunk]
       })
-    ],
-
+    )).concat(['static/js/app', 'static/js/another-bundle'].map((chunk) =>
+      new HtmlWebpackPlugin({
+        inject: false,
+        filename: `${chunk.replace("static/", "views/")}.bodytags.html`,
+        templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.bodyTags}`,
+        chunks: [chunk]
+      })
+    ))
   });
 };

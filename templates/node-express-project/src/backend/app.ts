@@ -27,7 +27,12 @@ app.set('view engine', 'ejs');
 
 /* Home route */
 app.get("/", (req: Request, res: Response) => {
-	res.render("index")
+    res.render("index")
+});
+
+app.get("/:name(index|foo|bar)", (req: Request, res: Response) => {
+    var name = req.params.name;
+    res.render(name);
 });
 
 
