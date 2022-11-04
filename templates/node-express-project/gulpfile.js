@@ -13,31 +13,35 @@ gulp.task("clean", function () {
 });
 
 // Task which would transpile typescript to javascript
-gulp.task("ts", function () {
+gulp.task("backend", function () {
     // we need to exclude the frontend directory since that would be done anyway by webpack
     tsProject.config['exclude'] = ["./src/frontend/**/*.ts"] 
-    return tsProject.src().pipe(tsProject()).js.pipe(gulp.dest("dist"));
+    return tsProject
+        .src()
+        .pipe(tsProject())
+        .js
+        .pipe(gulp.dest("dist"));
 });
 
-// Task which would just create a copy of ejs files in dist directory
-gulp.task("ejs", function () {
-    return gulp.src("./src/frontend/**/*.ejs").pipe(gulp.dest("./dist/frontend"));
+// Task which would just create a copy of images in dist directory
+gulp.task("frontend-assets", function () {
+    return gulp
+        .src([
+            "./src/frontend/static/**/*.jpg",
+            "./src/frontend/static/**/*.jpeg",
+            "./src/frontend/static/**/*.png",
+            "./src/frontend/static/**/*.webp"])
+        .pipe(gulp.dest("./dist/frontend/static"));
 });
 
-// Task which would just create a copy of css files in dist directory
-gulp.task("css", function () {
-    return gulp.src("./src/frontend/**/*.css").pipe(gulp.dest("./dist/frontend"));
-});
-
-// Task which would just create a copy of image files in dist directory
-gulp.task("img", function () {
-    return gulp.src("./src/frontend/**/*.jpg").pipe(gulp.dest("./dist/frontend"));
-    return gulp.src("./src/frontend/**/*.jpeg").pipe(gulp.dest("./dist/frontend"));
-    return gulp.src("./src/frontend/**/*.png").pipe(gulp.dest("./dist/frontend"));
-    return gulp.src("./src/frontend/**/*.webp").pipe(gulp.dest("./dist/frontend"));
+// Task which would just create a copy of views in dist directory
+gulp.task("frontend-views", function () {
+    return gulp
+        .src("./src/frontend/views/**/*.ejs")
+        .pipe(gulp.dest("./dist/frontend/views"));
 });
 
 // The default task which runs at start of the gulpfile.js
-gulp.task("default", gulp.series("clean", "ts", "ejs", "css", "img"), () => {
-    console.log("Done");
-});
+//gulp.task("default", gulp.series("clean", "backend", "frontend-assets", "frontend-views"), () => {
+//    console.log("Done");
+//});
