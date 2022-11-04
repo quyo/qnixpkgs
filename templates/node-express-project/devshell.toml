@@ -7,10 +7,23 @@ packages = [ "node-project-devenv" ]
 command = "npm run dev"
 name = "dev"
 help = "build. serve. watch. (process.env.NODE_ENV === 'development')"
-category = "node"
+category = "node develop"
 
 [[commands]]
 command = "npm run prod"
 name = "prod"
 help = "build. serve.        (process.env.NODE_ENV === 'production')"
-category = "node"
+category = "node develop"
+
+
+[[commands]]
+command = "docker-compose build"
+name = "container-build"
+help = "build docker image."
+category = "node operate"
+
+[[commands]]
+command = "docker-compose up"
+name = "container-run"
+help = "run docker container."
+category = "node operate"
