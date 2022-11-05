@@ -38,7 +38,10 @@ gulp.task("frontend-assets", function () {
 // Task which would just create a copy of views in dist directory
 gulp.task("frontend-views", function () {
     return gulp
-        .src("./src/frontend/views/**/*.ejs")
+        .src([
+            "./src/frontend/views/**/*.ejs",
+            "./src/frontend/views/**/*.html",
+            "./src/frontend/views/**/*.htm"])
         .pipe(gulp.dest("./dist/frontend/views"));
 });
 

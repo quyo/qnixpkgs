@@ -2,6 +2,7 @@
   "nixpkgs-stable": [
   ],
   "nixpkgs-unstable": [
+    "gcc",
     "nodejs-18_x"
   ],
   "self": [
