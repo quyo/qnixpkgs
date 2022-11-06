@@ -6,6 +6,8 @@ stdenvNoCC.mkDerivation {
 
   src = ./.;
 
+  preferLocalBuild = true;
+
   buildPhase = ''
     runHook preBuild
 
