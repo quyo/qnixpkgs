@@ -8,7 +8,10 @@
     <%- include('js/app.head.html'); %>
   </head>
   <body>
-    <div><%- body %></div>
+
+    <h1><%= message %></h1>
+    <%- include('module/foo.ejs'); %>
+
     <%- include('css/global.body.html'); %>
     <%- include('js/app.body.html'); %>
   </body>

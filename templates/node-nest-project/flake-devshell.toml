@@ -1,6 +1,6 @@
 [devshell]
-name = "node project devshell"
-packages = [ "node-project-devenv" ]
+name = "node nest project devshell"
+packages = [ "node-nest-project-devenv" ]
 
 
 [[commands]]

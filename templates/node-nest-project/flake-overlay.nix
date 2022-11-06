@@ -28,5 +28,5 @@ let
 in
 
 {
-  node-project-devenv = devenv ./flake-packages.json "node-project-devenv";
+  node-nest-project-devenv = devenv ./flake-packages.json "node-nest-project-devenv";
 }

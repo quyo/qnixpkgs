@@ -69,9 +69,9 @@
           description = "A flake project template, usage: nix flake new -t github:Samayel/qnixpkgs#flake-project .)";
           path = ./templates/flake-project;
         };
-        node-express-project = {
-          description = "A node + express + typescript project template, usage: nix flake new -t github:Samayel/qnixpkgs#node-express-project .)";
-          path = ./templates/node-express-project;
+        node-nest-project = {
+          description = "A node + nest + typescript project template, usage: nix flake new -t github:Samayel/qnixpkgs#node-nest-project .)";
+          path = ./templates/node-nest-project;
         };
         default = flake-project;
       };

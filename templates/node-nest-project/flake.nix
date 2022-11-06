@@ -27,8 +27,8 @@
       in
       {
         packages = rec {
-          node-project-devenv = pkgs.node-project-devenv;
-          default = node-project-devenv;
+          node-nest-project-devenv = pkgs.node-nest-project-devenv;
+          default = node-nest-project-devenv;
         };
 
         devShells = {
