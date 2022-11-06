@@ -19,7 +19,7 @@
     flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" ]) (system:
       let
         overlays = [
-          (import ./overlay.nix system self)
+          (import ./flake-overlay.nix system self)
           devshell.overlay
         ];
 
@@ -37,7 +37,7 @@
               inherit (pkgs.devshell) mkShell importTOML;
             in
             mkShell {
-              imports = [ (importTOML ./devshell.toml) ];
+              imports = [ (importTOML ./flake-devshell.toml) ];
             };
         };
 
