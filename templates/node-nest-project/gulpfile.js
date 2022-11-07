@@ -14,8 +14,6 @@ gulp.task("clean", function () {
 
 // Task which would transpile typescript to javascript
 gulp.task("backend", function () {
-    // we need to exclude the frontend directory since that would be done anyway by webpack
-    tsProject.config['exclude'] = ["./src/frontend/**/*.ts"] 
     return tsProject
         .src()
         .pipe(tsProject())
@@ -27,11 +25,40 @@ gulp.task("backend", function () {
 gulp.task("frontend-assets", function () {
     return gulp
         .src([
+            "./src/frontend/static/**/*.svg",
+            "./src/frontend/static/**/*.webp",
             "./src/frontend/static/**/*.gif",
             "./src/frontend/static/**/*.jpg",
             "./src/frontend/static/**/*.jpeg",
             "./src/frontend/static/**/*.png",
-            "./src/frontend/static/**/*.webp"])
+            "./src/frontend/static/**/*.woff",
+            "./src/frontend/static/**/*.ttf",
+            "./src/frontend/static/**/*.otf",
+            "./src/frontend/static/**/*.webm",
+            "./src/frontend/static/**/*.avi",
+            "./src/frontend/static/**/*.mp4",
+            "./src/frontend/static/**/*.mpg",
+            "./src/frontend/static/**/*.mpeg",
+            "./src/frontend/static/**/*.mkv",
+            "./src/frontend/static/**/*.weba",
+            "./src/frontend/static/**/*.wav",
+            "./src/frontend/static/**/*.mp3",
+            "./src/frontend/static/**/*.aac",
+            "./src/frontend/static/**/*.ogg",
+            "./src/frontend/static/**/*.flac",
+            "./src/frontend/static/**/*.pdf",
+            "./src/frontend/static/**/*.txt",
+            "./src/frontend/static/**/*.rtf",
+            "./src/frontend/static/**/*.doc",
+            "./src/frontend/static/**/*.docx",
+            "./src/frontend/static/**/*.xls",
+            "./src/frontend/static/**/*.xlsx",
+            "./src/frontend/static/**/*.ppt",
+            "./src/frontend/static/**/*.pptx",
+            "./src/frontend/static/**/*.odt",
+            "./src/frontend/static/**/*.ods",
+            "./src/frontend/static/**/*.odp",
+            "./src/frontend/static/**/*.json"])
         .pipe(gulp.dest("./dist/frontend/static"));
 });
 

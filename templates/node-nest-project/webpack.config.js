@@ -49,7 +49,7 @@ export default (env, argv) => {
     },
 
     resolve: {
-      extensions: [".tsx", ".ts", ".js", ".scss", ".sass", ".css"],
+      extensions: [".ts", ".tsx", ".cts", ".mts", ".js", ".jsx", ".cjs", ".mjs", ".css", ".scss", ".sass", ".less"],
     },
 
     module: {
@@ -99,6 +99,24 @@ export default (env, argv) => {
             },
             {
               loader: 'sass-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        },
+        {
+          test: /\.less$/,
+          use: [
+            isDevelopmentMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            {
+              loader: 'css-loader',
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'less-loader',
               options: {
                 sourceMap: true
               }
