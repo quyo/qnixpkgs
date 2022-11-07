@@ -1,6 +1,6 @@
 import config from 'config';
 import { NestFactory } from '@nestjs/core';
-import { NestExpressApplication } from '@nestjs/platform-express';
+import type { NestExpressApplication } from '@nestjs/platform-express';
 import path from 'path';
 import url from 'url';
 
@@ -29,7 +29,7 @@ console.log('#')
 console.log('#')
 console.log(`#     SERVER RUNNING ON http://localhost:${port}`);
 console.log('#')
-console.log(`#         process.env.NODE_ENV = ${process.env.NODE_ENV}`);
+console.log(`#         process.env['NODE_ENV'] = ${process.env['NODE_ENV']}`);
 console.log(`#         config.env.label = ${config.get('env.labelOutput')}`);
 console.log('#')
 console.log('#')

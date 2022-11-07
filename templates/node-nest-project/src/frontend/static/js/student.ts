@@ -1,4 +1,4 @@
-import Professor from "./professor";
+import type Professor from "./professor";
 
 export default class Student {
   name: string;

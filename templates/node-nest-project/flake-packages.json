@@ -1,6 +1,7 @@
 {
   "nixpkgs-stable": [
     "binutils",
+    "docker-compose",
     "gcc",
     "gnugrep",
     "gnumake",
