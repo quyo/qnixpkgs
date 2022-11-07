@@ -9,7 +9,6 @@ export default class Student {
   }
 
   getFavProfessor = () => {
-     return this.favProfessor
-  }
-
+    return this.favProfessor;
+  };
 }

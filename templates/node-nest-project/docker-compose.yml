@@ -1,11 +1,10 @@
-version: '3'
+version: "3"
 services:
-
   node-nest-project:
     build: .
     container_name: node-nest-project
     image: quyo/node-nest-project:latest
-    restart: 'no'
+    restart: "no"
     networks:
       - external
     ports:

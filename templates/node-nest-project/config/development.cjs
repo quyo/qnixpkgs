@@ -1,7 +1,7 @@
 const config = {
   env: {
-    label: "DEV"
-  }
+    label: "DEV",
+  },
 };
 
 module.exports = config;

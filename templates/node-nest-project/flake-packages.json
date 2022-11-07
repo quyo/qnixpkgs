@@ -8,9 +8,6 @@
     "gnused",
     "python3"
   ],
-  "nixpkgs-unstable": [
-    "nodejs-18_x"
-  ],
-  "self": [
-  ]
+  "nixpkgs-unstable": ["nodejs-18_x"],
+  "self": []
 }

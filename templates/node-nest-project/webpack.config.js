@@ -7,8 +7,7 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-
-const src = path.resolve(__dirname, 'src/frontend/static');
+const src = path.resolve(__dirname, "src/frontend/static");
 
 const entryPoints = {
   "css/global": [`${src}/css/global`],
@@ -17,10 +16,8 @@ const entryPoints = {
   // "other output points" : ["other entry point"]
 };
 
-
 export default (env, argv) => {
-
-  const isDevelopmentMode = (argv.mode === "development");
+  const isDevelopmentMode = argv.mode === "development";
 
   // Locally, we want robust source-maps. However, in production, we want something
   // that can help with debugging without giving away all of the source-code. This
@@ -30,7 +27,7 @@ export default (env, argv) => {
     ? "eval-source-map"
     : "nosources-source-map";
 
-  return ({
+  return {
     // The current mode, defaults to production
     mode: argv.mode,
 
@@ -42,14 +39,27 @@ export default (env, argv) => {
 
     // The location where bundle are stored
     output: {
-      path: path.resolve(__dirname, 'dist/frontend'),
-      publicPath: '/',
+      path: path.resolve(__dirname, "dist/frontend"),
+      publicPath: "/",
       filename: "static/[name].[contenthash].js",
-      chunkFilename: 'static/chunk/[id].[contenthash].js'
+      chunkFilename: "static/chunk/[id].[contenthash].js",
     },
 
     resolve: {
-      extensions: [".ts", ".tsx", ".cts", ".mts", ".js", ".jsx", ".cjs", ".mjs", ".css", ".scss", ".sass", ".less"],
+      extensions: [
+        ".ts",
+        ".tsx",
+        ".cts",
+        ".mts",
+        ".js",
+        ".jsx",
+        ".cjs",
+        ".mjs",
+        ".css",
+        ".scss",
+        ".sass",
+        ".less",
+      ],
     },
 
     module: {
@@ -58,93 +68,103 @@ export default (env, argv) => {
           test: /\.tsx?$/,
           use: [
             {
-              loader: 'ts-loader',
+              loader: "ts-loader",
               options: {
-                configFile: 'tsconfig.frontend.json'
-              }
-            }
+                configFile: "tsconfig.frontend.json",
+              },
+            },
           ],
           exclude: /node_modules/,
         },
         {
           test: /\.module\.(sa|sc|c)ss$/,
           use: [
-            isDevelopmentMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
             {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: {
                 modules: true,
-                sourceMap: true
-              }
+                sourceMap: true,
+              },
             },
             {
-              loader: 'sass-loader',
+              loader: "sass-loader",
               options: {
-                sourceMap: true
-              }
-            }
-          ]
+                sourceMap: true,
+              },
+            },
+          ],
         },
         {
           test: /\.(sa|sc|c)ss$/,
           exclude: /\.module\.(sa|sc|c)ss$/,
           use: [
-            isDevelopmentMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
             {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: {
                 modules: false,
-                sourceMap: true
-              }
+                sourceMap: true,
+              },
             },
             {
-              loader: 'sass-loader',
+              loader: "sass-loader",
               options: {
-                sourceMap: true
-              }
-            }
-          ]
+                sourceMap: true,
+              },
+            },
+          ],
         },
         {
           test: /\.less$/,
           use: [
-            isDevelopmentMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+            isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
             {
-              loader: 'css-loader',
+              loader: "css-loader",
               options: {
-                sourceMap: true
-              }
+                sourceMap: true,
+              },
             },
             {
-              loader: 'less-loader',
+              loader: "less-loader",
               options: {
-                sourceMap: true
-              }
-            }
-          ]
-        }
+                sourceMap: true,
+              },
+            },
+          ],
+        },
       ],
     },
 
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'static/[name].[contenthash].css',
-        chunkFilename: 'static/chunk/[id].[contenthash].css'
+        filename: "static/[name].[contenthash].css",
+        chunkFilename: "static/chunk/[id].[contenthash].css",
       }),
-    ].concat(Object.keys(entryPoints).map((chunk) =>
-      new HtmlWebpackPlugin({
-        inject: false,
-        filename: `views/${chunk}.head.html`,
-        templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.headTags}`,
-        chunks: [chunk]
-      })
-    )).concat(Object.keys(entryPoints).map((chunk) =>
-      new HtmlWebpackPlugin({
-        inject: false,
-        filename: `views/${chunk}.body.html`,
-        templateContent: ({htmlWebpackPlugin}) => `${htmlWebpackPlugin.tags.bodyTags}`,
-        chunks: [chunk]
-      })
-    ))
-  });
+    ]
+      .concat(
+        Object.keys(entryPoints).map(
+          (chunk) =>
+            new HtmlWebpackPlugin({
+              inject: false,
+              filename: `views/${chunk}.head.html`,
+              templateContent: ({ htmlWebpackPlugin }) =>
+                `${htmlWebpackPlugin.tags.headTags}`,
+              chunks: [chunk],
+            })
+        )
+      )
+      .concat(
+        Object.keys(entryPoints).map(
+          (chunk) =>
+            new HtmlWebpackPlugin({
+              inject: false,
+              filename: `views/${chunk}.body.html`,
+              templateContent: ({ htmlWebpackPlugin }) =>
+                `${htmlWebpackPlugin.tags.bodyTags}`,
+              chunks: [chunk],
+            })
+        )
+      ),
+  };
 };

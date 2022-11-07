@@ -4,26 +4,39 @@ packages = [ "node-nest-project-devenv" ]
 
 
 [[commands]]
+command = "npm run prettify"
+name = "prettify"
+help = "run prettier."
+category = "1. code"
+
+[[commands]]
+command = "echo lint"
+name = "lint"
+help = "run eslint."
+category = "1. code"
+
+
+[[commands]]
 command = "npm run dev"
 name = "dev"
-help = "build. serve. watch. (process.env.NODE_ENV === 'development')"
-category = "node develop"
+help = "build. serve. watch.     (process.env[\"NODE_ENV\"] === \"development\")"
+category = "2. test"
 
 [[commands]]
 command = "npm run prod"
 name = "prod"
-help = "build. serve.        (process.env.NODE_ENV === 'production')"
-category = "node develop"
+help = "build. serve.            (process.env[\"NODE_ENV\"] === \"production\")"
+category = "2. test"
 
 
 [[commands]]
 command = "docker-compose build"
 name = "container-build"
 help = "build docker image."
-category = "node operate"
+category = "3. release"
 
 [[commands]]
 command = "docker-compose up"
 name = "container-run"
 help = "run docker container."
-category = "node operate"
+category = "3. release"
