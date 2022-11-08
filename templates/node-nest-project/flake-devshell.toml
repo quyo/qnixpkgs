@@ -4,39 +4,39 @@ packages = [ "node-nest-project-devenv" ]
 
 
 [[commands]]
-command = "npm run lint"
+command = "pushd \"${PRJ_ROOT}\" ; npm run lint ; popd"
 name = "lint"
 help = "run eslint."
 category = "1. code"
 
 [[commands]]
-command = "npm run prettify"
+command = "pushd \"${PRJ_ROOT}\" ; npm run prettify ; popd"
 name = "prettify"
 help = "run prettier."
 category = "1. code"
 
 
 [[commands]]
-command = "npm run dev"
+command = "pushd \"${PRJ_ROOT}\" ; npm run dev ; popd"
 name = "dev"
 help = "build. serve. watch.     (process.env[\"NODE_ENV\"] === \"development\")"
 category = "2. test"
 
 [[commands]]
-command = "npm run prod"
+command = "pushd \"${PRJ_ROOT}\" ; npm run prod ; popd"
 name = "prod"
 help = "build. serve.            (process.env[\"NODE_ENV\"] === \"production\")"
 category = "2. test"
 
 
 [[commands]]
-command = "docker-compose build"
+command = "pushd \"${PRJ_ROOT}\" ; docker-compose build ; popd"
 name = "container-build"
 help = "build docker image."
 category = "3. release"
 
 [[commands]]
-command = "docker-compose up"
+command = "pushd \"${PRJ_ROOT}\" ; docker-compose up ; popd"
 name = "container-run"
 help = "run docker container."
 category = "3. release"
