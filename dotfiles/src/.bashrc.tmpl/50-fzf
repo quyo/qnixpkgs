@@ -28,7 +28,7 @@ if [ -x "$(command -v fzf)" ]; then
 
   if [ -x "$(command -v fd)" ]; then
 
-    FZF_QUYO_FIND_ALL='fd --hidden --follow --exclude .git --color=always'
+    FZF_QUYO_FIND_ALL='fd --hidden --follow --exclude .git --exclude .direnv --exclude node_modules --color=always'
     FZF_QUYO_FIND_FILES="${FZF_QUYO_FIND_ALL} --type f"
     FZF_QUYO_FIND_DIRS="${FZF_QUYO_FIND_ALL} --type d"
 
@@ -58,7 +58,7 @@ if [ -x "$(command -v fzf)" ]; then
 
     _fzf_quyo_search() {
       # Switch between ripgrep launcher mode (CTRL-R) and fzf filtering mode (CTRL-F)
-      local RG_PREFIX='rg --column --line-number --no-heading --color=always --smart-case --no-ignore --hidden --glob !.git/ --follow '
+      local RG_PREFIX='rg --column --line-number --no-heading --color=always --smart-case --no-ignore --hidden --glob !.git/ --glob !.direnv/ --glob !node_modules/ --follow '
       local INITIAL_QUERY="${*:-}"
       IFS=: read -ra selected < <(
         FZF_DEFAULT_COMMAND="${RG_PREFIX} $(printf %q "${INITIAL_QUERY}")" \
