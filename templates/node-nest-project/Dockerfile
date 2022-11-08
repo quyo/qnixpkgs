@@ -3,6 +3,8 @@ FROM node:18-alpine as build-stage
 
 WORKDIR /app
 
+RUN apk --no-cache add g++ make python3
+
 COPY package*.json .
 RUN npm install
 
@@ -17,8 +19,9 @@ FROM node:18-alpine as final-stage
 WORKDIR /app
 
 COPY --from=build-stage /app/package*.json .
-RUN npm install --omit=dev
+RUN npm install --omit=dev husky
 
+COPY --from=build-stage /app/config ./config
 COPY --from=build-stage /app/dist ./dist
 
 CMD ["npm", "run", "serve:prod"]
