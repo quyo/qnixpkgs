@@ -24,6 +24,15 @@ module.exports = {
 
   rules: {},
 
+  overrides: [
+    {
+      files: ["*.ts", "*.mts", "*.cts", "*.tsx"],
+      rules: {
+        "no-undef": "off",
+      },
+    },
+  ],
+
   reportUnusedDisableDirectives: true,
 
   env: {
