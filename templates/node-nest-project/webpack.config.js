@@ -16,7 +16,7 @@ const entryPoints = {
 };
 
 export default (env, argv) => {
-  const isDevelopmentMode = argv.mode === "development";
+  const isDevelopmentMode = argv.mode === "development"; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
 
   // Locally, we want robust source-maps. However, in production, we want something
   // that can help with debugging without giving away all of the source-code. This
@@ -28,7 +28,7 @@ export default (env, argv) => {
 
   return {
     // The current mode, defaults to production
-    mode: argv.mode,
+    mode: argv.mode, // eslint-disable-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
 
     // Used for generating source maps (used for debugging)
     devtool: devtool,
@@ -141,6 +141,7 @@ export default (env, argv) => {
         chunkFilename: "static/chunk/[id].[contenthash].css",
       }),
     ]
+      /* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
       .concat(
         Object.keys(entryPoints).map(
           (chunk) =>
@@ -165,5 +166,6 @@ export default (env, argv) => {
             })
         )
       ),
+    /* eslint-enable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
   };
 };

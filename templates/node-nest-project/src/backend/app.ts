@@ -22,8 +22,9 @@ async function bootstrap() {
 
   await app.listen(port);
 }
-bootstrap();
+await bootstrap();
 
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
 console.log(
   "###########################################################################################################"
 );
@@ -38,3 +39,4 @@ console.log("#");
 console.log(
   "###########################################################################################################"
 );
+/* eslint-enable @typescript-eslint/restrict-template-expressions */
