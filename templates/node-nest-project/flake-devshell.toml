@@ -6,7 +6,7 @@ packages = [ "node-nest-project-devenv" ]
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; npm run lint ; popd"
 name = "lint"
-help = "run eslint."
+help = "run eslint & stylelint."
 category = "1. code"
 
 [[commands]]
