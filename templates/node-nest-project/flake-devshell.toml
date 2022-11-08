@@ -10,7 +10,7 @@ help = "run prettier."
 category = "1. code"
 
 [[commands]]
-command = "echo lint"
+command = "npm run lint"
 name = "lint"
 help = "run eslint."
 category = "1. code"
