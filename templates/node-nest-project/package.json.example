@@ -27,7 +27,8 @@
     "watch_frontend_assets": "nodemon --watch src/frontend/static -e svg,webp,gif,jpg,jpeg,png,woff,ttf,otf,webm,avi,mp4,mpg,mpeg,mkv,weba,wav,mp3,aac,ogg,flac,pdf,txt,rtf,doc,docx,xls,xlsx,ppt,pptx,odt,ods,odp,json --exec npm run build_frontend_assets",
     "watch_frontend_views": "nodemon --watch src/frontend/views -e ejs,html,htm --exec npm run build_frontend_views",
     "watch_frontend_compile": "nodemon --watch src/frontend/static -e ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less --exec npm run build_frontend_compile:dev",
-    "watch": "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile",
+    "watch_prettier": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}",
+    "watch": "npm run clean && run-p watch_backend watch_frontend_assets watch_frontend_views watch_frontend_compile watch_prettier",
     "dev": "npm run watch",
     "prod": "npm run build_serve:prod"
   },
@@ -59,6 +60,7 @@
     "node-sass": "^7.0.3",
     "nodemon": "^2.0.20",
     "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
     "prettier": "^2.7.1",
     "sass-loader": "^13.1.0",
     "style-loader": "^3.3.1",
