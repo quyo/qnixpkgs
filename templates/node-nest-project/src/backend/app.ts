@@ -24,7 +24,9 @@ async function bootstrap() {
 }
 await bootstrap();
 
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
+const env = process.env["NODE_ENV"] || "<undefined>";
+const label = config.get<string>("env.labelOutput");
+
 console.log(
   "###########################################################################################################"
 );
@@ -32,11 +34,10 @@ console.log("#");
 console.log("#");
 console.log(`#     SERVER RUNNING ON http://localhost:${port}`);
 console.log("#");
-console.log(`#         process.env["NODE_ENV"] = ${process.env["NODE_ENV"]}`);
-console.log(`#         config.env.label = ${config.get("env.labelOutput")}`);
+console.log(`#         process.env["NODE_ENV"] = ${env}`);
+console.log(`#         config.env.label = ${label}`);
 console.log("#");
 console.log("#");
 console.log(
   "###########################################################################################################"
 );
-/* eslint-enable @typescript-eslint/restrict-template-expressions */

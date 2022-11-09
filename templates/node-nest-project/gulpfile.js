@@ -1,8 +1,9 @@
 import gulp from "gulp";
 import ts from "gulp-typescript";
+const { createProject } = ts; // eslint-disable-line import/no-named-as-default-member
 import { deleteAsync } from "del";
 
-var tsProject = ts.createProject("tsconfig.json");
+var tsProject = createProject("tsconfig.json");
 
 // https://rohitlakhotia.com/blog/nodejs-ejs-typescript-using-gulp-webpack/
 

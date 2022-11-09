@@ -15,8 +15,11 @@ const entryPoints = {
   // "other output points" : ["other entry point"]
 };
 
-export default (env, argv) => {
-  const isDevelopmentMode = argv.mode === "development"; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
+export default (
+  /** @type {any} */ _env,
+  /** @type {{ mode: string; }} */ argv
+) => {
+  const isDevelopmentMode = argv.mode === "development";
 
   // Locally, we want robust source-maps. However, in production, we want something
   // that can help with debugging without giving away all of the source-code. This
@@ -26,9 +29,41 @@ export default (env, argv) => {
     ? "eval-source-map"
     : "nosources-source-map";
 
+  var plugins = [];
+  plugins.push(
+    new MiniCssExtractPlugin({
+      filename: "static/[name].[contenthash].css",
+      chunkFilename: "static/chunk/[id].[contenthash].css",
+    })
+  );
+  /* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
+  Object.keys(entryPoints).forEach((chunk) => {
+    plugins.push(
+      new HtmlWebpackPlugin({
+        inject: false,
+        filename: `views/${chunk}.head.html`,
+        templateContent: (
+          /** @type {{ [option: string]: any; }} */ { htmlWebpackPlugin }
+        ) => `${htmlWebpackPlugin.tags.headTags}`,
+        chunks: [chunk],
+      })
+    );
+    plugins.push(
+      new HtmlWebpackPlugin({
+        inject: false,
+        filename: `views/${chunk}.body.html`,
+        templateContent: (
+          /** @type {{[option: string]: any;}} */ { htmlWebpackPlugin }
+        ) => `${htmlWebpackPlugin.tags.bodyTags}`,
+        chunks: [chunk],
+      })
+    );
+  });
+  /* eslint-enable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
+
   return {
     // The current mode, defaults to production
-    mode: argv.mode, // eslint-disable-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-assignment
+    mode: argv.mode,
 
     // Used for generating source maps (used for debugging)
     devtool: devtool,
@@ -64,7 +99,7 @@ export default (env, argv) => {
     module: {
       rules: [
         {
-          test: /\.tsx?$/,
+          test: /\.(c|m)?tsx?$/,
           use: [
             {
               loader: "ts-loader",
@@ -135,37 +170,6 @@ export default (env, argv) => {
       ],
     },
 
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: "static/[name].[contenthash].css",
-        chunkFilename: "static/chunk/[id].[contenthash].css",
-      }),
-    ]
-      /* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
-      .concat(
-        Object.keys(entryPoints).map(
-          (chunk) =>
-            new HtmlWebpackPlugin({
-              inject: false,
-              filename: `views/${chunk}.head.html`,
-              templateContent: ({ htmlWebpackPlugin }) =>
-                `${htmlWebpackPlugin.tags.headTags}`,
-              chunks: [chunk],
-            })
-        )
-      )
-      .concat(
-        Object.keys(entryPoints).map(
-          (chunk) =>
-            new HtmlWebpackPlugin({
-              inject: false,
-              filename: `views/${chunk}.body.html`,
-              templateContent: ({ htmlWebpackPlugin }) =>
-                `${htmlWebpackPlugin.tags.bodyTags}`,
-              chunks: [chunk],
-            })
-        )
-      ),
-    /* eslint-enable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
+    plugins: plugins,
   };
 };
