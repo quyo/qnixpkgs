@@ -6,7 +6,7 @@ import url from "url";
 const __filename = url.fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const src = path.resolve(__dirname, "src/frontend/static");
+const src = path.resolve(__dirname, "src/frontend/public");
 
 const entryPoints = {
   "css/global": [`${src}/css/global`],
@@ -32,16 +32,17 @@ export default (
   var plugins = [];
   plugins.push(
     new MiniCssExtractPlugin({
-      filename: "static/[name].[contenthash].css",
-      chunkFilename: "static/chunk/[id].[contenthash].css",
+      filename: "[name].[contenthash].css",
+      chunkFilename: "chunk/[id].[contenthash].css",
     })
   );
+
   /* eslint-disable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
   Object.keys(entryPoints).forEach((chunk) => {
     plugins.push(
       new HtmlWebpackPlugin({
         inject: false,
-        filename: `views/${chunk}.head.html`,
+        filename: `../views/${chunk}.head.html`,
         templateContent: (
           /** @type {{ [option: string]: any; }} */ { htmlWebpackPlugin }
         ) => `${htmlWebpackPlugin.tags.headTags}`,
@@ -51,7 +52,7 @@ export default (
     plugins.push(
       new HtmlWebpackPlugin({
         inject: false,
-        filename: `views/${chunk}.body.html`,
+        filename: `../views/${chunk}.body.html`,
         templateContent: (
           /** @type {{[option: string]: any;}} */ { htmlWebpackPlugin }
         ) => `${htmlWebpackPlugin.tags.bodyTags}`,
@@ -60,6 +61,14 @@ export default (
     );
   });
   /* eslint-enable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
+
+  plugins.push(
+    new HtmlWebpackPlugin({
+      template: `${src}/static.html`,
+      filename: `static.html`,
+      chunks: ["css/global"],
+    })
+  );
 
   return {
     // The current mode, defaults to production
@@ -73,10 +82,10 @@ export default (
 
     // The location where bundle are stored
     output: {
-      path: path.resolve(__dirname, "dist/frontend"),
+      path: path.resolve(__dirname, "dist/frontend/public"),
       publicPath: "/",
-      filename: "static/[name].[contenthash].js",
-      chunkFilename: "static/chunk/[id].[contenthash].js",
+      filename: "[name].[contenthash].js",
+      chunkFilename: "chunk/[id].[contenthash].js",
     },
 
     resolve: {

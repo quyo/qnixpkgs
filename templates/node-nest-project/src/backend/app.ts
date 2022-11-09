@@ -14,8 +14,9 @@ const port: number = config.get("backend.server.port");
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
-  app.useStaticAssets(path.join(__dirname, "../frontend/static"), {
-    prefix: "/static",
+  app.useStaticAssets(path.join(__dirname, "../frontend/public"), {
+    prefix: "/",
+    extensions: ["html", "htm"],
   });
   app.setBaseViewsDir(path.join(__dirname, "../frontend/views"));
   app.setViewEngine("ejs");
