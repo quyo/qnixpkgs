@@ -1,3 +1,4 @@
+import CopyPlugin from "copy-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
@@ -30,6 +31,30 @@ export default (
     : "nosources-source-map";
 
   var plugins = [];
+
+  plugins.push(
+    new HtmlWebpackPlugin({
+      template: `${src}/static-with-inject.html`,
+      filename: "static-with-inject.html",
+      chunks: ["css/global"],
+    })
+  );
+
+  plugins.push(
+    new CopyPlugin({
+      patterns: [
+        {
+          context: `${src}`,
+          from: "**/*.{html,htm}",
+          globOptions: {
+            ignore: [`${src}/static-with-inject.html`],
+          },
+          noErrorOnMissing: true,
+        },
+      ],
+    })
+  );
+
   plugins.push(
     new MiniCssExtractPlugin({
       filename: "[name].[contenthash].css",
@@ -61,14 +86,6 @@ export default (
     );
   });
   /* eslint-enable @typescript-eslint/restrict-template-expressions, @typescript-eslint/no-unsafe-member-access */
-
-  plugins.push(
-    new HtmlWebpackPlugin({
-      template: `${src}/static.html`,
-      filename: `static.html`,
-      chunks: ["css/global"],
-    })
-  );
 
   return {
     // The current mode, defaults to production

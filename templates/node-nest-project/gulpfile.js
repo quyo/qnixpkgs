@@ -22,7 +22,7 @@ gulp.task("frontend-assets", function () {
   return gulp
     .src([
       "./src/frontend/public/**/*",
-      "!./src/frontend/public/**/*.{ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less}",
+      "!./src/frontend/public/**/*.{ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less,html,htm}",
     ])
     .pipe(gulp.dest("./dist/frontend/public"));
 });
