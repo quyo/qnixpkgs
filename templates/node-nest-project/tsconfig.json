@@ -24,8 +24,7 @@
     "allowSyntheticDefaultImports": true /* Allow 'import x from y' when a module doesn't have a default export. */
   },
   "ts-node": {
-    // Tell ts-node CLI to install the --loader automatically
-    "esm": true
+    "esm": true // Tell ts-node CLI to install the --loader automatically
   },
   "include": ["src/**/*"],
   "exclude": ["src/frontend/**/*"]

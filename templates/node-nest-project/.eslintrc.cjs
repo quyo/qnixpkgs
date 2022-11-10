@@ -4,7 +4,7 @@ module.exports = {
   parser: "@typescript-eslint/parser",
 
   parserOptions: {
-    project: ["tsconfig.json", "tsconfig.frontend.json"],
+    project: "tsconfig.eslint.json",
     tsconfigRootDir: __dirname,
     sourceType: "module",
     ecmaFeatures: {
@@ -52,7 +52,7 @@ module.exports = {
     "import/resolver": {
       typescript: {
         alwaysTryTypes: true, // always try to resolve types under `<root>@types` directory even it doesn't contain any source code, like `@types/unist`
-        project: ["tsconfig.json", "tsconfig.frontend.json"],
+        project: "tsconfig.eslint.json",
       },
     },
   },
