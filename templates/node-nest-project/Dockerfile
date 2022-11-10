@@ -18,7 +18,7 @@ FROM node:18-alpine as final-stage
 
 WORKDIR /app
 
-COPY --from=build-stage /app/package*.json .
+COPY package*.json .
 RUN npm install --omit=dev husky
 
 COPY --from=build-stage /app/config ./config

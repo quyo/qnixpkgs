@@ -13,8 +13,12 @@
     /* Modules */
     "module": "es2015" /* Specify what module code is generated. */,
 
+    /* JavaScript Support */
+    "allowJs": true /* Allow JavaScript files to be a part of your program. Use the 'checkJS' option to get errors from these files. */,
+    "checkJs": false /* Enable error reporting in type-checked JavaScript files. */,
+
     /* Emit */
     "declaration": false /* Generate .d.ts files from TypeScript and JavaScript files in your project. */
   },
-  "exclude": ["./src/backend/**/*"]
+  "exclude": ["src/backend/**/*"]
 }
