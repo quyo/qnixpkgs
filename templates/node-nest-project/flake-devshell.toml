@@ -6,7 +6,7 @@ packages = [ "node-nest-project-devenv" ]
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; code . ; popd"
 name = "edit"
-help = "launch vs code with debugging configuration."
+help = "launch vscode with debugging configuration."
 category = "1. code"
 
 [[commands]]
