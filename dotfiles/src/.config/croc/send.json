@@ -1,0 +1,28 @@
+{
+    "IsSender": true,
+    "SharedSecret": "",
+    "Debug": false,
+    "RelayAddress": "croc-relay.app.quyo.net:9009",
+    "RelayAddress6": "croc-relay.app.quyo.net:9009",
+    "RelayPorts": [
+        "9009",
+        "9010",
+        "9011",
+        "9012",
+        "9013"
+    ],
+    "RelayPassword": "wjQSevv2WBFBAS98SbTr",
+    "Stdout": false,
+    "NoPrompt": false,
+    "NoMultiplexing": false,
+    "DisableLocal": false,
+    "OnlyLocal": false,
+    "IgnoreStdin": false,
+    "Ask": false,
+    "SendingText": false,
+    "NoCompress": false,
+    "IP": "",
+    "Overwrite": false,
+    "Curve": "siec",
+    "HashAlgorithm": "xxhash"
+}
