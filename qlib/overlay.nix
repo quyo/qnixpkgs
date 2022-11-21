@@ -75,6 +75,6 @@ in
 
 {
   lib = prev.lib // {
-    q = qlib;
+    q = (prev.q or { }) // qlib;
   };
 }

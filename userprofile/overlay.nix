@@ -79,7 +79,7 @@ in
       stable = final.buildEnv
         {
           name = "userprofile-global-stable-${version}";
-          paths = with final; modern-unix ++ [
+          paths = with final; modern-unix ++ [ (q.shellscripts.buildEnv final) ] ++ [
             bzip2
             coreutils-full
             croc
@@ -115,7 +115,6 @@ in
             rdfind
             rename
             screen
-            shellscripts
             testssl
             tmux
             traceroute
