@@ -4,7 +4,6 @@
 , duply-cronic
 , kakoune
 , linac
-, simplex-chat
 }:
 
 let
@@ -15,7 +14,6 @@ let
     duply-cronic = { type = "app"; program = "${duply-cronic}/bin/duply-cronic"; };
     kakoune = { type = "app"; program = "${kakoune}/bin/kak"; };
     linac = { type = "app"; program = "${linac}/bin/linac"; };
-    simplex-chat = { type = "app"; program = "${simplex-chat}/bin/simplex-chat"; };
   };
 in
 
