@@ -11,7 +11,7 @@ jobs:
 
   build-flake:
     name: Build flake
-    uses: Samayel/qnixpkgs/.github/workflows/nixbuild-ci-workflow.yml
+    uses: Samayel/qnixpkgs/.github/workflows/nixbuild-ci-workflow.yml@main
     secrets:
       nixbuild_ssh_key: ${{ secrets.NIXBUILD_SSH_KEY }}
     with:
