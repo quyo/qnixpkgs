@@ -79,7 +79,7 @@ in
       stable = final.buildEnv
         {
           name = "userprofile-global-stable-${version}";
-          paths = with final; modern-unix ++ [ (q.shellscripts.buildEnv final) ] ++ [
+          paths = with final; modern-unix ++ [ (q.shellscripts.buildStableEnv final) ] ++ [
             bzip2
             coreutils-full
             croc
@@ -131,7 +131,7 @@ in
       unstable = final.buildEnv
         {
           name = "userprofile-global-unstable-${version}";
-          paths = with final; [
+          paths = with final; [ (q.shellscripts.buildUnstableEnv final) ] ++ [
             nix
             nix-direnv
             nix-tree
