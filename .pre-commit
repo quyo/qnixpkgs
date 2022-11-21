@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-nix flake show . >/dev/null
+nix flake show --allow-import-from-derivation . >/dev/null
 nix build --no-link .#ci-build
 echo
 echo

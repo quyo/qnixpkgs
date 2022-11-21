@@ -17,6 +17,8 @@
     devshell.inputs.nixpkgs.follows = "nixpkgs-stable";
     devshell.inputs.flake-utils.follows = "flake-utils";
 
+    simplex-chat.url = "github:simplex-chat/simplex-chat/v4.2.1";
+
     qnixpkgs.url = "github:Samayel/qnixpkgs";
     qnixpkgs.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     qnixpkgs.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
@@ -44,7 +46,7 @@
     mersenneforumorg.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, simplex-chat, shellscripts, mersenneforumorg, ... }:
     {
       overlays = {
         axonsh = import axon.sh/overlay.nix self;
@@ -138,13 +140,32 @@
                   paths = [
                     pkgs-stable.userprofile.stable
                     pkgs-unstable.userprofile.unstable
-                  ];
+                  ]
+                  ++
+                  lib.optionals (system != flake-utils.lib.system.armv7l-linux)
+                    [
+                      simplex-chat.packages.${system}."exe:simplex-chat"
+                    ];
                 };
             }
             //
             shellscripts.packages.${system}
             //
             lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.packages.${system}
+            //
+            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux)
+              {
+                simplex-chat = simplex-chat.packages.${system}."exe:simplex-chat";
+              }
+            //
+            lib.optionalAttrs (system == flake-utils.lib.system.armv7l-linux)
+              {
+                simplex-chat = buildEnv
+                  {
+                    name = "simplex-chat-dummy";
+                    paths = [ ];
+                  };
+              }
           )
           exclusions.from-internal;
 
