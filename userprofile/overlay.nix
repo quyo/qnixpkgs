@@ -124,6 +124,7 @@ in
             wget
             which
             whois
+            yq
             xz
           ];
         };
