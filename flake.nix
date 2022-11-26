@@ -161,7 +161,6 @@
 
           from-internal = from-external ++
           [
-            "batwatch-unstable"
             "qshell-full-unstable"
           ];
 

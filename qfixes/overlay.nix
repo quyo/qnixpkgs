@@ -5,7 +5,11 @@ let
   inherit (final.lib.q) dontCheck dontInstallCheck dontCheckHaskell fixllvmPackages;
 in
 
-{ }
+{
+  gawk-with-extensions = prev.gawk-with-extensions.override {
+    extensions = builtins.filter (drv: drv.pname != "gawkextlib-haru") final.gawkextlib.full;
+  };
+}
   // lib.optionalAttrs stdenv.hostPlatform.isAarch32
   {
     aws-c-common = dontCheck prev.aws-c-common;
@@ -19,10 +23,6 @@ in
     duplicity = dontInstallCheck prev.duplicity;
 
     ell = dontCheck prev.ell;
-
-    gawk-with-extensions = prev.gawk-with-extensions.override {
-      extensions = builtins.filter (drv: drv.pname != "gawkextlib-haru") final.gawkextlib.full;
-    };
 
     go_1_19 = prev.darwin.apple_sdk_11_0.callPackage go/1.19.nix {
       inherit (prev.darwin.apple_sdk_11_0.frameworks) Foundation Security;

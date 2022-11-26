@@ -65,12 +65,8 @@
         "flake-utils": [
           "flake-utils"
         ],
-        "nixpkgs-stable": [
-          "nixpkgs-stable"
-        ],
-        "nixpkgs-unstable": [
-          "nixpkgs-unstable"
-        ],
+        "nixpkgs-stable": "nixpkgs-stable",
+        "nixpkgs-unstable": "nixpkgs-unstable",
         "qnixpkgs": [
           "qnixpkgs"
         ]
@@ -91,6 +87,22 @@
     },
     "nixpkgs-stable": {
       "locked": {
+        "lastModified": 1665132027,
+        "narHash": "sha256-zoHPqSQSENt96zTk6Mt1AP+dMNqQDshXKQ4I6MfjP80=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9ecc270f02b09b2f6a76b98488554dd842797357",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "9ecc270f02b09b2f6a76b98488554dd842797357",
+        "type": "github"
+      }
+    },
+    "nixpkgs-stable_2": {
+      "locked": {
         "lastModified": 1669470869,
         "narHash": "sha256-NZLyZ/XhOfo0cXWxu+BiPJ06lfi9rABpLRzt25cephQ=",
         "owner": "nixos",
@@ -106,6 +118,22 @@
       }
     },
     "nixpkgs-unstable": {
+      "locked": {
+        "lastModified": 1665087388,
+        "narHash": "sha256-FZFPuW9NWHJteATOf79rZfwfRn5fE0wi9kRzvGfDHPA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "95fda953f6db2e9496d2682c4fc7b82f959878f7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "95fda953f6db2e9496d2682c4fc7b82f959878f7",
+        "type": "github"
+      }
+    },
+    "nixpkgs-unstable_2": {
       "locked": {
         "lastModified": 1669443273,
         "narHash": "sha256-/Ow9P6dWfkQF/9NKD7+OnMnz5DJr2pVCAUMjU9SwFoo=",
@@ -168,8 +196,8 @@
         "flake-compat": "flake-compat",
         "flake-utils": "flake-utils",
         "mersenneforumorg": "mersenneforumorg",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "nixpkgs-unstable": "nixpkgs-unstable",
+        "nixpkgs-stable": "nixpkgs-stable_2",
+        "nixpkgs-unstable": "nixpkgs-unstable_2",
         "qnixpkgs": "qnixpkgs",
         "shellscripts": "shellscripts"
       }
