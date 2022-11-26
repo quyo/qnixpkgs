@@ -36,8 +36,8 @@
     shellscripts.inputs.qnixpkgs.follows = "qnixpkgs";
 
     mersenneforumorg.url = "github:Samayel/mersenneforumorg.nix";
-    # mersenneforumorg.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    # mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    mersenneforumorg.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     mersenneforumorg.inputs.flake-utils.follows = "flake-utils";
     mersenneforumorg.inputs.devshell.follows = "devshell";
     mersenneforumorg.inputs.flake-compat.follows = "flake-compat";
