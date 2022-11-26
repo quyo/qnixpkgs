@@ -10,7 +10,7 @@ if [ ! -e "$HOME/.config/restic" ] ; then
   echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com' >"$HOME/.config/restic/repository.eu"
   echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com' >"$HOME/.config/restic/repository.us"
 
-  chmod 600 "$HOME/.config/restic/*"
+  chmod 600 "$HOME/.config/restic/passwd" "$HOME/.config/restic/repository.eu" "$HOME/.config/restic/repository.us"
 
   ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/exclude.global" "$HOME/.config/restic/exclude.global"
   touch "$HOME/.config/restic/exclude.local"
