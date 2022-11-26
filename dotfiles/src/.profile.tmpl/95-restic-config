@@ -1,0 +1,24 @@
+
+
+if [ ! -e "$HOME/.config/restic" ] ; then
+
+  mkdir "$HOME/.config/restic"
+  chmod 700 "$HOME/.config/restic"
+
+  pwgen -s 32 1 >"$HOME/.config/restic/passwd"
+
+  echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com' >"$HOME/.config/restic/repository.eu"
+  echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com' >"$HOME/.config/restic/repository.us"
+
+  chmod 600 "$HOME/.config/restic/*"
+
+  ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/exclude.global" "$HOME/.config/restic/exclude.global"
+  touch "$HOME/.config/restic/exclude.local"
+
+  echo 'run'
+  echo '> $EDITOR "$HOME/.config/restic/repository.eu"'
+  echo '> $EDITOR "$HOME/.config/restic/repository.us"'
+  echo '> restic key add --new-password-file "$HOME/.config/restic/passwd" --repository-file "$HOME/.config/restic/repository.eu"'
+  echo '> restic key add --new-password-file "$HOME/.config/restic/passwd" --repository-file "$HOME/.config/restic/repository.us"'
+
+fi

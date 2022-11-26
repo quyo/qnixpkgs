@@ -112,8 +112,10 @@ in
             nano
             nettools
             patch
+            pwgen
             rdfind
             rename
+            restic
             screen
             testssl
             tmux
