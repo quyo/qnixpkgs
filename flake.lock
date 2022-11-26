@@ -91,33 +91,33 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1665132027,
-        "narHash": "sha256-zoHPqSQSENt96zTk6Mt1AP+dMNqQDshXKQ4I6MfjP80=",
+        "lastModified": 1669470869,
+        "narHash": "sha256-NZLyZ/XhOfo0cXWxu+BiPJ06lfi9rABpLRzt25cephQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9ecc270f02b09b2f6a76b98488554dd842797357",
+        "rev": "26802644728d1d3d4613538c0918837f1ffbecb8",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
+        "ref": "release-22.11",
         "repo": "nixpkgs",
-        "rev": "9ecc270f02b09b2f6a76b98488554dd842797357",
         "type": "github"
       }
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1665087388,
-        "narHash": "sha256-FZFPuW9NWHJteATOf79rZfwfRn5fE0wi9kRzvGfDHPA=",
+        "lastModified": 1669443273,
+        "narHash": "sha256-/Ow9P6dWfkQF/9NKD7+OnMnz5DJr2pVCAUMjU9SwFoo=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "95fda953f6db2e9496d2682c4fc7b82f959878f7",
+        "rev": "6b86759692b80e2b563e7f6c608f753de4aad3a7",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
-        "rev": "95fda953f6db2e9496d2682c4fc7b82f959878f7",
         "type": "github"
       }
     },
@@ -149,11 +149,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1669067261,
-        "narHash": "sha256-eJwGvnHew89gbS84lX3DPQm++ah7Ctl+HnhlLn4qqOw=",
+        "lastModified": 1669133494,
+        "narHash": "sha256-dKr7nBxZ3zxyoJ7455VRczU2EezenhewCNneibc3VFU=",
         "owner": "Samayel",
         "repo": "qnixpkgs",
-        "rev": "5d9c42e40e7b31af830a0019c849c23dd1d8b863",
+        "rev": "1fc29b7abba10a6b1c7336aa3f3ff9d3c269f66f",
         "type": "github"
       },
       "original": {
@@ -196,11 +196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1669133372,
-        "narHash": "sha256-vDYVgOQOpjjsKYYYCBvlUh6jdu1QjvOzHPn1EKk5Rkg=",
+        "lastModified": 1669325467,
+        "narHash": "sha256-RjzUF+djH2izYHwLQBwbjSiq8dqxbsUK7xN5JOGEDdE=",
         "owner": "Samayel",
         "repo": "shellscripts.nix",
-        "rev": "09d6954a796dc87bd42098635f7a26a2bed2460e",
+        "rev": "fb4ca74ab2255617db3b0199d7c74c0c80e8942b",
         "type": "github"
       },
       "original": {

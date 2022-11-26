@@ -7,16 +7,19 @@ let
 
     dontCheck = drv: drv.overrideAttrs (oldAttrs: {
       doCheck = false;
+      checkInputs = [];
     });
 
     dontInstallCheck = drv: drv.overrideAttrs (oldAttrs: {
       doInstallCheck = false;
+      checkInputs = [];
     });
 
     dontCheckHaskell = prev.haskell.lib.dontCheck;
 
     dontCheckLLVM = drv: drv.overrideAttrs (oldAttrs: {
       doCheck = false;
+      checkInputs = [];
       cmakeFlags = map (x: builtins.replaceStrings [ "DLLVM_BUILD_TESTS=ON" ] [ "DLLVM_BUILD_TESTS=OFF" ] x) oldAttrs.cmakeFlags;
     });
 

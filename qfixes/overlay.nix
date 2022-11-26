@@ -10,9 +10,23 @@ in
   {
     aws-c-common = dontCheck prev.aws-c-common;
 
+    batwatch = dontCheck prev.batwatch;
+
+    buildPackages = prev.buildPackages // {
+      go_1_19 = final.go_1_19;
+    };
+
     duplicity = dontInstallCheck prev.duplicity;
 
     ell = dontCheck prev.ell;
+
+    gawk-with-extensions = prev.gawk-with-extensions.override {
+      extensions = builtins.filter (drv: drv.pname != "gawkextlib-haru") final.gawkextlib.full;
+    };
+
+    go_1_19 = prev.darwin.apple_sdk_11_0.callPackage go/1.19.nix {
+      inherit (prev.darwin.apple_sdk_11_0.frameworks) Foundation Security;
+    };
 
     haskellPackages = prev.haskellPackages.extend (hfinal: hprev: {
       bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
@@ -34,6 +48,8 @@ in
       time-compat = dontCheckHaskell hprev.time-compat;
     });
 
+    httpie = dontInstallCheck prev.httpie;
+
     llvmPackages = fixllvmPackages prev.llvmPackages;
     llvmPackages_12 = fixllvmPackages prev.llvmPackages_12;
     llvmPackages_13 = fixllvmPackages prev.llvmPackages_13;
@@ -44,6 +60,7 @@ in
 
     python3 = prev.python3 // {
       pkgs = prev.python3.pkgs.overrideScope (pyfinal: pyprev: {
+        psutil = dontInstallCheck pyprev.psutil;
         sh = dontInstallCheck pyprev.sh;
       });
     };
@@ -56,6 +73,7 @@ in
 
     python310 = prev.python310 // {
       pkgs = prev.python310.pkgs.overrideScope (pyfinal: pyprev: {
+        psutil = dontInstallCheck pyprev.psutil;
         sh = dontInstallCheck pyprev.sh;
       });
     };
