@@ -161,7 +161,6 @@
 
           from-internal = from-external ++
           [
-            "qshell-full-unstable"
           ];
 
           from-default = builtins.attrNames
