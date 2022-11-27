@@ -1,0 +1,14 @@
+/dev
+/lost+found
+/media
+/mnt
+/proc
+/root/.cache/duplicity
+/root/.cache/restic
+/run
+/sys
+/tmp
+/var/lib/docker
+/var/lib/lxcfs/cgroup
+/var/lib/snapd
+/swapfile

@@ -15,10 +15,12 @@ if [ ! -e "$HOME/.config/restic" ] ; then
   ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/exclude.global" "$HOME/.config/restic/exclude.global"
   touch "$HOME/.config/restic/exclude.local"
 
+  echo
   echo 'run'
   echo '> $EDITOR "$HOME/.config/restic/repository.eu"'
   echo '> $EDITOR "$HOME/.config/restic/repository.us"'
   echo '> restic key add --new-password-file "$HOME/.config/restic/passwd" --repository-file "$HOME/.config/restic/repository.eu"'
   echo '> restic key add --new-password-file "$HOME/.config/restic/passwd" --repository-file "$HOME/.config/restic/repository.us"'
+  echo
 
 fi
