@@ -83,6 +83,7 @@ in
             bzip2
             coreutils-full
             croc
+            cronic
             curl
             diffutils
             direnv
