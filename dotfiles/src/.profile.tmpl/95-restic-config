@@ -7,17 +7,15 @@ if [ ! -e "$HOME/.config/restic" ] ; then
 
   pwgen -s 32 1 >"$HOME/.config/restic/passwd"
 
-  echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com' >"$HOME/.config/restic/repository.eu"
-  echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com' >"$HOME/.config/restic/repository.us"
+  echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com'  >"$HOME/.config/restic/repository"
+  echo 'rest:https://XXX:YYY@ZZZ.repo.borgbase.com' >>"$HOME/.config/restic/repository"
 
-  chmod 600 "$HOME/.config/restic/passwd" "$HOME/.config/restic/repository.eu" "$HOME/.config/restic/repository.us"
+  chmod 600 "$HOME/.config/restic/passwd" "$HOME/.config/restic/repository"
 
   echo
   echo 'run'
-  echo '> $EDITOR "$HOME/.config/restic/repository.eu"'
-  echo '> $EDITOR "$HOME/.config/restic/repository.us"'
-  echo '> restic key add --new-password-file "$HOME/.config/restic/passwd" --repository-file "$HOME/.config/restic/repository.eu"'
-  echo '> restic key add --new-password-file "$HOME/.config/restic/passwd" --repository-file "$HOME/.config/restic/repository.us"'
+  echo '> $EDITOR "$HOME/.config/restic/repository"'
+  echo '> while LANG=C IFS= read -r REPO ; do restic key add --new-password-file "$HOME/.config/restic/passwd" --repo "$REPO"; done <"$HOME/.config/restic/repository"'
   echo
 
 fi
