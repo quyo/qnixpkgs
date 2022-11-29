@@ -12,9 +12,6 @@ if [ ! -e "$HOME/.config/restic" ] ; then
 
   chmod 600 "$HOME/.config/restic/passwd" "$HOME/.config/restic/repository.eu" "$HOME/.config/restic/repository.us"
 
-  ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/exclude.global" "$HOME/.config/restic/exclude.global"
-  touch "$HOME/.config/restic/exclude.local"
-
   echo
   echo 'run'
   echo '> $EDITOR "$HOME/.config/restic/repository.eu"'
@@ -24,3 +21,12 @@ if [ ! -e "$HOME/.config/restic" ] ; then
   echo
 
 fi
+
+[ -e "$HOME/.config/restic/exclude.global" ]                || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/exclude.global" "$HOME/.config/restic/exclude.global"
+[ -e "$HOME/.config/restic/exclude.local" ]                 || touch "$HOME/.config/restic/exclude.local"
+
+[ -e "$HOME/.config/restic/paths-to-backup.daily.global" ]  || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/paths-to-backup.daily.global" "$HOME/.config/restic/paths-to-backup.daily.global"
+[ -e "$HOME/.config/restic/paths-to-backup.daily.local" ]   || touch "$HOME/.config/restic/paths-to-backup.daily.local"
+
+[ -e "$HOME/.config/restic/paths-to-backup.hourly.global" ] || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/paths-to-backup.hourly.global" "$HOME/.config/restic/paths-to-backup.hourly.global"
+[ -e "$HOME/.config/restic/paths-to-backup.hourly.local" ]  || touch "$HOME/.config/restic/paths-to-backup.hourly.local"
