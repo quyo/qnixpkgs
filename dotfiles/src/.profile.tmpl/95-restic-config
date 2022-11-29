@@ -15,7 +15,7 @@ if [ ! -e "$HOME/.config/restic" ] ; then
   echo
   echo 'run'
   echo '> $EDITOR "$HOME/.config/restic/repository"'
-  echo '> while LANG=C IFS= read -r REPO ; do restic key add --new-password-file "$HOME/.config/restic/passwd" --repo "$REPO"; done <"$HOME/.config/restic/repository"'
+  echo '> xargs -a "$HOME/.config/restic/repository" -I {} restic key add --new-password-file "$HOME/.config/restic/passwd" --repo {}'
   echo
 
 fi
