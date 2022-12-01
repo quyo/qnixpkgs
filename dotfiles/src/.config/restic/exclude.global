@@ -2,6 +2,7 @@
 /lost+found
 /media
 /mnt
+/nix
 /proc
 /root/.cache/duplicity
 /root/.cache/restic
