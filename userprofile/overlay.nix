@@ -112,6 +112,9 @@ in
             moreutils
             nano
             nettools
+            nix
+            nix-direnv
+            nix-tree
             patch
             pwgen
             rdfind
@@ -136,9 +139,6 @@ in
         {
           name = "userprofile-global-unstable-${version}";
           paths = with final; [ (q.shellscripts.buildUnstableEnv final) ] ++ [
-            nix
-            nix-direnv
-            nix-tree
           ];
         };
     };
