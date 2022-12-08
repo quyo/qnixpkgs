@@ -28,3 +28,7 @@ fi
 
 [ -e "$HOME/.config/restic/paths-to-backup.hourly.global" ] || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/paths-to-backup.hourly.global" "$HOME/.config/restic/paths-to-backup.hourly.global"
 [ -e "$HOME/.config/restic/paths-to-backup.hourly.local" ]  || touch "$HOME/.config/restic/paths-to-backup.hourly.local"
+
+export RESTIC_PASSWORD_FILE="$HOME/.config/restic/passwd"
+
+[ -e "$HOME/.config/restic/shellrc" ]                       && source "$HOME/.config/restic/shellrc"
