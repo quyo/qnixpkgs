@@ -125,7 +125,20 @@ export default (
     module: {
       rules: [
         {
+          test: /\.(c|m)?jsx?$/,
+          exclude: /node_modules/,
+          use: [
+            {
+              loader: "babel-loader",
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        },
+        {
           test: /\.(c|m)?tsx?$/,
+          exclude: /node_modules/,
           use: [
             {
               loader: "ts-loader",
@@ -134,16 +147,60 @@ export default (
               },
             },
           ],
-          exclude: /node_modules/,
         },
         {
-          test: /\.module\.(sa|sc|c)ss$/,
+          test: /\.module\.css$/,
           use: [
             isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
                 modules: true,
+                sourceMap: true,
+              },
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        },
+        {
+          test: /\.css$/,
+          exclude: /\.module\.css$/,
+          use: [
+            isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: {
+                modules: false,
+                sourceMap: true,
+              },
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                sourceMap: true,
+              },
+            },
+          ],
+        },
+        {
+          test: /\.module\.(sa|sc)ss$/,
+          use: [
+            isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: {
+                modules: true,
+                sourceMap: true,
+              },
+            },
+            {
+              loader: "postcss-loader",
+              options: {
                 sourceMap: true,
               },
             },
@@ -156,14 +213,20 @@ export default (
           ],
         },
         {
-          test: /\.(sa|sc|c)ss$/,
-          exclude: /\.module\.(sa|sc|c)ss$/,
+          test: /\.(sa|sc)ss$/,
+          exclude: /\.module\.(sa|sc)ss$/,
           use: [
             isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
               options: {
                 modules: false,
+                sourceMap: true,
+              },
+            },
+            {
+              loader: "postcss-loader",
+              options: {
                 sourceMap: true,
               },
             },
@@ -181,6 +244,12 @@ export default (
             isDevelopmentMode ? "style-loader" : MiniCssExtractPlugin.loader,
             {
               loader: "css-loader",
+              options: {
+                sourceMap: true,
+              },
+            },
+            {
+              loader: "postcss-loader",
               options: {
                 sourceMap: true,
               },
