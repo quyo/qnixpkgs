@@ -1,17 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Node Typescript</title>
-    <%- include('css/global.head.html'); %>
-    <%- include('js/app.head.html'); %>
-  </head>
-  <body>
-    <h1><%= message %></h1>
-    <%- include('module/foo.ejs'); %>
+<%- include('page.pre.ejs'); %>
 
-    <%- include('css/global.body.html'); %>
-    <%- include('js/app.body.html'); %>
-  </body>
-</html>
+<h1><%= message %></h1>
+<%- include('module/foo.ejs'); %>
+
+<%- include('page.post.ejs'); %>

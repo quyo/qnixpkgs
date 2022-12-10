@@ -2,6 +2,7 @@ import CopyPlugin from "copy-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import TerserPlugin from "terser-webpack-plugin";
 import path from "path";
 import url from "url";
 
@@ -11,8 +12,8 @@ const __dirname = path.dirname(__filename);
 const src = path.resolve(__dirname, "src/frontend/public");
 
 const entryPoints = {
-  "css/global": [`${src}/css/global`],
-  "js/app": [`${src}/js/app`],
+  "css/bundle": [`${src}/css/global`],
+  "js/bundle": [`${src}/js/app`],
   "module/foo": [`${src}/module/foo`],
   // "other output points" : ["other entry point"]
 };
@@ -267,7 +268,7 @@ export default (
     },
 
     optimization: {
-      minimizer: [new CssMinimizerPlugin()],
+      minimizer: [new CssMinimizerPlugin(), new TerserPlugin()],
     },
 
     plugins: plugins,
