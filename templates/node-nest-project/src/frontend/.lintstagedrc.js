@@ -13,7 +13,7 @@ export default {
       .join(" ")}`,
   ],
   "**/*.{css,scss,sass,less}": [
-    "stylelint --max-warnings=0 --cache --cache-strategy content",
+    "stylelint --max-warnings=0 --allow-empty-input --cache --cache-strategy content",
     "prettier --write --cache --cache-strategy content --ignore-unknown",
   ],
   "**/*.!({ts,tsx,cts,mts,js,jsx,cjs,mjs,css,scss,sass,less})":

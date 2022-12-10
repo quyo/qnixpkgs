@@ -4,3 +4,4 @@
 dist/
 node_modules/
 result/
+src/frontend/public/ext/
