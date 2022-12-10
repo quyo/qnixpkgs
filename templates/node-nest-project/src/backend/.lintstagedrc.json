@@ -1,7 +1,0 @@
-{
-  "**/*.{ts,tsx,cts,mts,js,jsx,cjs,mjs}": [
-    "eslint --max-warnings=0 --cache --cache-strategy content",
-    "prettier --write --cache --cache-strategy content --ignore-unknown"
-  ],
-  "**/*.!({ts,tsx,cts,mts,js,jsx,cjs,mjs})": "prettier --write --cache --cache-strategy content --ignore-unknown"
-}
