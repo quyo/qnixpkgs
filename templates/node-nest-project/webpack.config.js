@@ -1,4 +1,5 @@
 import CopyPlugin from "copy-webpack-plugin";
+import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
 import HtmlWebpackPlugin from "html-webpack-plugin";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "path";
@@ -263,6 +264,10 @@ export default (
           ],
         },
       ],
+    },
+
+    optimization: {
+      minimizer: [new CssMinimizerPlugin()],
     },
 
     plugins: plugins,
