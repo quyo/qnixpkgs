@@ -1,6 +1,10 @@
 <%- include('page.pre.ejs'); %>
 
-<h1><%= message %></h1>
-<%- include('module/foo.ejs'); %>
+<div class="container py-4 px-3 mx-auto">
+    <h1><%= message %></h1>
+    <p>Loading ...</p>
+    <button id="popoverButton" type="button" class="btn btn-primary btn-lg" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="ESM in Browser" data-bs-content="Bang!">Custom popover</button>
+    <%- include('module/foo.ejs'); %>
+</div>
 
 <%- include('page.post.ejs'); %>
