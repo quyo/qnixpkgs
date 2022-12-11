@@ -49,11 +49,9 @@
       overlays = {
         axonsh = import axon.sh/overlay.nix self;
         bat-extras = import bat-extras/overlay.nix self;
-        cas = import cas/overlay.nix self;
         cronic = import cronic/overlay.nix self;
         danecheck = import danecheck/overlay.nix self;
         dotfiles = import dotfiles/overlay.nix self;
-        duply = import duply/overlay.nix self;
         fzf-git = import fzf-git/overlay.nix self;
         iconv = import iconv/overlay.nix self;
         kakoune = import kakoune/overlay.nix self;
@@ -109,8 +107,6 @@
             "danecheck"
             "danecheck-cronic"
             "dotfiles"
-            "duply"
-            "duply-cronic"
             "kakoune"
             "linac"
             "prettybat"
@@ -122,7 +118,6 @@
           ++
           lib.optionals (system != flake-utils.lib.system.armv7l-linux)
             [
-              "cas"
             ]);
 
         flake-pkgs = removeAttrs
@@ -169,7 +164,6 @@
               //
               {
                 inherit (flake-pkgs)
-                  cas
                   danecheck
                   danecheck-cronic;
               }
