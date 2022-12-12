@@ -6,7 +6,7 @@
 
     flake-utils.url = "github:numtide/flake-utils";
 
-    qnixpkgs.url = "github:Samayel/qnixpkgs";
+    qnixpkgs.url = "github:quyo/qnixpkgs";
     qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 

@@ -17,7 +17,7 @@
     devshell.inputs.nixpkgs.follows = "nixpkgs-stable";
     devshell.inputs.flake-utils.follows = "flake-utils";
 
-    qnixpkgs.url = "github:Samayel/qnixpkgs";
+    qnixpkgs.url = "github:quyo/qnixpkgs";
     qnixpkgs.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     qnixpkgs.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     qnixpkgs.inputs.flake-utils.follows = "flake-utils";
@@ -27,7 +27,7 @@
     qnixpkgs.inputs.shellscripts.follows = "shellscripts";
     qnixpkgs.inputs.mersenneforumorg.follows = "mersenneforumorg";
 
-    shellscripts.url = "github:Samayel/shellscripts.nix";
+    shellscripts.url = "github:quyo/shellscripts.nix";
     shellscripts.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     shellscripts.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     shellscripts.inputs.flake-utils.follows = "flake-utils";
@@ -35,7 +35,7 @@
     shellscripts.inputs.flake-compat.follows = "flake-compat";
     shellscripts.inputs.qnixpkgs.follows = "qnixpkgs";
 
-    mersenneforumorg.url = "github:Samayel/mersenneforumorg.nix";
+    mersenneforumorg.url = "github:quyo/mersenneforumorg.nix";
     mersenneforumorg.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     mersenneforumorg.inputs.flake-utils.follows = "flake-utils";
@@ -64,11 +64,11 @@
 
       templates = rec {
         flake-project = {
-          description = "A flake project template, usage: nix flake new -t github:Samayel/qnixpkgs#flake-project .)";
+          description = "A flake project template, usage: nix flake new -t github:quyo/qnixpkgs#flake-project .)";
           path = ./templates/flake-project;
         };
         node-nest-project = {
-          description = "A node + nest + typescript project template, usage: nix flake new -t github:Samayel/qnixpkgs#node-nest-project .)";
+          description = "A node + nest + typescript project template, usage: nix flake new -t github:quyo/qnixpkgs#node-nest-project .)";
           path = ./templates/node-nest-project;
         };
         default = flake-project;

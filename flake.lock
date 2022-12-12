@@ -76,26 +76,26 @@
         ]
       },
       "locked": {
-        "lastModified": 1669475463,
-        "narHash": "sha256-5ee1Dgen6gEFQmMc48y9BwuiXBDwoxuLPPtXVoE64/k=",
-        "owner": "Samayel",
+        "lastModified": 1670840584,
+        "narHash": "sha256-WGLip9Op6yxJyrBz8D1Kn1m+f/zb+92YByVb7obsweY=",
+        "owner": "quyo",
         "repo": "mersenneforumorg.nix",
-        "rev": "0c8b01f457cf3c2f1f0c832ba32b4ad425adf589",
+        "rev": "b631cd6c0657dd719ea89727abad00e20261098f",
         "type": "github"
       },
       "original": {
-        "owner": "Samayel",
+        "owner": "quyo",
         "repo": "mersenneforumorg.nix",
         "type": "github"
       }
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1670782093,
-        "narHash": "sha256-z4/uQxbw6DKwgVbJQTlstyHyKCvhRd7zv3gVDoqee8A=",
+        "lastModified": 1670829349,
+        "narHash": "sha256-Lyz85Qr89MPAlTwcDZsN/+XrCGS8WZYLp31fy1GiG0E=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "a8da4a90643c79577f28ce7bd37eec39fd5ea63c",
+        "rev": "db0e4828f272f83ea4437a6838e1281d0c870501",
         "type": "github"
       },
       "original": {
@@ -107,11 +107,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1670681895,
-        "narHash": "sha256-kZH9DSU36W4fn1z81a/24JCGkU517TcY50VE0RFJ9k4=",
+        "lastModified": 1670827406,
+        "narHash": "sha256-nLNk7uiLbhbvb4TVz67XK7+Ezr1zcWYDWmNrWGmEUqA=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f82f0ec1b70b2879c3f3d9a1015a05c73a90a17c",
+        "rev": "ffca9ffaaafb38c8979068cee98b2644bd3f14cb",
         "type": "github"
       },
       "original": {
@@ -149,15 +149,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1670693126,
-        "narHash": "sha256-a+E0h3tuQFT3T23qTj6Ig09+k6EAshQ7dJcu55hEkfQ=",
-        "owner": "Samayel",
+        "lastModified": 1670793474,
+        "narHash": "sha256-aA/XEJHRLJL5Wc+0bYDrWxV9vnkzo+ycAcWoHQBcKdc=",
+        "owner": "quyo",
         "repo": "qnixpkgs",
-        "rev": "506d713235f96b4e2f98aea46739637aec0dc7ca",
+        "rev": "2120ea295aa984f6bd27ceabf77d270b45cb5a48",
         "type": "github"
       },
       "original": {
-        "owner": "Samayel",
+        "owner": "quyo",
         "repo": "qnixpkgs",
         "type": "github"
       }
@@ -196,15 +196,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1670783570,
-        "narHash": "sha256-jEHAeH90f9N6jepbkEkjdi2L6VDhsq9kJb7TrKffSqc=",
-        "owner": "Samayel",
+        "lastModified": 1670840773,
+        "narHash": "sha256-y7xQt5jkzdDY+lWVZymmw09IXm5jMDeJKYPaH6/GVNE=",
+        "owner": "quyo",
         "repo": "shellscripts.nix",
-        "rev": "7ab97a91ce9394bb1f1ed1ac1094c21c076f3cea",
+        "rev": "6e50ee713941d432689d0577db5fb4013ec857c5",
         "type": "github"
       },
       "original": {
-        "owner": "Samayel",
+        "owner": "quyo",
         "repo": "shellscripts.nix",
         "type": "github"
       }
