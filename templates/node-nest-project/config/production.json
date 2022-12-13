@@ -1,6 +1,0 @@
-{
-  "env": {
-    // style comments are removed before file loading, allowing you to add comments to file formats such as .json that don't natively support comments
-    "label": "PROD"
-  }
-}

@@ -1,6 +1,7 @@
 const defer = require("config/defer").deferConfig;
 const raw = require("config/raw").raw;
 
+const port = 3000;
 const config = {
   env: {
     label: undefined,
@@ -11,7 +12,8 @@ const config = {
   backend: {
     logOutputStream: raw(process.stdout),
     server: {
-      port: 3000,
+      port: port,
+      fullUrl: `http://localhost:${port}`,
     },
   },
 };

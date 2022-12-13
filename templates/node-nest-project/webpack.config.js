@@ -102,7 +102,7 @@ export default (
     // The location where bundle are stored
     output: {
       path: path.resolve(__dirname, "dist/frontend/public"),
-      publicPath: "/",
+      publicPath: process.env["PROJECT_WEBPACK_OUTPUT_PUBLIC_PATH"] || "/",
       filename: "[name].[contenthash].js",
       chunkFilename: "chunk/[id].[contenthash].js",
     },
