@@ -1,15 +1,17 @@
+// Bootstrap cheatsheet demo
+
+import "../ext/bootstrap-cheatsheet/cheatsheet";
+
 // Bootstrap demo
 
 import { Popover } from "bootstrap";
 
 new Popover(document.getElementById("bootstrapDemo") ?? "");
 
-import cheatsheet from "../ext/bootstrap-cheatsheet/cheatsheet";
-console.log(cheatsheet);
-
 // jQuery demo
 
 import jQuery from "jquery";
+
 /* eslint-disable */
 (<any>window).$ = jQuery;
 (<any>window).jQuery = jQuery;
