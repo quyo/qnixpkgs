@@ -4,6 +4,9 @@ import { Popover } from "bootstrap";
 
 new Popover(document.getElementById("bootstrapDemo") ?? "");
 
+import cheatsheet from "../ext/bootstrap-cheatsheet/cheatsheet";
+console.log(cheatsheet);
+
 // jQuery demo
 
 import jQuery from "jquery";

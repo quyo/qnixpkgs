@@ -13,7 +13,7 @@ const src = path.resolve(__dirname, "src/frontend/public");
 
 const entryPoints = {
   "css/bundle": [`${src}/css/global`],
-  "js/bundle": [`${src}/js/app`, `${src}/ext/bootstrap-cheatsheet/cheatsheet`],
+  "js/bundle": [`${src}/js/app`],
   "module/foo": [`${src}/module/foo`],
   // "other output points" : ["other entry point"]
 };

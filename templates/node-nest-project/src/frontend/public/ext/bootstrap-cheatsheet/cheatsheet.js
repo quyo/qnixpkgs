@@ -73,3 +73,5 @@ import * as bootstrap from "bootstrap";
   setActiveItem()
   window.addEventListener('hashchange', setActiveItem)
 })()
+
+export default {}
