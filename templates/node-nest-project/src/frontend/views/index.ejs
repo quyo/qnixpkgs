@@ -1,10 +1,12 @@
 <%- include('page.pre.ejs'); %>
 
-<div class="container py-4 px-3 mx-auto">
+<div class="container py-4 px-3 mx-auto" style="display:none;">
     <h1><%= message %></h1>
-    <p>Loading ...</p>
-    <button id="popoverButton" type="button" class="btn btn-primary btn-lg" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="ESM in Browser" data-bs-content="Bang!">Custom popover</button>
+    <p id="jQueryDemo">Loading ...</p>
+    <button id="bootstrapDemo" type="button" class="btn btn-primary btn-lg" class="btn btn-lg btn-danger" data-bs-toggle="popover" title="ESM in Browser" data-bs-content="Bang!">Custom popover</button>
     <%- include('module/foo.ejs'); %>
 </div>
+
+<%- include('cheatsheet.html'); %>
 
 <%- include('page.post.ejs'); %>

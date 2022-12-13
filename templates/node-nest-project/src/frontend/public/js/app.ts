@@ -2,7 +2,7 @@
 
 import { Popover } from "bootstrap";
 
-new Popover(document.getElementById("popoverButton") ?? "");
+new Popover(document.getElementById("bootstrapDemo") ?? "");
 
 // jQuery demo
 
@@ -13,7 +13,7 @@ import jQuery from "jquery";
 /* eslint-enable */
 
 jQuery(function () {
-  $("p").text("The DOM is now loaded and can be manipulated.");
+  $("#jQueryDemo").text("The DOM is now loaded and can be manipulated.");
 });
 
 // Typescript demo
