@@ -7,9 +7,10 @@
     "gnugrep",
     "gnumake",
     "gnused",
+    "nodejs-18_x",
     "perl",
     "python3"
   ],
-  "nixpkgs-unstable": ["flyctl", "nodejs-18_x"],
+  "nixpkgs-unstable": ["flyctl"],
   "self": []
 }

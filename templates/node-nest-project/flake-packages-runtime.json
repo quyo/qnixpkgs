@@ -1,0 +1,5 @@
+{
+  "nixpkgs-stable": ["nodejs-18_x"],
+  "nixpkgs-unstable": [],
+  "self": []
+}

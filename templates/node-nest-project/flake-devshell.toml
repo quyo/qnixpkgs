@@ -1,6 +1,11 @@
 [devshell]
 name = "node-nest-project devshell"
-packages = [ "node-nest-project-devenv" ]
+packages = [ "devenv" ]
+
+
+[[env]]
+name = "PROJECT_NAME"
+value = "node-nest-project"
 
 
 [[commands]]
@@ -36,13 +41,19 @@ category = "2. build"
 
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; docker-compose build ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PROJECT_NAME}:dev . ; popd"
 name = "cbuild"
 help = "build docker image."
 category = "3. dockerize"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; docker-compose push ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PROJECT_NAME}:dev -f Dockerfile.nix . ; popd"
+name = "cbuild.nix"
+help = "build docker image via nix."
+category = "3. dockerize"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; docker push quyo/${PROJECT_NAME}:dev ; popd"
 name = "cpush"
 help = "push docker image."
 category = "3. dockerize"
