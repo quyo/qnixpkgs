@@ -43,13 +43,13 @@ category = "2. build"
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PROJECT_NAME}:dev . ; popd"
 name = "cbuild"
-help = "build docker image."
+help = "build docker image (FROM node)."
 category = "3. dockerize"
 
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PROJECT_NAME}:dev -f Dockerfile.nix . ; popd"
 name = "cbuild.nix"
-help = "build docker image via nix."
+help = "build docker image (FROM nix)."
 category = "3. dockerize"
 
 [[commands]]
