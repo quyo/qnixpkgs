@@ -39,28 +39,29 @@ category = "2. build"
 command = "pushd \"${PRJ_ROOT}\" ; docker-compose build ; popd"
 name = "cbuild"
 help = "build docker image."
-category = "3. deploy"
+category = "3. dockerize"
 
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; docker-compose push ; popd"
 name = "cpush"
-help = "push docker container."
-category = "3. deploy"
+help = "push docker image."
+category = "3. dockerize"
 
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; docker-compose up ; popd"
 name = "crun"
 help = "run docker container."
-category = "3. deploy"
+category = "3. dockerize"
+
 
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; flyctl launch ; popd"
-name = "launch@fly"
+name = "flaunch"
 help = "launch Fly.io project."
-category = "3. deploy"
+category = "4. deploy"
 
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy ; (LANG=C perl -e 'sleep 15') ; flyctl status ; flyctl info; flyctl open ; popd"
-name = "push2fly"
+name = "fpush"
 help = "deploy to Fly.io."
-category = "3. deploy"
+category = "4. deploy"
