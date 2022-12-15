@@ -30,13 +30,13 @@ category = "1. code"
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; npm run dev ; popd"
 name = "dev"
-help = "build. serve. watch.     (process.env[\"NODE_ENV\"] === \"development\")"
+help = "build. serve. watch. (process.env[\"NODE_ENV\"] === \"development\")"
 category = "2. build"
 
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; npm run prod ; popd"
 name = "prod"
-help = "build. serve.            (process.env[\"NODE_ENV\"] === \"production\")"
+help = "build. serve.        (process.env[\"NODE_ENV\"] === \"production\")"
 category = "2. build"
 
 
