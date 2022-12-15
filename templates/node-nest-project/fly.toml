@@ -1,0 +1,70 @@
+
+app = "quyo-node-nest-project"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+#
+# immediately deploy an existing public image, there will be no build process
+#
+# [build]
+#   image = "quyo/node-nest-project:latest"
+#
+
+#
+# for sensitive information, such as credentials or passwords, use the secrets CLI command
+#
+[env]
+  PROJECT_ENV_LABEL = "FLY"
+
+#
+# PRO: will be delivered directly to clients, bypassing the project web server
+# CON: can't set Cache-Control or any other headers on assets
+#
+# [[statics]]
+#   guest_path = "/app/dist/frontend/public/css"
+#   url_prefix = "/css"
+#
+# [[statics]]
+#   guest_path = "/app/dist/frontend/public/ext"
+#   url_prefix = "/ext"
+#
+# [[statics]]
+#   guest_path = "/app/dist/frontend/public/img"
+#   url_prefix = "/img"
+#
+# [[statics]]
+#   guest_path = "/app/dist/frontend/public/js"
+#   url_prefix = "/js"
+#
+
+[[services]]
+  internal_port = 3000
+  protocol = "tcp"
+
+  [services.concurrency]
+    type = "requests"
+    soft_limit = 20
+    hard_limit = 25
+
+  [[services.ports]]
+    handlers = ["http"]
+    port = 80
+    force_https = true
+
+  [[services.ports]]
+    handlers = ["tls", "http"]
+    port = 443
+    [services.ports.tls_options]
+      alpn = ["h2", "http/1.1"]
+      versions = ["TLSv1.2", "TLSv1.3"]
+
+  [[services.http_checks]]
+    grace_period = "5s"
+    interval = 10000
+    method = "get"
+    path = "/"
+    protocol = "http"
+    timeout = 2000
+    restart_limit = 0
+    tls_skip_verify = false
+    [services.http_checks.headers]
