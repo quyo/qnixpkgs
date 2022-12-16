@@ -17,6 +17,8 @@
     /* Emit */
     "declaration": true /* Generate .d.ts files from TypeScript and JavaScript files in your project. */,
     "sourceMap": true /* Create source map files for emitted JavaScript files. */,
+    "inlineSourceMap": false /* Include sourcemap files inside the emitted JavaScript. */,
+    "inlineSources": false /* Include source code in the sourcemaps inside the emitted JavaScript. */,
     "outDir": "dist" /* Specify an output folder for all emitted files. */,
     "removeComments": true /* Disable emitting comments. */,
 

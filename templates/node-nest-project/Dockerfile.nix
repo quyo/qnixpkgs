@@ -33,7 +33,9 @@ COPY --from=build-stage /app/dist ./dist
 COPY --from=build-stage /app/node_modules ./node_modules
 
 ENV NODE_ENV="production"
-CMD ["node", "--experimental-specifier-resolution=node", "./dist/backend/app.js"]
+ENV NODE_OPTIONS="--experimental-specifier-resolution=node --enable-source-maps"
+
+CMD ["node", "./dist/backend/app.js"]
 
 EXPOSE 3000
 
