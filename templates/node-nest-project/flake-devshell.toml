@@ -74,5 +74,11 @@ category = "4. deploy"
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy ; (LANG=C perl -e 'sleep 15') ; flyctl status ; flyctl info; flyctl open ; popd"
 name = "fpush"
-help = "deploy to Fly.io."
+help = "deploy to Fly.io. (FROM node)"
+category = "4. deploy"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy --dockerfile Dockerfile.nix ; (LANG=C perl -e 'sleep 15') ; flyctl status ; flyctl info; flyctl open ; popd"
+name = "fpush.nix"
+help = "deploy to Fly.io. (FROM nix)"
 category = "4. deploy"
