@@ -1,5 +1,5 @@
 {
-  "nixpkgs-stable": ["nodejs-18_x"],
+  "nixpkgs-stable": ["nodejs-slim"],
   "nixpkgs-unstable": [],
   "self": []
 }

@@ -7,7 +7,7 @@
     "gnugrep",
     "gnumake",
     "gnused",
-    "nodejs-18_x",
+    "nodejs",
     "perl",
     "python3"
   ],

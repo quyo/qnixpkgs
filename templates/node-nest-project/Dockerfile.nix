@@ -1,9 +1,9 @@
 # build-stage
 FROM nixos/nix:2.11.1 as build-stage
+ENV NIX_CONFIG="experimental-features = nix-command flakes repl-flake"
 
 WORKDIR /app
 
-ENV NIX_CONFIG="experimental-features = nix-command flakes repl-flake"
 COPY flake* .
 
 COPY package*.json .
@@ -12,25 +12,28 @@ RUN nix shell .#devenv -c npm install
 COPY . .
 RUN nix shell .#devenv -c npm run build:prod
 
+RUN rm -rf ./node_modules
+RUN nix shell .#devenv -c npm install --omit=dev husky
+
 
 
 # final-stage
 FROM nixos/nix:2.11.1 as final-stage
+ENV NIX_CONFIG="experimental-features = nix-command flakes repl-flake"
 
 WORKDIR /app
 
-ENV NIX_CONFIG="experimental-features = nix-command flakes repl-flake"
 COPY flake* .
 
 RUN nix profile install .#runtime && nix-collect-garbage -d
 
-COPY package*.json .
-RUN /root/.nix-profile/bin/npm install --omit=dev husky
-
+COPY --from=build-stage /app/package*.json .
 COPY --from=build-stage /app/config ./config
 COPY --from=build-stage /app/dist ./dist
+COPY --from=build-stage /app/node_modules ./node_modules
 
-CMD ["/root/.nix-profile/bin/npm", "run", "serve:prod"]
+ENV NODE_ENV="production"
+CMD ["node", "--experimental-specifier-resolution=node", "./dist/backend/app.js"]
 
 EXPOSE 3000
 
