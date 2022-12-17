@@ -28,8 +28,7 @@
       {
         packages = rec {
           default = devenv;
-          devenv = pkgs.devenv;
-          runtime = pkgs.runtime;
+          inherit (pkgs) devenv prj-setup-dns-cert runtime;
         };
 
         devShells = {

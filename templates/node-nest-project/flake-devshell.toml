@@ -15,6 +15,10 @@ value = "quyo-node-nest-project"
 name = "PRJ_QUYO_SUBDOMAIN"
 value = "node-nest-project"
 
+[[env]]
+name = "PRJ_QUYO_DOMAIN"
+value = "quyo.dev"
+
 
 [[commands]]
 command = "pushd \"${PRJ_ROOT}\" ; code . ; popd"
@@ -74,25 +78,25 @@ category = "3. dockerize"
 
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; flyctl launch --auto-confirm --copy-config --no-deploy --name ${PRJ_FLY_APP_NAME} --org quyo --region fra ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; flyctl launch --auto-confirm --copy-config --no-deploy --name \"${PRJ_FLY_APP_NAME}\" --org quyo --region fra ; popd"
 name = "flaunch"
 help = "launch Fly.io project."
 category = "4. deploy"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy ; (LANG=C perl -e 'sleep 15') ; flyctl status ; flyctl info; flyctl open ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy ; sleep 15 ; flyctl status ; flyctl info ; popd"
 name = "fpush"
 help = "deploy to Fly.io. (FROM node)"
 category = "4. deploy"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy --dockerfile Dockerfile.nix ; (LANG=C perl -e 'sleep 15') ; flyctl status ; flyctl info; flyctl open ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy --dockerfile Dockerfile.nix ; sleep 15 ; flyctl status ; flyctl info ; popd"
 name = "fpush.nix"
 help = "deploy to Fly.io. (FROM nix)"
 category = "4. deploy"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; doctl --context quyo.zone compute domain records create --record-type AAAA --record-name ${PRJ_QUYO_SUBDOMAIN} --record-data $(flyctl ips list | grep '^v6' | awk -F' ' '{print $2}') quyo.dev ; doctl --context quyo.zone compute domain records create --record-type A --record-name ${PRJ_QUYO_SUBDOMAIN} --record-data $(flyctl ips list | grep '^v4' | awk -F' ' '{print $2}') quyo.dev ; (LANG=C perl -e 'sleep 15') ; flyctl certs add ${PRJ_QUYO_SUBDOMAIN}.quyo.dev ; popd"
-name = "fquyo"
-help = "setup quyo.dev subdomain."
+command = "pushd \"${PRJ_ROOT}\" ; prj-setup-dns-cert ; popd"
+name = "fsetup"
+help = "setup custom (sub)domain. (e.g. quyo.dev, quyo.cloud, ...)"
 category = "4. deploy"

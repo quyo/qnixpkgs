@@ -1,6 +1,7 @@
 {
   "nixpkgs-stable": [
     "binutils",
+    "coreutils",
     "fd",
     "gawk",
     "gcc",
@@ -12,5 +13,5 @@
     "python3"
   ],
   "nixpkgs-unstable": ["doctl", "flyctl"],
-  "self": []
+  "self": ["prj-setup-dns-cert"]
 }
