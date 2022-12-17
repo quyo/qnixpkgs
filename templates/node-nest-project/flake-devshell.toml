@@ -91,8 +91,15 @@ name = "fpush.nix"
 help = "deploy to Fly.io. (FROM nix)"
 category = "4. deploy"
 
+
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; doctl --context quyo.zone compute domain records create --record-type AAAA --record-name ${PRJ_QUYO_SUBDOMAIN} --record-data $(fly ips list | grep '^v6' | awk -F' ' '{print $2}') fly.quyo.net ; flyctl certs add ${PRJ_QUYO_SUBDOMAIN}.fly.quyo.net ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; doctl --context quyo.zone compute domain records create --record-type CNAME --record-name ${PRJ_QUYO_SUBDOMAIN} --record-data ${PRJ_FLY_APP_NAME}.fly.dev. quyo.dev ; flyctl certs add ${PRJ_QUYO_SUBDOMAIN}.quyo.dev ; popd"
 name = "fquyo"
-help = "setup fly.quyo.net subdomain."
+help = "setup quyo.dev subdomain."
+category = "4. deploy"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; flyctl certs check ${PRJ_QUYO_SUBDOMAIN}.quyo.dev ; popd"
+name = "fquyo-check"
+help = "check tls cert status of quyo.dev subdomain."
 category = "4. deploy"
