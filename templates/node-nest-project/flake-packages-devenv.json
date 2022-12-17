@@ -1,8 +1,8 @@
 {
   "nixpkgs-stable": [
     "binutils",
-    "docker-compose",
     "fd",
+    "gawk",
     "gcc",
     "gnugrep",
     "gnumake",
@@ -11,6 +11,6 @@
     "perl",
     "python3"
   ],
-  "nixpkgs-unstable": ["flyctl"],
+  "nixpkgs-unstable": ["doctl", "flyctl"],
   "self": []
 }

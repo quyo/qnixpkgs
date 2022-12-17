@@ -4,7 +4,15 @@ packages = [ "devenv" ]
 
 
 [[env]]
-name = "PROJECT_NAME"
+name = "PRJ_DOCKER_NAME"
+value = "node-nest-project"
+
+[[env]]
+name = "PRJ_FLY_APP_NAME"
+value = "quyo-node-nest-project"
+
+[[env]]
+name = "PRJ_QUYO_SUBDOMAIN"
 value = "node-nest-project"
 
 
@@ -41,32 +49,32 @@ category = "2. build"
 
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PROJECT_NAME}:dev . ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PRJ_DOCKER_NAME}:dev . ; popd"
 name = "cbuild"
 help = "build docker image. (FROM node)"
 category = "3. dockerize"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PROJECT_NAME}:dev -f Dockerfile.nix . ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; docker build -t quyo/${PRJ_DOCKER_NAME}:dev -f Dockerfile.nix . ; popd"
 name = "cbuild.nix"
 help = "build docker image. (FROM nix)"
 category = "3. dockerize"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; docker push quyo/${PROJECT_NAME}:dev ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; docker push quyo/${PRJ_DOCKER_NAME}:dev ; popd"
 name = "cpush"
 help = "push docker image."
 category = "3. dockerize"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; docker-compose up ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; docker run -p 3000:3000 quyo/${PRJ_DOCKER_NAME}:dev ; popd"
 name = "crun"
 help = "run docker container."
 category = "3. dockerize"
 
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; flyctl launch ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; flyctl launch --auto-confirm --copy-config --no-deploy --name ${PRJ_FLY_APP_NAME} --org quyo --region fra ; popd"
 name = "flaunch"
 help = "launch Fly.io project."
 category = "4. deploy"
@@ -81,4 +89,10 @@ category = "4. deploy"
 command = "pushd \"${PRJ_ROOT}\" ; flyctl deploy --dockerfile Dockerfile.nix ; (LANG=C perl -e 'sleep 15') ; flyctl status ; flyctl info; flyctl open ; popd"
 name = "fpush.nix"
 help = "deploy to Fly.io. (FROM nix)"
+category = "4. deploy"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; doctl --context quyo.zone compute domain records create --record-type AAAA --record-name ${PRJ_QUYO_SUBDOMAIN} --record-data $(fly ips list | grep '^v6' | awk -F' ' '{print $2}') fly.quyo.net ; flyctl certs add ${PRJ_QUYO_SUBDOMAIN}.fly.quyo.net ; popd"
+name = "fquyo"
+help = "setup fly.quyo.net subdomain."
 category = "4. deploy"
