@@ -208,7 +208,9 @@ jobs:
       - uses: nixbuild/nix-quick-install-action@v19
         with:
           nix_on_tmpfs: false
-          nix_conf: experimental-features = nix-command flakes
+          nix_conf: |
+            experimental-features = nix-command flakes
+            ${{inputs.nix_conf}}
       - uses: nixbuild/nixbuild-action@v15
         with:
           nixbuild_ssh_key: ${{secrets.nixbuild_ssh_key}}
