@@ -104,8 +104,8 @@ jobs:
       - name: Build danecheck locally without sandbox
         working-directory: .
         run: |
-          nix --no-sandbox build .#danecheck
-          nix --no-sandbox build .#danecheck-unstable
+          nix build .#danecheck
+          nix build .#danecheck-unstable
 
       - name: Upload danecheck outputs to Cachix
         working-directory: .

@@ -12,6 +12,9 @@ in
 stdenv.mkDerivation {
   inherit pname version;
 
+  # Disable the Nix build sandbox for this specific build.
+  # This means the build can freely talk to the Internet.
+  __noChroot = true;
   preferLocalBuild = true;
 
   src = fetchgit {
