@@ -28,5 +28,6 @@ let
 in
 
 {
-  flake-env = buildenv ./flake-packages.json "flake-env";
+  flake-devenv = buildenv ./flake-packages-devenv.json "flake-devenv";
+  flake-runtime = buildenv ./flake-packages-runtime.json "flake-runtime";
 }

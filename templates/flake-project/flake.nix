@@ -27,8 +27,8 @@
       in
       {
         packages = rec {
-          default = flake-env;
-          inherit (pkgs) flake-env;
+          default = flake-devenv;
+          inherit (pkgs) flake-devenv flake-runtime;
         };
 
         apps = rec {
@@ -37,8 +37,8 @@
         };
 
         devShells = rec {
-          default = flake-shell;
-          flake-shell =
+          default = flake-devshell;
+          flake-devshell =
             let
               inherit (pkgs.devshell) mkShell importTOML;
             in

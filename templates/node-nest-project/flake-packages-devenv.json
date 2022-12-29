@@ -13,5 +13,5 @@
     "python3"
   ],
   "nixpkgs-unstable": ["doctl", "flyctl"],
-  "self": ["prj-setup-dns-cert"]
+  "self": []
 }

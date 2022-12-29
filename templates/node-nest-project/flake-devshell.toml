@@ -1,6 +1,6 @@
 [devshell]
 name = "node-nest-project devshell"
-packages = [ "devenv" ]
+packages = [ "flake-devenv" ]
 
 
 [[env]]
@@ -96,7 +96,7 @@ help = "deploy to Fly.io. (FROM nix)"
 category = "4. deploy"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; prj-setup-dns-cert ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; project-setup-fly-app-domain ; popd"
 name = "fsetup"
 help = "setup custom (sub)domain. (e.g. quyo.dev, quyo.cloud, ...)"
 category = "4. deploy"

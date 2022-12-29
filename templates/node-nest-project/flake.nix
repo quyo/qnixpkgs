@@ -27,12 +27,13 @@
       in
       {
         packages = rec {
-          default = devenv;
-          inherit (pkgs) devenv prj-setup-dns-cert runtime;
+          default = flake-devenv;
+          inherit (pkgs) flake-devenv flake-runtime;
         };
 
-        devShells = {
-          default =
+        devShells = rec {
+          default = flake-devshell;
+          flake-devshell =
             let
               inherit (pkgs.devshell) mkShell importTOML;
             in

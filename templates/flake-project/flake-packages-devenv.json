@@ -5,8 +5,6 @@
     "hello",
     "lolcat"
   ],
-  "nixpkgs-unstable": [
-  ],
-  "self": [
-  ]
+  "nixpkgs-unstable": [],
+  "self": []
 }

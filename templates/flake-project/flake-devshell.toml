@@ -1,6 +1,6 @@
 [devshell]
-name = "flake shell"
-packages = [ "flake-env" ]
+name = "flake devshell"
+packages = [ "flake-devenv" ]
 
 
 [[commands]]
