@@ -4,7 +4,7 @@ packages = [ "flake-env" ]
 
 
 [[commands]]
-command = "fortune | cowsay | lolcat"
+command = "fortune | LANG=C cowsay | lolcat"
 name = "slogan"
 help = "Get your slogan."
 

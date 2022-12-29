@@ -32,12 +32,13 @@
         };
 
         apps = rec {
-          default = greet;
-          greet = { type = "app"; program = "${pkgs.hello}/bin/hello"; };
+          default = flake-app;
+          flake-app = { type = "app"; program = "${pkgs.hello}/bin/hello"; };
         };
 
-        devShells = {
-          default =
+        devShells = rec {
+          default = flake-shell;
+          flake-shell =
             let
               inherit (pkgs.devshell) mkShell importTOML;
             in
