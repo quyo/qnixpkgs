@@ -25,7 +25,7 @@ WORKDIR /app
 
 COPY flake* .
 
-RUN nix profile install .#runtime && nix-collect-garbage -d
+RUN nix profile install .#flake-runtime && nix-collect-garbage -d
 
 COPY --from=build-stage /app/package*.json .
 COPY --from=build-stage /app/config ./config
