@@ -1,6 +1,6 @@
 [devshell]
-name = "my project devshell"
-packages = [ "my-project-devenv" ]
+name = "flake shell"
+packages = [ "flake-env" ]
 
 
 [[commands]]
@@ -10,13 +10,13 @@ help = "Get your slogan."
 
 
 [[commands]]
-package = "my-project"
-name = "hello"
+command = "hello"
+name = "greet"
 help = "Hello, world."
-category = "my-project"
+category = "flake"
 
 [[commands]]
 command = "hello --greeting='Hello, project.'"
-name = "hello-project"
+name = "greet-project"
 help = "Hello, project."
-category = "my-project"
+category = "flake"

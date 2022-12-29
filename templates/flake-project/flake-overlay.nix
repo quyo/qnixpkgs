@@ -1,7 +1,7 @@
 system: self: final: prev:
 
 let
-  devenv = file: name:
+  buildenv = file: name:
     let
       inherit (builtins) attrNames concatMap getAttr;
       inherit (final) buildEnv;
@@ -28,6 +28,5 @@ let
 in
 
 {
-  my-project = final.hello;
-  my-project-devenv = devenv ./devenv-packages.json "my-project-devenv";
+  flake-env = buildenv ./flake-packages.json "flake-env";
 }

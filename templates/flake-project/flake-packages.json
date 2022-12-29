@@ -2,11 +2,11 @@
   "nixpkgs-stable": [
     "cowsay",
     "fortune",
+    "hello",
     "lolcat"
   ],
   "nixpkgs-unstable": [
   ],
   "self": [
-    "my-project"
   ]
 }

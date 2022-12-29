@@ -19,7 +19,7 @@
     flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" ]) (system:
       let
         overlays = [
-          (import ./overlay.nix system self)
+          (import ./flake-overlay.nix system self)
           devshell.overlay
         ];
 
@@ -27,14 +27,13 @@
       in
       {
         packages = rec {
-          my-project = pkgs.my-project;
-          my-project-devenv = pkgs.my-project-devenv;
-          default = my-project;
+          default = flake-env;
+          inherit (pkgs) flake-env;
         };
 
         apps = rec {
-          my-project = { type = "app"; program = "${pkgs.my-project}/bin/hello"; };
-          default = my-project;
+          default = greet;
+          greet = { type = "app"; program = "${pkgs.hello}/bin/hello"; };
         };
 
         devShells = {
@@ -43,7 +42,7 @@
               inherit (pkgs.devshell) mkShell importTOML;
             in
             mkShell {
-              imports = [ (importTOML ./devshell.toml) ];
+              imports = [ (importTOML ./flake-devshell.toml) ];
             };
         };
 
