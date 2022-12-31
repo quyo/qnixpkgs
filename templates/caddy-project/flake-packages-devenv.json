@@ -1,0 +1,5 @@
+{
+  "nixpkgs-stable": ["docker-compose"],
+  "nixpkgs-unstable": ["doctl", "flyctl"],
+  "self": []
+}

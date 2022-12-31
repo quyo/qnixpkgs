@@ -1,0 +1,20 @@
+
+ARG CADDY_BASE_IMAGE
+
+
+#
+# FROM ${CADDY_BASE_IMAGE}-builder AS build-stage
+#
+# RUN xcaddy build --with github.com/...
+#
+
+
+FROM ${CADDY_BASE_IMAGE} AS final-stage
+
+# COPY --from=build-stage /usr/bin/caddy /usr/bin/caddy
+
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY www /srv
+
+
+HEALTHCHECK CMD wget -q -O /dev/null http://localhost || exit 1

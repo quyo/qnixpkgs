@@ -1,0 +1,7 @@
+version: '3'
+services:
+
+  caddy:
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile:ro
+      - $PWD/www:/srv:ro

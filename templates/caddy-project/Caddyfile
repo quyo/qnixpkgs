@@ -1,0 +1,14 @@
+(siteconf) {
+    encode gzip zstd
+    root * /srv
+    file_server
+    php_fastcgi {$PHP_HOST}
+}
+
+http://localhost {
+    import siteconf
+}
+
+{$CADDY_ADDRESS} {
+    import siteconf
+}

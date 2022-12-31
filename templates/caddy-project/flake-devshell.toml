@@ -1,0 +1,60 @@
+[devshell]
+name = "caddy devshell"
+packages = [ "flake-devenv" ]
+
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; ([ -f .env ] || cp .env.example .env) ; $EDITOR .env ; popd"
+name = "conf"
+help = "configure project via .env file."
+category = "1. configure"
+
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; (cbuild && cstop && crun && cshow) ; popd"
+name = "call"
+help = "do everything necessary to run the containers. (cbuild && cstop && crun && cshow)"
+category = "2. dockerize"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; ./cbuild.sh ; popd"
+name = "cbuild"
+help = "build docker images."
+category = "2. dockerize"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; ./ccompose.sh up -d ; popd"
+name = "crun"
+help = "run docker containers."
+category = "2. dockerize"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; ./ccompose.sh logs -f ; popd"
+name = "cshow"
+help = "show container logs."
+category = "2. dockerize"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; ./ccompose.sh down --remove-orphans ; popd"
+name = "cstop"
+help = "stop docker containers."
+category = "2. dockerize"
+
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; ./flylaunch.sh ; popd"
+name = "flaunch"
+help = "launch Fly.io project."
+category = "3. deploy"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; ./flypush.sh ; popd"
+name = "fpush"
+help = "deploy to Fly.io."
+category = "3. deploy"
+
+[[commands]]
+command = "pushd \"${PRJ_ROOT}\" ; project-setup-fly-app-domain ; popd"
+name = "fsetup"
+help = "setup custom (sub)domain. (e.g. quyo.dev, quyo.cloud, ...)"
+category = "3. deploy"

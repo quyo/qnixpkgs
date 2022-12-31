@@ -1,0 +1,7 @@
+
+app = "quyo-caddy-php"
+kill_signal = "SIGINT"
+kill_timeout = 5
+
+[deploy]
+  strategy = "immediate"

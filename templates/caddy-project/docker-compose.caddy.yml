@@ -1,0 +1,19 @@
+version: '3'
+services:
+
+  caddy:
+    container_name: ${PRJ_CONTAINER_PREFIX}caddy
+    image: ${PRJ_IMAGE_CADDY}
+    restart: unless-stopped
+    environment:
+      - CADDY_ADDRESS=${PRJ_CADDY_ADDRESS}
+    ports:
+      - ${PRJ_CONTAINER_PORT_HTTP}:80
+      - ${PRJ_CONTAINER_PORT_HTTPS}:443
+      - ${PRJ_CONTAINER_PORT_HTTPS}:443/udp
+    networks:
+      - external
+
+networks:
+  external:
+    name: caddy_external

@@ -1,0 +1,8 @@
+version: '3'
+services:
+
+  caddy-php:
+    volumes:
+      - $PWD/php.ini-custom:/usr/local/etc/php/conf.d/zzz-custom.ini:ro
+      - $PWD/php.ini-${PRJ_IMAGE_PHP_MODE}:/usr/local/etc/php/php.ini:ro
+      - $PWD/www:/srv

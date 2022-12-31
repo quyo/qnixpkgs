@@ -1,0 +1,7 @@
+version: '3'
+services:
+
+  caddy:
+    volumes:
+      - $PWD/volumes/caddy-config:/config
+      - $PWD/volumes/caddy-data:/data
