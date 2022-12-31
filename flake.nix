@@ -63,6 +63,10 @@
       };
 
       templates = rec {
+        caddy-project = {
+          description = "A caddy + php project template, usage: nix flake new -t github:quyo/qnixpkgs#caddy-project .)";
+          path = ./templates/caddy-project;
+        };
         flake-project = {
           description = "A flake project template, usage: nix flake new -t github:quyo/qnixpkgs#flake-project .)";
           path = ./templates/flake-project;
