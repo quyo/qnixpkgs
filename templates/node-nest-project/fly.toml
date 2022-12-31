@@ -10,6 +10,9 @@ kill_timeout = 5
 #   image = "quyo/node-nest-project:dev"
 #
 
+[deploy]
+  strategy = "immediate"
+
 #
 # for sensitive information, such as credentials or passwords, use the secrets CLI command
 #
@@ -40,22 +43,10 @@ kill_timeout = 5
 [[services]]
   internal_port = 3000
   protocol = "tcp"
-
   [services.concurrency]
     hard_limit = 25
     soft_limit = 20
     type = "requests"
-
-  [[services.http_checks]]
-    grace_period = "5s"
-    interval = 10000
-    method = "get"
-    path = "/"
-    protocol = "http"
-    restart_limit = 0
-    timeout = 2000
-    tls_skip_verify = false
-    [services.http_checks.headers]
 
   [[services.ports]]
     force_https = true
@@ -65,6 +56,3 @@ kill_timeout = 5
   [[services.ports]]
     handlers = ["tls", "http"]
     port = 443
-#   [services.ports.tls_options]
-#     alpn = ["h2", "http/1.1"]
-#     versions = ["TLSv1.2", "TLSv1.3"]
