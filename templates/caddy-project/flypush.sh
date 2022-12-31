@@ -77,6 +77,8 @@ fi
 
 if [[ ! "${PRJ_CADDY_ADDRESS}" =~ fly\.dev$ ]]; then
 
+    echo
     echo ">>> [${PRJ_CADDY_ADDRESS}] Caddy address does not end with fly.dev - automatic Fly.io subdomain will not work!"
+    echo
 
 fi

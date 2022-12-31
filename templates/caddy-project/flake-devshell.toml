@@ -54,7 +54,7 @@ help = "deploy to Fly.io."
 category = "3. deploy"
 
 [[commands]]
-command = "pushd \"${PRJ_ROOT}\" ; project-setup-fly-app-domain ; popd"
+command = "pushd \"${PRJ_ROOT}\" ; ./flysetup.sh ; popd"
 name = "fsetup"
 help = "setup custom (sub)domain. (e.g. quyo.dev, quyo.cloud, ...)"
 category = "3. deploy"
