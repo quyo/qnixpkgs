@@ -19,19 +19,18 @@ if [[ "${PRJ_IMAGE_PHP:-}" =~ ^php: ]]; then
 
 fi
 
-if [[ "${PRJ_CADDY_ADDRESS}" =~ ^https: ]]; then
-
-    echo ">>> [${PRJ_CADDY_ADDRESS}] Deploying caddy with automatic https is not supported yet - please use http instead. TLS termination will be done by Fly.io."
-    exit 1
-
-fi
 
 
-
-FLY_PROXY_PROTOCOL=$([[ "${PRJ_CADDY_ADDRESS}" =~ ^https:// ]] && echo -n tcp || echo -n http)
+FLY_PROXY_PROTOCOL=$([[ ! "${PRJ_CADDY_ADDRESS}" =~ ^http:// ]] && echo -n tcp || echo -n http)
 PHP_HOST=$([[ ! "${PRJ_IMAGE_PHP:-}" =~ ^$ ]] && echo -n ${PRJ_FLY_APP_NAME}-php.internal:9000 || echo -n)
 
 pushd "fly/caddy-${FLY_PROXY_PROTOCOL}"
+
+if [[ "${FLY_PROXY_PROTOCOL}" == "tcp" ]]; then
+
+    (flyctl volumes list | grep caddy_data >/dev/null) || flyctl volumes create caddy_data --region ${PRJ_FLY_REGION} --size 1
+
+fi
 
 FLY_IMAGE_CADDY=registry.fly.io/${PRJ_FLY_APP_NAME}:$(date --utc +%Y%m%d-%H%M%S)
 

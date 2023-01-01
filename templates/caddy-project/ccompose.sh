@@ -13,7 +13,7 @@ if [[ "${PRJ_IMAGE_CADDY}" =~ ^caddy: ]]; then
 
 fi
 
-if [[ "${PRJ_CADDY_ADDRESS}" =~ ^https:// ]]; then
+if [[ ! "${PRJ_CADDY_ADDRESS}" =~ ^http:// ]]; then
 
     COMPOSE_CONFIG_FILES+=("-f docker-compose.caddy-https.yml")
 

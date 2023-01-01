@@ -5,7 +5,7 @@ set -euo pipefail
 IFS=$'\n\t'
 
 
-FLY_PROXY_PROTOCOL=$([[ "${PRJ_CADDY_ADDRESS}" =~ ^https:// ]] && echo -n tcp || echo -n http)
+FLY_PROXY_PROTOCOL=$([[ ! "${PRJ_CADDY_ADDRESS}" =~ ^http:// ]] && echo -n tcp || echo -n http)
 
 pushd "fly/caddy-${FLY_PROXY_PROTOCOL}"
 
