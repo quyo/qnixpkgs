@@ -6,9 +6,14 @@ kill_timeout = 5
 [deploy]
   strategy = "immediate"
 
+[env]
+  CADDY_ADDRESS = ""
+  XDG_CONFIG_HOME = "/caddy-storage/config"
+  XDG_DATA_HOME = "/caddy-storage/data"
+
 [mounts]
-  destination = "/data"
-  source = "caddy_data"
+  destination = "/caddy-storage"
+  source = "caddy_storage"
 
 [[services]]
   internal_port = 80

@@ -2,6 +2,8 @@ version: '3'
 services:
 
   caddy:
+    environment:
+      - XDG_CONFIG_HOME=/caddy-storage/config
+      - XDG_DATA_HOME=/caddy-storage/data
     volumes:
-      - $PWD/volumes/caddy-config:/config
-      - $PWD/volumes/caddy-data:/data
+      - $PWD/volumes/caddy-storage:/caddy-storage

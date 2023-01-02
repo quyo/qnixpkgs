@@ -6,6 +6,9 @@ kill_timeout = 5
 [deploy]
   strategy = "immediate"
 
+[env]
+  CADDY_ADDRESS = ""
+
 [[services]]
   internal_port = 80
   protocol = "tcp"

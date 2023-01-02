@@ -28,7 +28,7 @@ pushd "fly/caddy-${FLY_PROXY_PROTOCOL}"
 
 if [[ "${FLY_PROXY_PROTOCOL}" == "tcp" ]]; then
 
-    (flyctl volumes list | grep caddy_data >/dev/null) || flyctl volumes create caddy_data --region ${PRJ_FLY_REGION} --size 1
+    (flyctl volumes list | grep caddy_storage >/dev/null) || flyctl volumes create caddy_storage --region ${PRJ_FLY_REGION} --size 1
 
 fi
 
@@ -38,10 +38,11 @@ docker tag ${PRJ_IMAGE_CADDY} ${FLY_IMAGE_CADDY}
 docker push ${FLY_IMAGE_CADDY} || (echo ; echo ">>> Maybe you missed to run 'flyctl auth docker' before?" ; exit 1)
 
 echo
-echo ">>> [ flyctl deploy --image ${FLY_IMAGE_CADDY} --env CADDY_ADDRESS=${PRJ_CADDY_ADDRESS} --env PHP_HOST=${PHP_HOST} ]"
+echo ">>> [ flyctl deploy --image ${FLY_IMAGE_CADDY} --env PHP_HOST=${PHP_HOST} ]"
 echo
 
-flyctl deploy --image ${FLY_IMAGE_CADDY} --env CADDY_ADDRESS=${PRJ_CADDY_ADDRESS} --env PHP_HOST=${PHP_HOST}
+sed -i -E -e "s|CADDY_ADDRESS[=[:space:]].*$|CADDY_ADDRESS = \"${PRJ_CADDY_ADDRESS}\"|" fly.toml
+flyctl deploy --image ${FLY_IMAGE_CADDY} --env PHP_HOST=${PHP_HOST}
 sleep 15
 flyctl status
 flyctl info
@@ -74,10 +75,10 @@ fi
 
 
 
-if [[ ! "${PRJ_CADDY_ADDRESS}" =~ fly\.dev$ ]]; then
+if [[ ! "${PRJ_CADDY_ADDRESS}" =~ \.fly\.dev(,|$) ]]; then
 
     echo
-    echo ">>> [${PRJ_CADDY_ADDRESS}] Caddy address does not end with fly.dev - automatic Fly.io subdomain will not work!"
+    echo ">>> [${PRJ_CADDY_ADDRESS}] Caddy address does not contain fly.dev - automatic Fly.io subdomain will not work!"
     echo
 
 fi
