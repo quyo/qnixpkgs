@@ -17,7 +17,7 @@ jobs:
     with:
       nix_conf: |
         sandbox = relaxed
-      filter_builds: '.top_attr == "packages" and .attr != "danecheck" and .attr != "danecheck-cronic" and .attr != "danecheck-unstable" and .attr != "danecheck-cronic-unstable"'
+      filter_builds: '.top_attr == "packages" and .system == "x86_64-linux" and .attr != "danecheck" and .attr != "danecheck-cronic" and .attr != "danecheck-unstable" and .attr != "danecheck-cronic-unstable"'
 #     filter_builds: '.attr == "ci-build"'
 
   upload-image:
