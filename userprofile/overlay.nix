@@ -100,6 +100,7 @@ in
             gnumake
             gnused
             gnutar
+            go-task
             gzip
             htop
             iconv
