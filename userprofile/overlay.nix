@@ -119,6 +119,7 @@ in
             nix-direnv
             nix-tree
             patch
+            pre-commit
             pwgen
             rdfind
             rename
