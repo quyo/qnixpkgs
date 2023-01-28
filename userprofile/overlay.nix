@@ -81,6 +81,7 @@ in
           name = "userprofile-global-stable-${version}";
           paths = with final; modern-unix ++ [ (q.shellscripts.buildStableEnv final) ] ++ [
             bzip2
+            # checkexec
             coreutils-full
             croc
             cronic
@@ -128,6 +129,7 @@ in
             tree
             unzip
             vim
+            watchexec
             wget
             which
             whois
