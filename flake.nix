@@ -49,6 +49,7 @@
       overlays = {
         axonsh = import axon.sh/overlay.nix self;
         bat-extras = import bat-extras/overlay.nix self;
+        checkexec = import checkexec/overlay.nix self;
         cronic = import cronic/overlay.nix self;
         danecheck = import danecheck/overlay.nix self;
         dotfiles = import dotfiles/overlay.nix self;
@@ -107,6 +108,7 @@
             "batman"
             "batpipe"
             "batwatch"
+            "checkexec"
             "cronic"
             "danecheck"
             "danecheck-cronic"

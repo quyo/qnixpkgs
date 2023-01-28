@@ -81,7 +81,7 @@ in
           name = "userprofile-global-stable-${version}";
           paths = with final; modern-unix ++ [ (q.shellscripts.buildStableEnv final) ] ++ [
             bzip2
-            # checkexec
+            checkexec
             coreutils-full
             croc
             cronic
