@@ -105,6 +105,7 @@ in
             iftop
             iotop
             joe
+            just
             kakoune
             less
             mc

@@ -1,0 +1,7 @@
+
+
+if [ -x "$(command -v just)" ]; then
+
+  eval "$(just --completions bash)"
+
+fi
