@@ -119,6 +119,7 @@ in
             nix-direnv
             nix-tree
             patch
+              pre-commit
             pwgen
             rdfind
             rename
@@ -136,10 +137,7 @@ in
             whois
             yq
             xz
-          ] ++ lib.optionals (stdenv.hostPlatform.isAarch32 == false)
-            [
-              pre-commit
-            ];
+          ];
         };
 
       unstable = final.buildEnv
