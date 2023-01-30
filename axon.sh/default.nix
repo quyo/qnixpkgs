@@ -2,7 +2,7 @@
 
 let
   pname = "axon.sh";
-  version = "0.17.0";
+  version = "0.22.1";
 in
 
 stdenvNoCC.mkDerivation {
@@ -11,7 +11,7 @@ stdenvNoCC.mkDerivation {
   src = fetchgit {
     url = "https://git.thisisjoes.site/joe/axon.sh.git";
     rev = "refs/tags/v${version}";
-    sha256 = "py77Z4c4NWKVKj3iaALfn3RqABxP9U12nOcmrgWxrTo=";
+    sha256 = "sha256-7VLoa5AKyfXnFZ3sQCYDf1OLqBWsPIHxBnjS8/IPFZs=";
   };
 
   nativeBuildInputs = [ linac makeWrapper ];
