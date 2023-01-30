@@ -2,11 +2,11 @@
 
 let
   pname = "linac";
-  version = "0.9.3";
+  version = "0.9.4";
 
   src = builtins.fetchurl {
     url = "https://git.thisisjoes.site/joe/linac/releases/download/v${version}/linac";
-    sha256 = "0x4kszzick1lib5d56h0bbacayqw2jjhjcm872kkq91043g9slz8";
+    sha256 = "12cy99fiq03xyrsd0zglhc1ds6qg3pnnfi81k38vprdw0818hldq";
   };
 in
 
