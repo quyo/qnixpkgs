@@ -27,7 +27,7 @@
     qnixpkgs.inputs.shellscripts.follows = "shellscripts";
     qnixpkgs.inputs.mersenneforumorg.follows = "mersenneforumorg";
 
-    shellscripts.url = "github:quyo/shellscripts.nix";
+    shellscripts.url = "/home/runner/shell/nix-repos/shellscripts.nix";
     shellscripts.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     shellscripts.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     shellscripts.inputs.flake-utils.follows = "flake-utils";
@@ -35,7 +35,7 @@
     shellscripts.inputs.flake-compat.follows = "flake-compat";
     shellscripts.inputs.qnixpkgs.follows = "qnixpkgs";
 
-    mersenneforumorg.url = "github:quyo/mersenneforumorg.nix";
+    mersenneforumorg.url = "/home/runner/shell/nix-repos/mersenneforumorg.nix";
     mersenneforumorg.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
     mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
     mersenneforumorg.inputs.flake-utils.follows = "flake-utils";
@@ -90,15 +90,27 @@
           ([
             self.overlays
             shellscripts.overlays
-            mersenneforumorg.overlays
+            # mersenneforumorg.overlays
           ]
           ++
           nixpkgs-stable.lib.optionals (system != flake-utils.lib.system.armv7l-linux)
             [
             ]);
 
-        pkgs-stable = import nixpkgs-stable { inherit overlays system; };
-        pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
+        importChannel = { name, path, overlays }:
+          let
+            dir = /home/runner/.nix-defexpr/channels/${path};
+            sources = import /${dir}/nix/sources.nix;
+            channel = sources.${name};
+            overlay = (import /${dir}/overlay.nix) { inherit sources; };
+          in
+            import channel { overlays = [ overlay ] ++ overlays; };
+
+        importChannel2211 = { overlays }: importChannel { inherit overlays; name = "nixpkgs-22.11"; path = "nixpkgs-stable-22_11"; };
+        importChannelUnstable = { overlays }: importChannel { inherit overlays; name = "nixpkgs-unstable"; path = "nixpkgs-unstable"; };
+
+        pkgs-stable = importChannel2211 { inherit overlays; };
+        pkgs-unstable = importChannelUnstable { inherit overlays; };
 
         flake-pkgs-mapper = lib.q.mapPkgs
           ([
@@ -144,8 +156,8 @@
             }
             //
             shellscripts.packages.${system}
-            //
-            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.packages.${system}
+            # //
+            # lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.packages.${system}
           )
           exclusions.from-internal;
 
@@ -192,8 +204,8 @@
             lib.q.flake.apps flake-pkgs ./apps.nix
             //
             shellscripts.apps.${system}
-            //
-            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.apps.${system}
+            # //
+            # lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.apps.${system}
           )
           [ "default" ];
 

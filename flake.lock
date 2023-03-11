@@ -76,17 +76,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1672756873,
-        "narHash": "sha256-FV0ZaGuzWnKsIRYx5ocSfOzsBuyeu9yxDbk4jZ4rOsk=",
-        "owner": "quyo",
-        "repo": "mersenneforumorg.nix",
-        "rev": "7c4d8dfd8f5cbf166f2692924ad8bd03ed6bba8b",
-        "type": "github"
+        "lastModified": 1670840584,
+        "narHash": "sha256-WGLip9Op6yxJyrBz8D1Kn1m+f/zb+92YByVb7obsweY=",
+        "ref": "refs/heads/main",
+        "rev": "b631cd6c0657dd719ea89727abad00e20261098f",
+        "revCount": 104,
+        "type": "git",
+        "url": "file:///home/runner/shell/nix-repos/mersenneforumorg.nix"
       },
       "original": {
-        "owner": "quyo",
-        "repo": "mersenneforumorg.nix",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/runner/shell/nix-repos/mersenneforumorg.nix"
       }
     },
     "nixpkgs-stable": {
@@ -196,17 +196,17 @@
         ]
       },
       "locked": {
-        "lastModified": 1675532818,
-        "narHash": "sha256-8vJ6Og10bZrIfd07/HYtVRzKZ1LU/TA64wivWAlMcQY=",
-        "owner": "quyo",
-        "repo": "shellscripts.nix",
-        "rev": "e387f3e03a2e6b1236046d78403bc35c33eaba39",
-        "type": "github"
+        "lastModified": 1678518919,
+        "narHash": "sha256-b8ueasm5CG8zC3tQFEN/ctT//g3GBXLO4Tp8SOp1VLg=",
+        "ref": "refs/heads/replit",
+        "rev": "0ae86c6edd2fd8b9c4921561be9cee707b6e473b",
+        "revCount": 243,
+        "type": "git",
+        "url": "file:///home/runner/shell/nix-repos/shellscripts.nix"
       },
       "original": {
-        "owner": "quyo",
-        "repo": "shellscripts.nix",
-        "type": "github"
+        "type": "git",
+        "url": "file:///home/runner/shell/nix-repos/shellscripts.nix"
       }
     }
   },

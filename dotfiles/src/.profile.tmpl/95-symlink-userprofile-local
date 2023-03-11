@@ -2,8 +2,8 @@
 
 [ -e "$HOME/.config/nix/userprofile-local" ]               || mkdir -p "$HOME/.config/nix/userprofile-local"
 
-[ -e "$HOME/.config/nix/userprofile-local/flake.nix" ]     && rm -f "$HOME/.config/nix/userprofile-local/flake.nix"
-cp "$HOME/.nix-profile/etc/dotfiles/.config/nix/userprofile-local/flake.nix" "$HOME/.config/nix/userprofile-local/"
+# [ -e "$HOME/.config/nix/userprofile-local/flake.nix" ]     && rm -f "$HOME/.config/nix/userprofile-local/flake.nix"
+# cp "$HOME/.nix-profile/etc/dotfiles/.config/nix/userprofile-local/flake.nix" "$HOME/.config/nix/userprofile-local/"
 
 [ -e "$HOME/.config/nix/userprofile-local/packages.json" ] || cp "$HOME/.nix-profile/etc/dotfiles/.config/nix/userprofile-local/packages.json" "$HOME/.config/nix/userprofile-local/"
 chmod +w "$HOME/.config/nix/userprofile-local/packages.json"
