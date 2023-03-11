@@ -196,11 +196,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1678518919,
-        "narHash": "sha256-b8ueasm5CG8zC3tQFEN/ctT//g3GBXLO4Tp8SOp1VLg=",
+        "lastModified": 1678568267,
+        "narHash": "sha256-8eRXWZa4s5KAGLeF7G2bHJw+gwpNtP3WPgPzZeDydEg=",
         "ref": "refs/heads/replit",
-        "rev": "0ae86c6edd2fd8b9c4921561be9cee707b6e473b",
-        "revCount": 243,
+        "rev": "ddead035ffb3fdbce5b22b8ee4ad7db8edf71450",
+        "revCount": 245,
         "type": "git",
         "url": "file:///home/runner/shell/nix-repos/shellscripts.nix"
       },
