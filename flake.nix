@@ -99,7 +99,8 @@
 
         importChannel = { name, path, overlays }:
           let
-            dir = /home/runner/.nix-defexpr/channels/${path};
+            home = builtins.getEnv "HOME";
+            dir = /${home}/.nix-defexpr/channels/${path};
             sources = import /${dir}/nix/sources.nix;
             channel = sources.${name};
             overlay = (import /${dir}/overlay.nix) { inherit sources; };
