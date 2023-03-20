@@ -176,7 +176,7 @@ jobs:
             experimental-features = nix-command flakes
             ${{inputs.nix_conf}}
           nix_version: ${{inputs.nix_version}}
-      - uses: nixbuild/nixbuild-action@v15
+      - uses: nixbuild/nixbuild-action@v16
         with:
           nixbuild_ssh_key: ${{secrets.nixbuild_ssh_key}}
           cache-build-failures: ${{inputs.cache-build-failures}}
@@ -211,7 +211,7 @@ jobs:
           nix_conf: |
             experimental-features = nix-command flakes
             ${{inputs.nix_conf}}
-      - uses: nixbuild/nixbuild-action@v15
+      - uses: nixbuild/nixbuild-action@v16
         with:
           nixbuild_ssh_key: ${{secrets.nixbuild_ssh_key}}
           cache-build-failures: ${{inputs.cache-build-failures}}
@@ -284,7 +284,7 @@ jobs:
           fi
       - name: Generate nixbuild.net summary
         if: ${{ inputs.generate_build_summary }}
-        uses: nixbuild/nixbuild-action@v15
+        uses: nixbuild/nixbuild-action@v16
         with:
           nixbuild_ssh_key: ${{secrets.nixbuild_ssh_key}}
           generate_summary_for: 'workflow'
