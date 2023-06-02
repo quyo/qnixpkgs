@@ -15,6 +15,8 @@ let
     dontInstallCheck = drv: drv.overrideAttrs (oldAttrs: {
       doInstallCheck = false;
       checkInputs = [];
+      preCheck = null;
+      postCheck = null;
     });
 
     dontCheckHaskell = prev.haskell.lib.dontCheck;

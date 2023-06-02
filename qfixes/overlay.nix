@@ -7,7 +7,7 @@ in
 
 {
   gawk-with-extensions = prev.gawk-with-extensions.override {
-    extensions = builtins.filter (drv: drv.pname != "gawkextlib-haru") final.gawkextlib.full;
+    extensions = builtins.filter (drv: drv.pname != "gawkextlib-haru" && drv.pname != "gawkextlib-select") final.gawkextlib.full;
   };
 }
   // lib.optionalAttrs stdenv.hostPlatform.isAarch32
@@ -16,10 +16,14 @@ in
 
     batwatch = dontCheck prev.batwatch;
 
+    bind = dontCheck prev.bind;
+
     buildPackages = prev.buildPackages // {
       go_1_19 = final.go_1_19;
       go_1_20 = final.go_1_20;
     };
+
+    dotnet-sdk = null;
 
     duplicity = dontInstallCheck prev.duplicity;
 
@@ -66,7 +70,7 @@ in
 
     openssh = dontCheck prev.openssh;
 
-    pre-commit = dontCheck (prev.pre-commit.override { dotnet-sdk = null; });
+    pre-commit = dontInstallCheck prev.pre-commit;
 
     python3 = prev.python3 // {
       pkgs = prev.python3.pkgs.overrideScope (pyfinal: pyprev: {
