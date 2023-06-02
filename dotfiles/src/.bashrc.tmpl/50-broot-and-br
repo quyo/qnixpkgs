@@ -3,7 +3,7 @@
 if [ -x "$(command -v broot)" ]; then
 
   eval "$(broot --print-shell-function bash)"
-  broot --set-install-state installed
+  broot --set-install-state installed >/dev/null
 
 fi
 
