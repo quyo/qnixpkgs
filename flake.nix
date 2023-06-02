@@ -15,7 +15,6 @@
 
     devshell.url = "github:numtide/devshell";
     devshell.inputs.nixpkgs.follows = "nixpkgs-stable";
-    devshell.inputs.flake-utils.follows = "flake-utils";
 
     qnixpkgs.url = "github:quyo/qnixpkgs";
     qnixpkgs.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
