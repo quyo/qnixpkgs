@@ -24,7 +24,6 @@
     qnixpkgs.inputs.flake-compat.follows = "flake-compat";
     qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
     qnixpkgs.inputs.shellscripts.follows = "shellscripts";
-    qnixpkgs.inputs.mersenneforumorg.follows = "mersenneforumorg";
 
     shellscripts.url = "github:quyo/shellscripts.nix";
     shellscripts.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
@@ -33,17 +32,9 @@
     shellscripts.inputs.devshell.follows = "devshell";
     shellscripts.inputs.flake-compat.follows = "flake-compat";
     shellscripts.inputs.qnixpkgs.follows = "qnixpkgs";
-
-    mersenneforumorg.url = "github:quyo/mersenneforumorg.nix";
-    mersenneforumorg.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
-    mersenneforumorg.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
-    mersenneforumorg.inputs.flake-utils.follows = "flake-utils";
-    mersenneforumorg.inputs.devshell.follows = "devshell";
-    mersenneforumorg.inputs.flake-compat.follows = "flake-compat";
-    mersenneforumorg.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
-  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, shellscripts, mersenneforumorg, ... }:
+  outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, shellscripts, ... }:
     {
       overlays = {
         axonsh = import axon.sh/overlay.nix self;
@@ -89,7 +80,6 @@
           ([
             self.overlays
             shellscripts.overlays
-            mersenneforumorg.overlays
           ]
           ++
           nixpkgs-stable.lib.optionals (system != flake-utils.lib.system.armv7l-linux)
@@ -143,8 +133,6 @@
             }
             //
             shellscripts.packages.${system}
-            //
-            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.packages.${system}
           )
           exclusions.from-internal;
 
@@ -191,8 +179,6 @@
             lib.q.flake.apps flake-pkgs ./apps.nix
             //
             shellscripts.apps.${system}
-            //
-            lib.optionalAttrs (system != flake-utils.lib.system.armv7l-linux) mersenneforumorg.apps.${system}
           )
           [ "default" ];
 
