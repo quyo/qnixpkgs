@@ -8,6 +8,8 @@ let
     dontCheck = drv: drv.overrideAttrs (oldAttrs: {
       doCheck = false;
       checkInputs = [];
+      preCheck = null;
+      postCheck = null;
     });
 
     dontInstallCheck = drv: drv.overrideAttrs (oldAttrs: {

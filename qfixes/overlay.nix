@@ -66,7 +66,7 @@ in
 
     openssh = dontCheck prev.openssh;
 
-    pre-commit = prev.pre-commit.override { dotnet-sdk = null; };
+    pre-commit = dontCheck (prev.pre-commit.override { dotnet-sdk = null; });
 
     python3 = prev.python3 // {
       pkgs = prev.python3.pkgs.overrideScope (pyfinal: pyprev: {
