@@ -1,0 +1,35 @@
+From 2d3efc2aa84f981673a76fd8071f4a24012d5702 Mon Sep 17 00:00:00 2001
+From: Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+Date: Wed, 10 May 2023 18:49:46 +0200
+Subject: [PATCH] Fix compilation for i686
+
+Signed-off-by: Denis 'GNUtoo' Carikli <GNUtoo@cyberdimension.org>
+---
+ Data/Memory/Internal/CompatPrim64.hs | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+diff --git a/Data/Memory/Internal/CompatPrim64.hs b/Data/Memory/Internal/CompatPrim64.hs
+index b9eef8a..48b68a8 100644
+--- a/Data/Memory/Internal/CompatPrim64.hs
++++ b/Data/Memory/Internal/CompatPrim64.hs
+@@ -37,7 +37,11 @@ module Data.Memory.Internal.CompatPrim64
+     , or64#
+     , xor64#
+     , not64#
++#if WORD_SIZE_IN_BITS == 32
++    , GHC.Exts.timesWord64#
++#else
+     , timesWord64#
++#endif
+     , uncheckedShiftL64#
+     , uncheckedShiftRL64#
+ 
+@@ -150,7 +154,7 @@ w64# :: Word# -> Word# -> Word# -> Word64#
+ w64# w _ _ = w
+ 
+ #elif WORD_SIZE_IN_BITS == 32
+-import GHC.IntWord64
++import GHC.Exts
+ import GHC.Prim (Word#)
+ 
+ timesWord64# :: Word64# -> Word64# -> Word64#

@@ -18,35 +18,43 @@ in
 
     buildPackages = prev.buildPackages // {
       go_1_19 = final.go_1_19;
+      go_1_20 = final.go_1_20;
     };
 
     duplicity = dontInstallCheck prev.duplicity;
 
     ell = dontCheck prev.ell;
 
+    fish = dontCheck prev.fish;
+
     go_1_19 = prev.darwin.apple_sdk_11_0.callPackage go/1.19.nix {
       inherit (prev.darwin.apple_sdk_11_0.frameworks) Foundation Security;
     };
+    go_1_20 = prev.darwin.apple_sdk_11_0.callPackage go/1.20.nix {
+      inherit (prev.darwin.apple_sdk_11_0.frameworks) Foundation Security;
+    };
 
-    haskellPackages = prev.haskellPackages.extend (hfinal: hprev: {
-      bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
-      cborg = dontCheckHaskell (hprev.cborg.overrideAttrs (oldAttrs: {
-        p296 = ./cborg/p296.patch;
-        postPatch = oldAttrs.postPatch or "" + ''
-          patch -p2 <$p296
-        '';
-      }));
-      cryptonite = dontCheckHaskell hprev.cryptonite;
-      half = dontCheckHaskell hprev.half;
-      inline-c = dontCheckHaskell hprev.inline-c;
-      inline-c-cpp = dontCheckHaskell hprev.inline-c-cpp;
-      insert-ordered-containers = dontCheckHaskell hprev.insert-ordered-containers;
-      lukko = dontCheckHaskell hprev.lukko;
-      relude = dontCheckHaskell hprev.relude;
-      serialise = dontCheckHaskell hprev.serialise;
-      th-orphans = dontCheckHaskell hprev.th-orphans;
-      time-compat = dontCheckHaskell hprev.time-compat;
-    });
+    haskellPackages =
+      let
+        appendPatch = prev.haskell.lib.compose.appendPatch;
+      in
+      prev.haskellPackages.extend (hfinal: hprev: {
+        basement = appendPatch ./basement/basement-fix-32-bit.patch hprev.basement;
+        bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
+        cborg = dontCheckHaskell (appendPatch ./cborg/p296.patch hprev.cborg);
+        cryptonite = dontCheckHaskell hprev.cryptonite;
+        half = dontCheckHaskell hprev.half;
+        inline-c = dontCheckHaskell hprev.inline-c;
+        inline-c-cpp = dontCheckHaskell hprev.inline-c-cpp;
+        insert-ordered-containers = dontCheckHaskell hprev.insert-ordered-containers;
+        lukko = dontCheckHaskell hprev.lukko;
+        memory = appendPatch ./memory/pr98.patch hprev.memory;
+        relude = dontCheckHaskell hprev.relude;
+        serialise = dontCheckHaskell hprev.serialise;
+        SHA = dontCheckHaskell hprev.SHA;
+        th-orphans = dontCheckHaskell hprev.th-orphans;
+        time-compat = dontCheckHaskell hprev.time-compat;
+      });
 
     httpie = dontInstallCheck prev.httpie;
 
