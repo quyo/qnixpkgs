@@ -69,6 +69,7 @@ jobs:
       - name: Load and push docker image (qnixpkgs:latest)
         working-directory: .
         run: |
+          nix build .#docker
           nix run github:quyo/shellscripts.nix#docker-load-nix-build .#docker
           docker push quyo/qnixpkgs:latest
           docker tag quyo/qnixpkgs:latest git.quyo.net/quyo/qnixpkgs:latest
