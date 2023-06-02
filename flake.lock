@@ -55,47 +55,6 @@
         "type": "github"
       }
     },
-    "mersenneforumorg": {
-      "inputs": {
-        "devshell": [
-          "qnixpkgs",
-          "devshell"
-        ],
-        "flake-compat": [
-          "qnixpkgs",
-          "flake-compat"
-        ],
-        "flake-utils": [
-          "qnixpkgs",
-          "flake-utils"
-        ],
-        "nixpkgs-stable": [
-          "qnixpkgs",
-          "nixpkgs-stable"
-        ],
-        "nixpkgs-unstable": [
-          "qnixpkgs",
-          "nixpkgs-unstable"
-        ],
-        "qnixpkgs": [
-          "qnixpkgs",
-          "qnixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1672756873,
-        "narHash": "sha256-FV0ZaGuzWnKsIRYx5ocSfOzsBuyeu9yxDbk4jZ4rOsk=",
-        "owner": "quyo",
-        "repo": "mersenneforumorg.nix",
-        "rev": "7c4d8dfd8f5cbf166f2692924ad8bd03ed6bba8b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "quyo",
-        "repo": "mersenneforumorg.nix",
-        "type": "github"
-      }
-    },
     "nixpkgs-stable": {
       "locked": {
         "lastModified": 1685727912,
@@ -139,7 +98,6 @@
         "flake-utils": [
           "flake-utils"
         ],
-        "mersenneforumorg": "mersenneforumorg",
         "nixpkgs-stable": [
           "nixpkgs-stable"
         ],
@@ -154,11 +112,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1685728132,
-        "narHash": "sha256-K5vpGHYVFyL6HiuLAn6AfxchqjfNcX0TmJIi3FQCJac=",
+        "lastModified": 1685730926,
+        "narHash": "sha256-ALS3IlJyc7mrRX7MT4m4MVzMHl5s1i3h6KMwVOsJHL0=",
         "owner": "quyo",
         "repo": "qnixpkgs",
-        "rev": "1128e5a57a4af9ca65853bb77debdbb50d5094d7",
+        "rev": "5a872ed48ba6b9fbf5c84f6e76adf8ec3fb5e847",
         "type": "github"
       },
       "original": {
