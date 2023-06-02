@@ -17,7 +17,8 @@
 }:
 
 let
-  useGccGoBootstrap = stdenv.buildPlatform.isMusl || stdenv.buildPlatform.isRiscV;
+  # useGccGoBootstrap = stdenv.buildPlatform.isMusl || stdenv.buildPlatform.isRiscV;
+  useGccGoBootstrap = true;
   goBootstrap = if useGccGoBootstrap then buildPackages.gccgo12 else buildPackages.callPackage ./bootstrap117.nix { };
 
   skopeoTest = skopeo.override { buildGoModule = buildGo120Module; };
