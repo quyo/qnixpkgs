@@ -1,6 +1,5 @@
 { lib
 , stdenv
-, fetchpatch
 , fetchurl
 , tzdata
 , substituteAll
@@ -14,14 +13,14 @@
 , threadsCross
 , testers
 , skopeo
-, buildGo118Module
+, buildGo120Module
 }:
 
 let
   useGccGoBootstrap = stdenv.buildPlatform.isMusl || stdenv.buildPlatform.isRiscV;
-  goBootstrap = if useGccGoBootstrap then buildPackages.gccgo12 else buildPackages.callPackage ./bootstrap116.nix { };
+  goBootstrap = if useGccGoBootstrap then buildPackages.gccgo12 else buildPackages.callPackage ./bootstrap117.nix { };
 
-  skopeoTest = skopeo.override { buildGoModule = buildGo118Module; };
+  skopeoTest = skopeo.override { buildGoModule = buildGo120Module; };
 
   goarch = platform: {
     "aarch64" = "arm64";
@@ -47,11 +46,11 @@ let
 in
 stdenv.mkDerivation rec {
   pname = "go";
-  version = "1.18.10";
+  version = "1.20.4";
 
   src = fetchurl {
     url = "https://go.dev/dl/go${version}.src.tar.gz";
-    sha256 = "sha256-nO3MpYhF3wyUdK4AJ0xEqVyd+u+xMvxZkhwox8EG+OY=";
+    hash = "sha256-nzSs4Sh2S3o6SyOLgFhWzBshhDBN+eVpCCWwcQ9CAtY=";
   };
 
   strictDeps = true;
@@ -83,17 +82,11 @@ stdenv.mkDerivation rec {
     # prepend the nix path to the zoneinfo files but also leave the original value for static binaries
     # that run outside a nix server
     (substituteAll {
-      src = ./tzdata-1.17.patch;
+      src = ./tzdata-1.19.patch;
       inherit tzdata;
     })
     ./remove-tools-1.11.patch
     ./go_no_vendor_checks-1.16.patch
-
-    # runtime: support riscv64 SV57 mode
-    (fetchpatch {
-      url = "https://github.com/golang/go/commit/1e3c19f3fee12e5e2b7802a54908a4d4d03960da.patch";
-      sha256 = "sha256-mk/9gXwQEcAkiRemF6GiNU0c0fhDR29/YcKgQR7ONTA=";
-    })
   ];
 
   GOOS = stdenv.targetPlatform.parsed.kernel.name;
@@ -145,7 +138,6 @@ stdenv.mkDerivation rec {
   '';
 
   preInstall = ''
-    rm -r pkg/obj
     # Contains the wrong perl shebang when cross compiling,
     # since it is not used for anything we can deleted as well.
     rm src/regexp/syntax/make_perl_groups.pl
