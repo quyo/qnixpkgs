@@ -3,15 +3,16 @@
 , fetchFromGitHub
 , makeWrapper
 , bat
-
   # batdiff, batgrep, batwatch, and batpipe
 , coreutils
 , getconf
 , less
-
+  # tests
+, bash
+, zsh
+, fish
   # batgrep
 , ripgrep
-
   # prettybat
 , withShFmt ? shfmt != null
 , shfmt ? null
@@ -23,21 +24,16 @@
 , clang-tools ? null
 , withRustFmt ? rustfmt != null
 , rustfmt ? null
-
   # batwatch
 , withEntr ? entr != null
 , entr ? null
-
   # batdiff
 , gitMinimal
 , withDelta ? delta != null
 , delta ? null
-
   # batman
 , util-linux
-
   # batpipe
-, fish
 , exa
 , gnutar
 , gzip
@@ -50,13 +46,13 @@ let
   # This includes the complete source so the per-script derivations can run the tests.
   core = stdenv.mkDerivation rec {
     pname = "bat-extras";
-    version = "2022.07.27";
+    version = "2023.03.21";
 
     src = fetchFromGitHub {
       owner = "eth-p";
       repo = pname;
       rev = "v${version}";
-      sha256 = "sha256-YSXnOQUc9Y9GGyvgpq65i8vaKjqKT473WT4Eopi5ENI=";
+      sha256 = "sha256-0Ged4qBeGi0p29unXrnQjoxWc6Fcl2oJThxkfL+t50A=";
       fetchSubmodules = true;
     };
 
@@ -77,7 +73,7 @@ let
 
     # Run the library tests as they don't have external dependencies
     doCheck = true;
-    checkInputs = lib.optionals stdenv.isDarwin [ getconf ];
+    nativeCheckInputs = [ bash fish zsh ] ++ (lib.optionals stdenv.isDarwin [ getconf ]);
     checkPhase = ''
       runHook preCheck
       # test list repeats suites. Unique them
@@ -85,12 +81,12 @@ let
       while read -r action arg _; do
         [[ "$action" == "test_suite" && "$arg" == lib_* ]] &&
         test_suites+=(["$arg"]=1)
-      done <<<"$(bash ./test.sh --compiled --list --porcelain)"
+      done <<<"$(./test.sh --compiled --list --porcelain)"
       (( ''${#test_suites[@]} != 0 )) || {
         echo "Couldn't find any library test suites"
         exit 1
       }
-      bash ./test.sh --compiled $(printf -- "--suite %q\n" "''${!test_suites[@]}")
+      ./test.sh --compiled $(printf -- "--suite %q\n" "''${!test_suites[@]}")
       runHook postCheck
     '';
 
@@ -134,7 +130,7 @@ let
       dontBuild = true; # we've already built
 
       doCheck = true;
-      checkInputs = lib.optionals stdenv.isDarwin [ getconf ];
+      nativeCheckInputs = [ bash fish zsh ] ++ (lib.optionals stdenv.isDarwin [ getconf ]);
       checkPhase = ''
         runHook preCheck
         bash ./test.sh --compiled --suite ${name}
@@ -165,7 +161,7 @@ in
   batdiff = script "batdiff" ([ less coreutils gitMinimal ] ++ optionalDep withDelta delta);
   batgrep = script "batgrep" [ less coreutils ripgrep ];
   batman = script "batman" [ util-linux ];
-  batpipe = script "batpipe" [ exa fish gnutar gzip unzip xz ];
+  batpipe = script "batpipe" [ exa fish gnutar gzip less unzip xz ];
   batwatch = script "batwatch" ([ less coreutils ] ++ optionalDep withEntr entr);
   prettybat = script "prettybat" ([ ]
     ++ optionalDep withShFmt shfmt
