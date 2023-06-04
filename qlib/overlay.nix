@@ -7,14 +7,14 @@ let
 
     dontCheck = drv: drv.overrideAttrs (oldAttrs: {
       doCheck = false;
-      checkInputs = [];
+      checkInputs = [ ];
       preCheck = null;
       postCheck = null;
     });
 
     dontInstallCheck = drv: drv.overrideAttrs (oldAttrs: {
       doInstallCheck = false;
-      checkInputs = [];
+      checkInputs = [ ];
       preCheck = null;
       postCheck = null;
     });
@@ -23,7 +23,7 @@ let
 
     dontCheckLLVM = drv: drv.overrideAttrs (oldAttrs: {
       doCheck = false;
-      checkInputs = [];
+      checkInputs = [ ];
       cmakeFlags = map (x: builtins.replaceStrings [ "DLLVM_BUILD_TESTS=ON" ] [ "DLLVM_BUILD_TESTS=OFF" ] x) oldAttrs.cmakeFlags;
     });
 
@@ -65,6 +65,14 @@ let
       version = flake:
         "0.${substring 0 8 flake.lastModifiedDate}.${substring 8 6 flake.lastModifiedDate}.${flake.shortRev or "dirty"}";
     };
+
+    ignoreKnownVulnerabilities = drv: drv.overrideAttrs (oldAttrs: oldAttrs //
+      {
+        meta = (oldAttrs.meta //
+          {
+            knownVulnerabilities = [ ];
+          });
+      });
 
     mapPkgs = attrs: pkgs: prefix: suffix: builtins.listToAttrs (map (x: final.lib.attrsets.nameValuePair "${prefix}${x}${suffix}" pkgs.${x}) attrs);
 
