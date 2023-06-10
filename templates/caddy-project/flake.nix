@@ -20,7 +20,7 @@
       let
         overlays = [
           (import ./flake-overlay.nix system self)
-          devshell.overlay
+          devshell.overlays.default
         ];
 
         pkgs = import nixpkgs-stable { inherit overlays system; };
