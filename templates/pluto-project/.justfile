@@ -8,11 +8,12 @@ just-setup:
 
   julia --project=. -e 'import Pkg; Pkg.add("Pluto")'
 
+  [ ! -e .git ] && git init -b main && git add . && git commit -m "Initial commit"
+
   touch .env
   mkdir -p notebooks/
-  direnv allow
 
-  git init -b main && git commit -a -m "Initial commit"
+  direnv allow
 
   popd
 
