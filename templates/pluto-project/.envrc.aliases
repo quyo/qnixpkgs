@@ -1,0 +1,10 @@
+rm -rf "$PWD/.direnv/aliases"
+
+
+# export_alias foo uname -a
+
+
+watch_file .justfile
+for RECIPE in $(just --justfile "$PWD/.justfile" --summary); do
+  export_alias $RECIPE just --justfile "$PWD/.justfile" $RECIPE
+done

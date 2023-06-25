@@ -1,0 +1,11 @@
+{
+  "nixpkgs-stable": [
+    "direnv",
+    "git",
+    "just"
+  ],
+  "nixpkgs-unstable": [
+    "julia"
+  ],
+  "self": []
+}

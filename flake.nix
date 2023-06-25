@@ -66,6 +66,10 @@
           description = "A node + nest + typescript project template, usage: nix flake new -t github:quyo/qnixpkgs#node-nest-project .)";
           path = ./templates/node-nest-project;
         };
+        pluto-project = {
+          description = "A Pluto.jl julia project template, usage: nix flake new -t github:quyo/qnixpkgs#pluto-project .)";
+          path = ./templates/pluto-project;
+        };
         default = flake-project;
       };
     }

@@ -1,0 +1,16 @@
+[devshell]
+name = "Pluto devshell"
+packages = [ "flake-devenv" ]
+
+
+[[commands]]
+command = "just-setup"
+name = "setup"
+help = "Setup Pluto."
+category = "pluto"
+
+[[commands]]
+command = "just-pluto"
+name = "pluto"
+help = "Run Pluto."
+category = "pluto"
