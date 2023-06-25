@@ -5,6 +5,6 @@ rm -rf "$PWD/.direnv/aliases"
 
 
 watch_file .justfile
-for RECIPE in $(just --justfile "$PWD/.justfile" --summary); do
-  export_alias $RECIPE just --justfile "$PWD/.justfile" $RECIPE
-done
+# for RECIPE in $(just --justfile "$PWD/.justfile" --summary); do
+#   export_alias $RECIPE just --justfile "$PWD/.justfile" $RECIPE
+# done

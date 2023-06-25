@@ -4,13 +4,13 @@ packages = [ "flake-devenv" ]
 
 
 [[commands]]
-command = "just-setup"
+command = "just setup"
 name = "setup"
 help = "Setup Pluto."
 category = "pluto"
 
 [[commands]]
-command = "just-pluto"
+command = "just pluto"
 name = "pluto"
 help = "Run Pluto."
 category = "pluto"

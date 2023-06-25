@@ -2,7 +2,7 @@ default:
   @just --list --justfile {{justfile()}}
 
 
-just-setup:
+setup:
   #!/usr/bin/env bash
   pushd {{justfile_directory()}}
 
@@ -18,7 +18,7 @@ just-setup:
   popd
 
 
-just-pluto:
+pluto:
   #!/usr/bin/env bash
   pushd {{justfile_directory()}}/notebooks/
 
