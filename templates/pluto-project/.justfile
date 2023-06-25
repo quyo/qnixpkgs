@@ -6,6 +6,7 @@ setup:
   #!/usr/bin/env bash
   pushd {{justfile_directory()}}
 
+  nix flake metadata >/dev/null
   julia --project=. -e 'import Pkg; Pkg.add("Pluto")'
 
   [ ! -e .git ] && git init -b main && git add . && git commit -m "Initial commit"
