@@ -1,0 +1,10 @@
+[devshell]
+name = "flake custom shell"
+packages = [ "fortune", "cowsay", "lolcat" ]
+
+
+[[commands]]
+command = "fortune | LANG=C cowsay | lolcat"
+name = "slogan"
+help = "Get your slogan."
+category = "custom"
