@@ -34,7 +34,7 @@
   # batman
 , util-linux
   # batpipe
-, exa
+  #, exa
 , gnutar
 , gzip
 , unzip
@@ -161,7 +161,7 @@ in
   batdiff = script "batdiff" ([ less coreutils gitMinimal ] ++ optionalDep withDelta delta);
   batgrep = script "batgrep" [ less coreutils ripgrep ];
   batman = script "batman" [ util-linux ];
-  batpipe = script "batpipe" [ exa fish gnutar gzip less unzip xz ];
+  batpipe = script "batpipe" [ fish gnutar gzip less unzip xz ];
   batwatch = script "batwatch" ([ less coreutils ] ++ optionalDep withEntr entr);
   prettybat = script "prettybat" ([ ]
     ++ optionalDep withShFmt shfmt

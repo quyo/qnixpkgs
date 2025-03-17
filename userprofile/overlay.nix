@@ -16,7 +16,7 @@ let
     batwatch
     prettybat-slim
     # exa - A modern replacement for ls.
-    exa
+    # exa
     # lsd - The next gen file listing command. Backwards compatible with ls.
     lsd
     # delta - A viewer for git and diff output.
@@ -119,7 +119,7 @@ in
             nix-direnv
             nix-tree
             patch
-              pre-commit
+            pre-commit
             pwgen
             rdfind
             rename
