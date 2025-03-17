@@ -12,7 +12,7 @@ fi
 
 if [ -x "$(command -v exa)" ]; then
 
-  alias exa='exa -Fbg --group-directories-first --color-scale --git --time-style long-iso'
+  alias exa='exa -F -b -g --group-directories-first --color-scale --git --time-style long-iso'
   alias ls=exa
   alias la='ls -a'
   alias lla='ls -la'
@@ -22,7 +22,7 @@ fi
 
 if [ -x "$(command -v eza)" ]; then
 
-  alias eza='eza -Fbg --group-directories-first --color-scale --git --time-style long-iso'
+  alias eza='eza -F -b -g --group-directories-first --color-scale --git --time-style long-iso'
   alias ls=eza
   alias la='ls -a'
   alias lla='ls -la'
