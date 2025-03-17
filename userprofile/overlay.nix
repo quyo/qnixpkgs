@@ -15,8 +15,8 @@ let
     batpipe
     batwatch
     prettybat-slim
-    # exa - A modern replacement for ls.
-    # exa
+    # eza - A modern replacement for ls.
+    eza
     # lsd - The next gen file listing command. Backwards compatible with ls.
     lsd
     # delta - A viewer for git and diff output.

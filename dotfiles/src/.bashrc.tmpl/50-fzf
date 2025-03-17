@@ -5,7 +5,7 @@ if [ -x "$(command -v fzf)" ]; then
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
 
-  FZF_QUYO_PATH_PREVIEW='_fzf_quyo_path_preview() { if [ -d "$@" ]; then exa -Fbg --group-directories-first --color-scale --git --time-style long-iso -la "$@" | head -500; elif [ -f "$@" ]; then bat --style=numbers --color=always --line-range :500 "$@"; else echo "Preview is not available."; fi } ; _fzf_quyo_path_preview {}'
+  FZF_QUYO_PATH_PREVIEW='_fzf_quyo_path_preview() { if [ -d "$@" ]; then eza -Fbg --group-directories-first --color-scale --git --time-style long-iso -la "$@" | head -500; elif [ -f "$@" ]; then bat --style=numbers --color=always --line-range :500 "$@"; else echo "Preview is not available."; fi } ; _fzf_quyo_path_preview {}'
 
   export FZF_DEFAULT_OPTS='--height 50% --layout=reverse --info=inline --border --ansi'
   export FZF_CTRL_T_OPTS="${FZF_DEFAULT_OPTS} --preview '${FZF_QUYO_PATH_PREVIEW}'"

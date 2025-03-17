@@ -20,5 +20,15 @@ if [ -x "$(command -v exa)" ]; then
 fi
 
 
+if [ -x "$(command -v eza)" ]; then
+
+  alias eza='eza -Fbg --group-directories-first --color-scale --git --time-style long-iso'
+  alias ls=eza
+  alias la='ls -a'
+  alias lla='ls -la'
+
+fi
+
+
 alias ll='ls -l'
 alias lt='ls --tree'

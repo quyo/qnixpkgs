@@ -7,6 +7,6 @@ if [ -x "$(command -v procs)" ]; then
     ln -s "$HOME/.nix-profile/etc/dotfiles/.config/procs/config.toml" "$HOME/.config/procs/config.toml"
   fi
 
-  source <(procs --completion-out bash)
+  source <(procs --gen-completion-out bash)
 
 fi
