@@ -7,6 +7,7 @@ IFS=$'\n\t'
 
 nix flake show --allow-import-from-derivation . >/dev/null
 nix build --no-link .#ci-build
+cachix-push-flake-runtime-closure-single .#ci-publish || true
 echo
 echo
 
