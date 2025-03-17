@@ -58,9 +58,17 @@
           description = "A caddy + php project template, usage: nix flake new -t github:quyo/qnixpkgs#caddy-project .)";
           path = ./templates/caddy-project;
         };
+        flake-minimal-project = {
+          description = "A minimal flake project template, usage: nix flake new -t github:quyo/qnixpkgs#flake-minimal-project .)";
+          path = ./templates/flake-minimal-project;
+        };
         flake-project = {
           description = "A flake project template, usage: nix flake new -t github:quyo/qnixpkgs#flake-project .)";
           path = ./templates/flake-project;
+        };
+        flake-simple-project = {
+          description = "A simple flake project template, usage: nix flake new -t github:quyo/qnixpkgs#flake-simple-project .)";
+          path = ./templates/flake-simple-project;
         };
         node-nest-project = {
           description = "A node + nest + typescript project template, usage: nix flake new -t github:quyo/qnixpkgs#node-nest-project .)";
