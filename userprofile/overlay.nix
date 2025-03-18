@@ -144,6 +144,7 @@ in
         {
           name = "userprofile-global-unstable-${version}";
           paths = with final; [ (q.shellscripts.buildUnstableEnv final) ] ++ [
+            devenv
           ];
         };
     };
