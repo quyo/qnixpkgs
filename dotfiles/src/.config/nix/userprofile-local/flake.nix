@@ -1,3 +1,6 @@
+#
+# This file is automatically restored at login and can only be updated in qnixpkgs.
+#
 {
 
   inputs = {
