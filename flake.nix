@@ -167,11 +167,7 @@
             (
               flake-pkgs-mapper pkgs-unstable "" "-unstable"
               //
-              {
-                inherit (flake-pkgs)
-                  danecheck
-                  danecheck-cronic;
-              }
+              { }
             );
 
           from-ci-build = from-default ++ builtins.attrNames
