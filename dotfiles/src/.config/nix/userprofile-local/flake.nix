@@ -1,12 +1,15 @@
 {
 
   inputs = {
-    nixpkgs-stable.url = "github:nixos/nixpkgs/release-23.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     flake-utils.url = "github:numtide/flake-utils";
 
     qnixpkgs.url = "github:quyo/qnixpkgs";
+    qnixpkgs.inputs.nixpkgs-stable.follows = "nixpkgs-stable";
+    qnixpkgs.inputs.nixpkgs-unstable.follows = "nixpkgs-unstable";
+    qnixpkgs.inputs.flake-utils.follows = "flake-utils";
     qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
