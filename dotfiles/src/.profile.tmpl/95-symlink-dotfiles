@@ -10,3 +10,5 @@
 mkdir -p "$HOME/.config/croc"
 [ -e "$HOME/.config/croc/receive.json" ] || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/croc/receive.json" "$HOME/.config/croc/receive.json"
 [ -e "$HOME/.config/croc/send.json" ]    || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/croc/send.json"    "$HOME/.config/croc/send.json"
+
+[ -e "$HOME/.config/starship.toml" ]     || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/starship.toml"     "$HOME/.config/starship.toml"
