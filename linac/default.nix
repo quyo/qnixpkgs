@@ -5,7 +5,7 @@ let
   version = "0.9.4";
 
   src = builtins.fetchurl {
-    url = "https://git.thisisjoes.site/joe/linac/releases/download/v${version}/linac";
+    url = "https://git.quyo.net/git.thisisjoes.site/joe_linac/raw/tag/v0.9.4/linac";
     sha256 = "12cy99fiq03xyrsd0zglhc1ds6qg3pnnfi81k38vprdw0818hldq";
   };
 in

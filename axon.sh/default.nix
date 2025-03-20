@@ -9,7 +9,7 @@ stdenvNoCC.mkDerivation {
   inherit pname version;
 
   src = fetchgit {
-    url = "https://git.thisisjoes.site/joe/axon.sh.git";
+    url = "https://git.quyo.net/git.thisisjoes.site/joe_axon.sh.git";
     rev = "refs/tags/v${version}";
     sha256 = "sha256-7VLoa5AKyfXnFZ3sQCYDf1OLqBWsPIHxBnjS8/IPFZs=";
   };

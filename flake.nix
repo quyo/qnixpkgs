@@ -37,7 +37,7 @@
   outputs = { self, nixpkgs-stable, nixpkgs-unstable, flake-utils, shellscripts, ... }:
     {
       overlays = {
-        # axonsh = import axon.sh/overlay.nix self;
+        axonsh = import axon.sh/overlay.nix self;
         bat-extras = import bat-extras/overlay.nix self;
         checkexec = import checkexec/overlay.nix self;
         cronic = import cronic/overlay.nix self;
@@ -46,7 +46,7 @@
         fzf-git = import fzf-git/overlay.nix self;
         iconv = import iconv/overlay.nix self;
         kakoune = import kakoune/overlay.nix self;
-        # linac = import linac/overlay.nix self;
+        linac = import linac/overlay.nix self;
         qfixes = import qfixes/overlay.nix self;
         qlib = import qlib/overlay.nix self;
         qshell = import qshell/overlay.nix self;
@@ -103,7 +103,7 @@
 
         flake-pkgs-mapper = lib.q.mapPkgs
           ([
-            # "axonsh"
+            "axonsh"
             "batdiff"
             "batgrep"
             "batman"
@@ -115,7 +115,7 @@
             "danecheck-cronic"
             "dotfiles"
             "kakoune"
-            # "linac"
+            "linac"
             "prettybat"
             "qshell-minimal"
             "qshell-standard"
