@@ -33,6 +33,8 @@ in
 
     fish = dontCheck prev.fish;
 
+    gdu = dontCheck prev.gdu;
+
     go_1_19 = prev.darwin.apple_sdk_11_0.callPackage go/1.19.nix {
       inherit (prev.darwin.apple_sdk_11_0.frameworks) Foundation Security;
     };
@@ -64,6 +66,14 @@ in
 
     httpie = dontInstallCheck prev.httpie;
 
+    libdrm = prev.libdrm.override {
+      withValgrind = false;
+    };
+
+    libgit2 = dontCheck prev.libgit2;
+
+    libuv = dontCheck prev.libuv;
+
     llvmPackages = fixllvmPackages prev.llvmPackages;
     llvmPackages_12 = fixllvmPackages prev.llvmPackages_12;
     llvmPackages_13 = fixllvmPackages prev.llvmPackages_13;
@@ -71,6 +81,13 @@ in
     llvmPackages_latest = fixllvmPackages prev.llvmPackages_latest;
 
     openssh = dontCheck prev.openssh;
+
+    pixman = prev.pixman.overrideAttrs (oldAttrs: {
+      mesonFlags = (oldAttrs.mesonFlags or [ ]) ++ [
+        "-Darm-simd=disabled"
+        "-Dneon=disabled"
+      ];
+    });
 
     pre-commit = dontInstallCheck prev.pre-commit;
 
