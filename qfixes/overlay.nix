@@ -54,7 +54,6 @@ in
         inline-c-cpp = dontCheckHaskell hprev.inline-c-cpp;
         insert-ordered-containers = dontCheckHaskell hprev.insert-ordered-containers;
         lukko = dontCheckHaskell hprev.lukko;
-        memory = appendPatch ./memory/pr98.patch hprev.memory;
         relude = dontCheckHaskell hprev.relude;
         serialise = dontCheckHaskell hprev.serialise;
         SHA = dontCheckHaskell hprev.SHA;
