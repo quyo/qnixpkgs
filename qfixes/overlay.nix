@@ -47,7 +47,6 @@ in
         appendPatch = prev.haskell.lib.compose.appendPatch;
       in
       prev.haskellPackages.extend (hfinal: hprev: {
-        basement = appendPatch ./basement/basement-fix-32-bit.patch hprev.basement;
         bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
         cborg = dontCheckHaskell (appendPatch ./cborg/p296.patch hprev.cborg);
         cryptonite = dontCheckHaskell hprev.cryptonite;
