@@ -48,7 +48,6 @@ in
       in
       prev.haskellPackages.extend (hfinal: hprev: {
         bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
-        cborg = dontCheckHaskell (appendPatch ./cborg/p296.patch hprev.cborg);
         cryptonite = dontCheckHaskell hprev.cryptonite;
         half = dontCheckHaskell hprev.half;
         inline-c = dontCheckHaskell hprev.inline-c;
