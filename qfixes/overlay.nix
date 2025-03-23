@@ -45,6 +45,7 @@ in
     haskellPackages =
       let
         appendPatch = prev.haskell.lib.compose.appendPatch;
+        overrideCabal = prev.haskell.lib.compose.overrideCabal;
       in
       prev.haskellPackages.extend (hfinal: hprev: {
         bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
@@ -58,6 +59,9 @@ in
         relude = dontCheckHaskell hprev.relude;
         serialise = dontCheckHaskell hprev.serialise;
         SHA = dontCheckHaskell hprev.SHA;
+        tasty = overrideCabal (drv: {
+          libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
+        }) hprev.tasty;
         th-orphans = dontCheckHaskell hprev.th-orphans;
         time-compat = dontCheckHaskell hprev.time-compat;
       });
