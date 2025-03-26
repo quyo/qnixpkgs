@@ -71,6 +71,7 @@ in
         }) hprev.tasty_1_5_2;
         th-orphans = dontCheckHaskell hprev.th-orphans;
         time-compat = dontCheckHaskell hprev.time-compat;
+        versions = dontCheckHaskell hprev.versions;
         zstd = dontCheckHaskell hprev.zstd;
       });
 
