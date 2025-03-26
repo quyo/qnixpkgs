@@ -52,6 +52,11 @@ in
       in
       prev.haskellPackages.extend (hfinal: hprev: {
         bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
+        cborg = dontCheckHaskell (appendPatch (fetchpatch {
+          url = "https://patch-diff.githubusercontent.com/raw/well-typed/cborg/pull/337.patch";
+          hash = "sha256-TCAYFPm5Zh0p1/dTs1vfvpFS3MT7F7+bGI2nb0m3xY8=";
+          stripLen = 1;
+        }) hprev.cborg);
         crypton = dontCheckHaskell hprev.crypton;
         cryptonite = dontCheckHaskell hprev.cryptonite;
         half = dontCheckHaskell hprev.half;
