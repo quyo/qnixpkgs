@@ -72,6 +72,9 @@ in
         tasty = overrideCabal (drv: {
           libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
         }) hprev.tasty;
+        tasty_1_5 = overrideCabal (drv: {
+          libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
+        }) hprev.tasty_1_5;
         tasty_1_5_2 = overrideCabal (drv: {
           libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
         }) hprev.tasty_1_5_2;
