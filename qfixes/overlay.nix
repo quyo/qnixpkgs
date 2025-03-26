@@ -137,5 +137,5 @@ in
       });
     };
 
-    rust_1_85 = stablePkgs.rust;
+    rust_1_85 = nixpkgs-stable-overlayed.rust;
   }
