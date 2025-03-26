@@ -4,9 +4,10 @@ let
   inherit (prev) fetchpatch lib stdenv;
   inherit (final.lib.q) dontCheck dontInstallCheck dontCheckHaskell fixllvmPackages;
 
-  stablePkgs = import self.inputs.nixpkgs-stable {
+  nixpkgs-stable-vanilla = import self.inputs.nixpkgs-stable {
     system = stdenv.hostPlatform.system;
   };
+  nixpkgs-stable-overlayed = self.outputs.nixpkgs-stable.${stdenv.hostPlatform.system};
 in
 
 {
@@ -28,6 +29,11 @@ in
       go_1_19 = final.go_1_19;
       go_1_20 = final.go_1_20;
     };
+
+    cachix = if lib.versionOlder nixpkgs-stable-vanilla.cachix.version prev.cachix.version then
+      nixpkgs-stable-overlayed.cachix
+    else
+      prev.cachix;
 
     dotnet-sdk = null;
 
