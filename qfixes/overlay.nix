@@ -3,6 +3,10 @@ self: final: prev:
 let
   inherit (prev) lib stdenv;
   inherit (final.lib.q) dontCheck dontInstallCheck dontCheckHaskell fixllvmPackages;
+
+  stablePkgs = import self.inputs.nixpkgs-stable {
+    system = stdenv.hostPlatform.system;
+  };
 in
 
 {
@@ -113,4 +117,6 @@ in
         sh = dontInstallCheck pyprev.sh;
       });
     };
+
+    rust_1_85 = stablePkgs.rust;
   }
