@@ -60,6 +60,7 @@ in
         crypton = dontCheckHaskell hprev.crypton;
         cryptonite = dontCheckHaskell hprev.cryptonite;
         half = dontCheckHaskell hprev.half;
+        hercules-ci-cnix-store = dontCheckHaskell hprev.hercules-ci-cnix-store;
         inline-c = dontCheckHaskell hprev.inline-c;
         inline-c-cpp = dontCheckHaskell hprev.inline-c-cpp;
         insert-ordered-containers = dontCheckHaskell hprev.insert-ordered-containers;
