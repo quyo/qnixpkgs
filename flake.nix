@@ -178,6 +178,9 @@
         };
       in
       {
+        nixpkgs-stable = pkgs-stable;
+        nixpkgs-unstable = pkgs-unstable;
+
         packages = lib.q.flake.packages "qnixpkgs" version flake-pkgs exclusions ./docker.nix;
 
         legacyPackages = pkgs-stable;
