@@ -1,7 +1,7 @@
 self: final: prev:
 
 let
-  inherit (prev) lib stdenv;
+  inherit (prev) fetchpatch lib stdenv;
   inherit (final.lib.q) dontCheck dontInstallCheck dontCheckHaskell fixllvmPackages;
 
   stablePkgs = import self.inputs.nixpkgs-stable {
@@ -48,8 +48,7 @@ in
 
     haskellPackages =
       let
-        appendPatch = prev.haskell.lib.compose.appendPatch;
-        overrideCabal = prev.haskell.lib.compose.overrideCabal;
+        inherit (prev.haskell.lib.compose) appendPatch overrideCabal;
       in
       prev.haskellPackages.extend (hfinal: hprev: {
         bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
@@ -72,6 +71,7 @@ in
         }) hprev.tasty_1_5_2;
         th-orphans = dontCheckHaskell hprev.th-orphans;
         time-compat = dontCheckHaskell hprev.time-compat;
+        zstd = dontCheckHaskell hprev.zstd;
       });
 
     httpie = dontInstallCheck prev.httpie;
