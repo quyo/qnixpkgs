@@ -53,6 +53,14 @@
         userprofile = import userprofile/overlay.nix self;
       };
 
+      overlays-stable = {
+        qfixes = import qfixes/overlay-stable.nix self;
+      };
+
+      overlays-unstable = {
+        qfixes = import qfixes/overlay-unstable.nix self;
+      };
+
       templates = rec {
         caddy-project = {
           description = "A caddy + php project template, usage: nix flake new -t github:quyo/qnixpkgs#caddy-project .)";
@@ -92,14 +100,22 @@
           ([
             self.overlays
             shellscripts.overlays
-          ]
-          ++
-          nixpkgs-stable.lib.optionals (system != flake-utils.lib.system.armv7l-linux)
-            [
-            ]);
+          ]);
 
-        pkgs-stable = import nixpkgs-stable { inherit overlays system; };
-        pkgs-unstable = import nixpkgs-unstable { inherit overlays system; };
+        overlays-stable = builtins.concatMap builtins.attrValues
+          ([
+            self.overlays-stable
+            shellscripts.overlays-stable
+          ]) ++ overlays;
+
+        overlays-unstable = builtins.concatMap builtins.attrValues
+          ([
+            self.overlays-stable
+            shellscripts.overlays-stable
+          ]) ++ overlays;
+
+        pkgs-stable = import nixpkgs-stable { inherit system; overlays = overlays-stable; };
+        pkgs-unstable = import nixpkgs-unstable { inherit system; overlays = overlays-unstable; };
 
         flake-pkgs-mapper = lib.q.mapPkgs
           ([
