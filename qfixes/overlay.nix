@@ -35,11 +35,6 @@ in
       go_1_20 = final.go_1_20;
     };
 
-    cachix = if lib.versionOlder nixpkgs-stable-vanilla.cachix.version prev.cachix.version then
-      nixpkgs-stable-overlayed.cachix
-    else
-      prev.cachix;
-
     dotnet-sdk = null;
 
     duplicity = dontInstallCheck prev.duplicity;
@@ -63,11 +58,6 @@ in
       in
       prev.haskellPackages.extend (hfinal: hprev: {
         bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
-        cborg = dontCheckHaskell (appendPatch (fetchpatch {
-          url = "https://patch-diff.githubusercontent.com/raw/well-typed/cborg/pull/337.patch";
-          hash = "sha256-TCAYFPm5Zh0p1/dTs1vfvpFS3MT7F7+bGI2nb0m3xY8=";
-          stripLen = 1;
-        }) hprev.cborg);
         crypton = dontCheckHaskell hprev.crypton;
         cryptonite = dontCheckHaskell hprev.cryptonite;
         half = dontCheckHaskell hprev.half;
@@ -80,15 +70,6 @@ in
         relude = dontCheckHaskell hprev.relude;
         serialise = dontCheckHaskell hprev.serialise;
         SHA = dontCheckHaskell hprev.SHA;
-        tasty = overrideCabal (drv: {
-          libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
-        }) hprev.tasty;
-        tasty_1_5 = overrideCabal (drv: {
-          libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
-        }) hprev.tasty_1_5;
-        tasty_1_5_2 = overrideCabal (drv: {
-          libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
-        }) hprev.tasty_1_5_2;
         th-orphans = dontCheckHaskell hprev.th-orphans;
         time-compat = dontCheckHaskell hprev.time-compat;
         versions = dontCheckHaskell hprev.versions;
@@ -113,13 +94,6 @@ in
 
     openssh = dontCheck prev.openssh;
 
-    pixman = prev.pixman.overrideAttrs (oldAttrs: {
-      mesonFlags = (oldAttrs.mesonFlags or [ ]) ++ [
-        "-Darm-simd=disabled"
-        "-Dneon=disabled"
-      ];
-    });
-
     pre-commit = dontInstallCheck prev.pre-commit;
 
     python3 = prev.python3 // {
@@ -141,6 +115,4 @@ in
         sh = dontInstallCheck pyprev.sh;
       });
     };
-
-    rust_1_85 = nixpkgs-stable-overlayed.rust;
   }
