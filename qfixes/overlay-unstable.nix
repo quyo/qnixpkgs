@@ -18,4 +18,5 @@ in
 { }
   // lib.optionalAttrs stdenv.hostPlatform.isAarch32
   {
+    rust_1_85 = nixpkgs-stable-overlayed.rust;
   }

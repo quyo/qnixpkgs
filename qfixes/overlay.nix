@@ -54,10 +54,18 @@ in
 
     haskellPackages =
       let
-        inherit (prev.haskell.lib.compose) appendPatch overrideCabal;
+        inherit (final.haskell.lib.compose) appendPatch overrideCabal;
       in
       prev.haskellPackages.extend (hfinal: hprev: {
         bsb-http-chunked = dontCheckHaskell hprev.bsb-http-chunked;
+        cachix = overrideCabal (drv: {
+          enableSeparateBinOutput = false;
+        }) hprev.cachix;
+        cborg = dontCheckHaskell (appendPatch (fetchpatch {
+          url = "https://patch-diff.githubusercontent.com/raw/well-typed/cborg/pull/337.patch";
+          hash = "sha256-TCAYFPm5Zh0p1/dTs1vfvpFS3MT7F7+bGI2nb0m3xY8=";
+          stripLen = 1;
+        }) hprev.cborg);
         crypton = dontCheckHaskell hprev.crypton;
         cryptonite = dontCheckHaskell hprev.cryptonite;
         half = dontCheckHaskell hprev.half;
@@ -70,6 +78,12 @@ in
         relude = dontCheckHaskell hprev.relude;
         serialise = dontCheckHaskell hprev.serialise;
         SHA = dontCheckHaskell hprev.SHA;
+        tasty_1_5 = overrideCabal (drv: {
+          libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
+        }) hprev.tasty_1_5;
+        tasty_1_5_2 = overrideCabal (drv: {
+          libraryHaskellDepends = (drv.libraryHaskellDepends or []) ++ [ hfinal.unbounded-delays ];
+        }) hprev.tasty_1_5_2;
         th-orphans = dontCheckHaskell hprev.th-orphans;
         time-compat = dontCheckHaskell hprev.time-compat;
         versions = dontCheckHaskell hprev.versions;
