@@ -110,8 +110,8 @@
 
         overlays-unstable = builtins.concatMap builtins.attrValues
           ([
-            self.overlays-stable
-            shellscripts.overlays-stable
+            self.overlays-unstable
+            shellscripts.overlays-unstable
           ]) ++ overlays;
 
         pkgs-stable = import nixpkgs-stable { inherit system; overlays = overlays-stable; };
