@@ -127,8 +127,6 @@
             "batwatch"
             "checkexec"
             "cronic"
-            "danecheck"
-            "danecheck-cronic"
             "dotfiles"
             "kakoune"
             "linac"
@@ -141,6 +139,8 @@
           ++
           lib.optionals (system != flake-utils.lib.system.armv7l-linux)
             [
+              "danecheck"
+              "danecheck-cronic"
             ]);
 
         flake-pkgs = removeAttrs

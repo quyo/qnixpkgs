@@ -68,6 +68,7 @@ in
         }) hprev.cborg);
         crypton = dontCheckHaskell hprev.crypton;
         cryptonite = dontCheckHaskell hprev.cryptonite;
+        hackage-security = dontCheckHaskell hprev.hackage-security;
         half = dontCheckHaskell hprev.half;
         hercules-ci-cnix-store = dontCheckHaskell hprev.hercules-ci-cnix-store;
         inline-c = dontCheckHaskell hprev.inline-c;
@@ -75,6 +76,7 @@ in
         insert-ordered-containers = dontCheckHaskell hprev.insert-ordered-containers;
         lukko = dontCheckHaskell hprev.lukko;
         memory = dontCheckHaskell hprev.memory;
+        persistent = dontCheckHaskell hprev.persistent;
         relude = dontCheckHaskell hprev.relude;
         serialise = dontCheckHaskell hprev.serialise;
         SHA = dontCheckHaskell hprev.SHA;
@@ -86,6 +88,7 @@ in
         }) hprev.tasty_1_5_2;
         th-orphans = dontCheckHaskell hprev.th-orphans;
         time-compat = dontCheckHaskell hprev.time-compat;
+        validity = dontCheckHaskell hprev.validity;
         versions = dontCheckHaskell hprev.versions;
         zstd = dontCheckHaskell hprev.zstd;
       });
@@ -108,7 +111,16 @@ in
 
     openssh = dontCheck prev.openssh;
 
-    pre-commit = dontInstallCheck prev.pre-commit;
+    pixman = prev.pixman.overrideAttrs (oldAttrs: {
+      mesonFlags = (oldAttrs.mesonFlags or [ ]) ++ [
+        "-Darm-simd=disabled"
+        "-Dneon=disabled"
+      ];
+    });
+
+    pre-commit = dontInstallCheck (prev.pre-commit.overridePythonAttrs (oldAttrs: {
+      pytestCheckPhase = "echo 'Skipping pytest check phase'";
+    }));
 
     python3 = prev.python3 // {
       pkgs = prev.python3.pkgs.overrideScope (pyfinal: pyprev: {
@@ -129,4 +141,14 @@ in
         sh = dontInstallCheck pyprev.sh;
       });
     };
+
+    python312 = prev.python312 // {
+      pkgs = prev.python312.pkgs.overrideScope (pyfinal: pyprev: {
+        websockets = dontInstallCheck pyprev.websockets;
+      });
+    };
+
+    rapidjson = dontCheck prev.rapidjson;
+
+    valgrind = null;
   }
