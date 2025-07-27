@@ -23,7 +23,7 @@ if [ -x "$(command -v fzf)" ]; then
   }
 
 
-  _fzf_setup_completion path ${EDITOR}
+  _fzf_setup_completion path ${EDITOR} || true
 
 
   if [ -x "$(command -v fd)" ]; then
@@ -79,7 +79,7 @@ if [ -x "$(command -v fzf)" ]; then
       [ -n "${selected[0]}" ] && ${EDITOR} "+${selected[1]}" "${selected[0]}"
     }
 
-    bind '"\C-f": "_fzf_quyo_search\n"'
+    bind '"\C-f": "_fzf_quyo_search\n"' || true
 
   fi
 
