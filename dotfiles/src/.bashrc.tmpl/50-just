@@ -1,6 +1,6 @@
 
 
-if [ -x "$(command -v just)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v just)" ]; then
 
   eval "$(just --completions bash)"
 

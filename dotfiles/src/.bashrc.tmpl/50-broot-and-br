@@ -1,6 +1,6 @@
 
 
-if [ -x "$(command -v broot)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v broot)" ]; then
 
   eval "$(broot --print-shell-function bash)"
   broot --set-install-state installed >/dev/null
@@ -11,7 +11,7 @@ fi
 alias br='br -ghis'
 
 
-if [ -e "$QDOTFILES/.config/broot/git-diff-conf.toml" ]; then
+if [[ $- =~ .*i.* ]] && [ -e "$QDOTFILES/.config/broot/git-diff-conf.toml" ]; then
 
   # See https://dystroy.org/blog/gg/
   # git diff before commit

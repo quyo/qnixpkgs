@@ -1,6 +1,6 @@
 
 
-if [ -x "$(command -v procs)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v procs)" ]; then
 
   if [ ! -e "$HOME/.config/procs/config.toml" ]; then
     mkdir -p "$HOME/.config/procs"

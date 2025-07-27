@@ -1,6 +1,6 @@
 
 
-if [ -x "$(command -v bat)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v bat)" ]; then
 
   export BAT_PAGER='less -rF'
 
@@ -13,7 +13,7 @@ if [ -x "$(command -v bat)" ]; then
 
 fi
 
-if [ -x "$(command -v batpipe)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v batpipe)" ]; then
 
   eval "$(batpipe)"
 

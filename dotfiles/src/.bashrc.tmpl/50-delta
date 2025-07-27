@@ -1,6 +1,6 @@
 
 
-if [ -x "$(command -v delta)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v delta)" ]; then
 
   export DELTA_PAGER='less -rF'
 

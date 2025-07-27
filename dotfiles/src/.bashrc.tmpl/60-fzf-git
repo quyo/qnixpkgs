@@ -1,6 +1,6 @@
 
 
-if [ -e "$QPROFILE/share/fzf-git/fzf-git.sh" ]; then
+if [[ $- =~ .*i.* ]] && [ -e "$QPROFILE/share/fzf-git/fzf-git.sh" ]; then
 
   source "$QPROFILE/share/fzf-git/fzf-git.sh"
 

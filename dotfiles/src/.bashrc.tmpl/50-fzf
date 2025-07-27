@@ -1,6 +1,6 @@
 
 
-if [ -x "$(command -v fzf)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v fzf)" ]; then
 
   source "$(fzf-share)/completion.bash"
   source "$(fzf-share)/key-bindings.bash"
@@ -23,7 +23,7 @@ if [ -x "$(command -v fzf)" ]; then
   }
 
 
-  _fzf_setup_completion path ${EDITOR} || true
+  _fzf_setup_completion path ${EDITOR}
 
 
   if [ -x "$(command -v fd)" ]; then
@@ -79,7 +79,7 @@ if [ -x "$(command -v fzf)" ]; then
       [ -n "${selected[0]}" ] && ${EDITOR} "+${selected[1]}" "${selected[0]}"
     }
 
-    bind '"\C-f": "_fzf_quyo_search\n"' || true
+    bind '"\C-f": "_fzf_quyo_search\n"'
 
   fi
 

@@ -1,6 +1,6 @@
 
 
-if [ -x "$(command -v zoxide)" ]; then
+if [[ $- =~ .*i.* ]] && [ -x "$(command -v zoxide)" ]; then
 
   eval "$(zoxide init --cmd cd bash)"
 
