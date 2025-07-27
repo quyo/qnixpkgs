@@ -16,11 +16,21 @@ let
 in
 
 {
+  batgrep = dontCheck prev.batgrep;
+  batpipe = dontCheck prev.batpipe;
+
   gawk-with-extensions = prev.gawk-with-extensions.override {
     extensions = builtins.filter (drv: drv.pname != "gawkextlib-haru" && drv.pname != "gawkextlib-select") final.gawkextlib.full;
   };
 
   glances = dontInstallCheck prev.glances;
+
+  python312 = prev.python312 // {
+    pkgs = prev.python312.pkgs.overrideScope (pyfinal: pyprev: {
+      anyio = dontInstallCheck pyprev.anyio;
+      watchdog = dontInstallCheck pyprev.watchdog;
+    });
+  };
 }
   // lib.optionalAttrs stdenv.hostPlatform.isAarch32
   {
