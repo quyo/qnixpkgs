@@ -28,6 +28,7 @@ let
     });
 
     extendEnv = baseEnv: pname: version: paths: baseEnv.overrideAttrs (oldAttrs: {
+      __intentionallyOverridingVersion = true;
       inherit pname version;
       name = "${pname}-${version}";
       paths = (oldAttrs.paths or [ ]) ++ paths;
@@ -77,6 +78,7 @@ let
     mapPkgs = attrs: pkgs: prefix: suffix: builtins.listToAttrs (map (x: final.lib.attrsets.nameValuePair "${prefix}${x}${suffix}" pkgs.${x}) attrs);
 
     overrideName = set: pname: version: set.overrideAttrs (oldAttrs: {
+      __intentionallyOverridingVersion = true;
       inherit pname version;
       name = "${pname}-${version}";
     });
