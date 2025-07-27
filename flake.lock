@@ -23,11 +23,11 @@
     "flake-compat": {
       "flake": false,
       "locked": {
-        "lastModified": 1733328505,
-        "narHash": "sha256-NeCCThCEP3eCl2l/+27kNNK7QrwZB1IJCrXfrbv5oqU=",
+        "lastModified": 1747046372,
+        "narHash": "sha256-CIVLLkVgvHYbgI2UpXvIIBJ12HWgX+fjA8Xf8PUmqCY=",
         "owner": "edolstra",
         "repo": "flake-compat",
-        "rev": "ff81ac966bb2cae68946d5ed5fc4994f96d0ffec",
+        "rev": "9100a0f413b0c601e0533d1d94ffd501ce2e7885",
         "type": "github"
       },
       "original": {
@@ -56,27 +56,27 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1742324921,
-        "narHash": "sha256-Zq9gTJCOjRndRHnTFJHNs7bMg8jmcc9wTGuFJ18K5G8=",
+        "lastModified": 1753591331,
+        "narHash": "sha256-i+vD4qeN3l63/z3CO8TrOE37mATPsqA8MWXB85QHTv4=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "c417e3a64f1299115391a42d5a82b3f2c7b79fe3",
+        "rev": "70dc2728548f79fcc5a466597323d1ed219243e9",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "release-24.11",
+        "ref": "release-25.05",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1742237028,
-        "narHash": "sha256-xlpHmgBxUnvHo8FNnju0sgnEyasb4gC607b+keqjmX8=",
+        "lastModified": 1753432016,
+        "narHash": "sha256-cnL5WWn/xkZoyH/03NNUS7QgW5vI7D1i74g48qplCvg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "9bc8a90931262245919a26f995c1f24c6c70d3fe",
+        "rev": "6027c30c8e9810896b92429f0092f624f7b1aace",
         "type": "github"
       },
       "original": {
@@ -111,11 +111,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1743289303,
-        "narHash": "sha256-q6eJ06oI6lF23BWHFHD//NNNeJ1i3eccBTocxTniW58=",
+        "lastModified": 1743338347,
+        "narHash": "sha256-JMJlBQQXi8AdO+J8iVVZ9sNsrp5Mgpt+b6gtfBUWxXY=",
         "owner": "quyo",
         "repo": "qnixpkgs",
-        "rev": "8bd9798a4c4a7ef476df0311d34371a16844e185",
+        "rev": "ada3dfe4a882760e70df63550dcd143ddec736ee",
         "type": "github"
       },
       "original": {
