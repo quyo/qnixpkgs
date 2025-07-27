@@ -2,9 +2,9 @@
 
 if [ -z "$NIX_PROFILES" ]; then
 
-  if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
+  if [ -e "$QPROFILE/etc/profile.d/nix.sh" ]; then
 
-    source "$HOME/.nix-profile/etc/profile.d/nix.sh"
+    source "$QPROFILE/etc/profile.d/nix.sh"
 
   fi
 

@@ -1,0 +1,21 @@
+
+
+if [ -d "/run/current-system/sw" ] ; then
+
+  export QPROFILE=/run/current-system/sw
+
+fi
+
+if [ -d "/etc/profiles/per-user/$USER" ] ; then
+
+  export QPROFILE=/etc/profiles/per-user/$USER
+
+fi
+
+if [ -d "$HOME/.nix-profile" ] ; then
+
+  export QPROFILE=$HOME/.nix-profile
+
+fi
+
+export QDOTFILES=$QPROFILE/share/dotfiles

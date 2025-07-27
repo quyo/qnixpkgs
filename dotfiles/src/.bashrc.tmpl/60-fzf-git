@@ -1,8 +1,8 @@
 
 
-if [ -e "$HOME/.nix-profile/share/fzf-git/fzf-git.sh" ]; then
+if [ -e "$QPROFILE/share/fzf-git/fzf-git.sh" ]; then
 
-  source "$HOME/.nix-profile/share/fzf-git/fzf-git.sh"
+  source "$QPROFILE/share/fzf-git/fzf-git.sh"
 
 
   _fzf_git_quyo_help() {

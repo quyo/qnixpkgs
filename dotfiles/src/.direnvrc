@@ -1,4 +1,4 @@
-source "$HOME/.nix-profile/share/nix-direnv/direnvrc"
+source "$QPROFILE/share/nix-direnv/direnvrc"
 
 # https://github.com/direnv/direnv/issues/73#issuecomment-1242969787
 export_alias() {

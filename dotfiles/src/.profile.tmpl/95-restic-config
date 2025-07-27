@@ -20,13 +20,13 @@ if [ ! -e "$HOME/.config/restic" ] ; then
 
 fi
 
-[ -e "$HOME/.config/restic/exclude.global" ]                || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/exclude.global" "$HOME/.config/restic/exclude.global"
+[ -e "$HOME/.config/restic/exclude.global" ]                || ln -s "$QDOTFILES/.config/restic/exclude.global" "$HOME/.config/restic/exclude.global"
 [ -e "$HOME/.config/restic/exclude.local" ]                 || touch "$HOME/.config/restic/exclude.local"
 
-[ -e "$HOME/.config/restic/paths-to-backup.daily.global" ]  || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/paths-to-backup.daily.global" "$HOME/.config/restic/paths-to-backup.daily.global"
+[ -e "$HOME/.config/restic/paths-to-backup.daily.global" ]  || ln -s "$QDOTFILES/.config/restic/paths-to-backup.daily.global" "$HOME/.config/restic/paths-to-backup.daily.global"
 [ -e "$HOME/.config/restic/paths-to-backup.daily.local" ]   || touch "$HOME/.config/restic/paths-to-backup.daily.local"
 
-[ -e "$HOME/.config/restic/paths-to-backup.hourly.global" ] || ln -s "$HOME/.nix-profile/etc/dotfiles/.config/restic/paths-to-backup.hourly.global" "$HOME/.config/restic/paths-to-backup.hourly.global"
+[ -e "$HOME/.config/restic/paths-to-backup.hourly.global" ] || ln -s "$QDOTFILES/.config/restic/paths-to-backup.hourly.global" "$HOME/.config/restic/paths-to-backup.hourly.global"
 [ -e "$HOME/.config/restic/paths-to-backup.hourly.local" ]  || touch "$HOME/.config/restic/paths-to-backup.hourly.local"
 
 export RESTIC_PASSWORD_FILE="$HOME/.config/restic/passwd"
