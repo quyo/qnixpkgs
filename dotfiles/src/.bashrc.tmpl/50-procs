@@ -4,7 +4,7 @@ if [ -x "$(command -v procs)" ]; then
 
   if [ ! -e "$HOME/.config/procs/config.toml" ]; then
     mkdir -p "$HOME/.config/procs"
-    ln -s "$QDOTFILES/.config/procs/config.toml" "$HOME/.config/procs/config.toml"
+    ln -sf "$QDOTFILES/.config/procs/config.toml" "$HOME/.config/procs/config.toml"
   fi
 
   source <(procs --gen-completion-out bash)

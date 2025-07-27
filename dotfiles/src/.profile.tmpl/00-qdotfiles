@@ -1,18 +1,18 @@
 
 
-if [ -d "/run/current-system/sw" ] ; then
+if [ -d "/run/current-system/sw/share/dotfiles" ] ; then
 
   export QPROFILE=/run/current-system/sw
 
 fi
 
-if [ -d "/etc/profiles/per-user/$USER" ] ; then
+if [ -d "/etc/profiles/per-user/$USER/share/dotfiles" ] ; then
 
   export QPROFILE=/etc/profiles/per-user/$USER
 
 fi
 
-if [ -d "$HOME/.nix-profile" ] ; then
+if [ -d "$HOME/.nix-profile/share/dotfiles" ] ; then
 
   export QPROFILE=$HOME/.nix-profile
 

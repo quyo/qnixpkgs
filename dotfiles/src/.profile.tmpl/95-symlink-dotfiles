@@ -1,14 +1,14 @@
 
 
-[ -e "$HOME/.joe" ]             || ln -s "$QDOTFILES/.joe"             "$HOME/.joe"
-[ -e "$HOME/.direnvrc" ]        || ln -s "$QDOTFILES/.direnvrc"        "$HOME/.direnvrc"
-[ -e "$HOME/.gitconfig" ]       || ln -s "$QDOTFILES/.gitconfig"       "$HOME/.gitconfig"
-[ -e "$HOME/.joerc" ]           || ln -s "$QDOTFILES/.joerc"           "$HOME/.joerc"
-[ -e "$HOME/.screenrc" ]        || ln -s "$QDOTFILES/.screenrc"        "$HOME/.screenrc"
-[ -e "$HOME/.selected_editor" ] || ln -s "$QDOTFILES/.selected_editor" "$HOME/.selected_editor"
+[ -e "$HOME/.joe" ]             || ln -sf "$QDOTFILES/.joe"             "$HOME/.joe"
+[ -e "$HOME/.direnvrc" ]        || ln -sf "$QDOTFILES/.direnvrc"        "$HOME/.direnvrc"
+[ -e "$HOME/.gitconfig" ]       || ln -sf "$QDOTFILES/.gitconfig"       "$HOME/.gitconfig"
+[ -e "$HOME/.joerc" ]           || ln -sf "$QDOTFILES/.joerc"           "$HOME/.joerc"
+[ -e "$HOME/.screenrc" ]        || ln -sf "$QDOTFILES/.screenrc"        "$HOME/.screenrc"
+[ -e "$HOME/.selected_editor" ] || ln -sf "$QDOTFILES/.selected_editor" "$HOME/.selected_editor"
 
 mkdir -p "$HOME/.config/croc"
-[ -e "$HOME/.config/croc/receive.json" ] || ln -s "$QDOTFILES/.config/croc/receive.json" "$HOME/.config/croc/receive.json"
-[ -e "$HOME/.config/croc/send.json" ]    || ln -s "$QDOTFILES/.config/croc/send.json"    "$HOME/.config/croc/send.json"
+[ -e "$HOME/.config/croc/receive.json" ] || ln -sf "$QDOTFILES/.config/croc/receive.json" "$HOME/.config/croc/receive.json"
+[ -e "$HOME/.config/croc/send.json" ]    || ln -sf "$QDOTFILES/.config/croc/send.json"    "$HOME/.config/croc/send.json"
 
-[ -e "$HOME/.config/starship.toml" ]     || ln -s "$QDOTFILES/.config/starship.toml"     "$HOME/.config/starship.toml"
+[ -e "$HOME/.config/starship.toml" ]     || ln -sf "$QDOTFILES/.config/starship.toml"     "$HOME/.config/starship.toml"
