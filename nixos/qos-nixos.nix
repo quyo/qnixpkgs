@@ -2,6 +2,11 @@
 
 {
 
+  # Does not remove garbage collector roots, such as old system configurations.
+  # The following command deletes old roots, removing the ability to roll back to them: nix-collect-garbage --delete-older-than 7d
+  nix.gc.automatic = true;
+  nix.gc.dates = "02:15";
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   nixpkgs.config.allowUnfree = true;
@@ -12,6 +17,10 @@
   # List packages installed in system profile.
   environment.systemPackages = with pkgs; [
      qnixpkgs.userprofile
+  ];
+
+  environment.pathsToLink = [
+    "/share/dotfiles"
   ];
 
 }
