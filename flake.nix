@@ -88,6 +88,10 @@
         };
         default = flake-project;
       };
+
+      nixosModules = {
+        userprofile = import ./userprofile/nixos-module.nix;
+      };
     }
     //
     flake-utils.lib.eachSystem (map (x: flake-utils.lib.system.${x}) [ "x86_64-linux" "armv7l-linux" ]) (system:
