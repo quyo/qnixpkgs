@@ -104,11 +104,11 @@
         "shellscripts": "shellscripts"
       },
       "locked": {
-        "lastModified": 1753627021,
-        "narHash": "sha256-eZUUDqqNw16+3ueeZuL884P8kzKw6qNjdD+eDgvPYdA=",
+        "lastModified": 1753767243,
+        "narHash": "sha256-igaBrn7otkus3yZaZx28mMGWB5HcdE3DKtdKyvLSzoE=",
         "owner": "quyo",
         "repo": "qnixpkgs",
-        "rev": "f81140ca17051f6b287b96c358372a85a0d2303d",
+        "rev": "030864035cf5239bd30dcf48085cf19b095776f5",
         "type": "github"
       },
       "original": {

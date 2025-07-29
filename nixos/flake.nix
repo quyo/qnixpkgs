@@ -43,9 +43,14 @@
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
+
           # Overlays-module makes "pkgs.qnixpkgs-userprofile-*" available in configuration.nix
           ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-qnixpkgs ]; })
+
           ./configuration.nix
+
+          qnixpkgs.nixosModules.userprofile
+
         ];
       };
     };

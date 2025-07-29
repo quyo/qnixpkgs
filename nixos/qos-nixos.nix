@@ -19,8 +19,4 @@
      qnixpkgs.userprofile
   ];
 
-  environment.pathsToLink = [
-    "/share/dotfiles"
-  ];
-
 }
