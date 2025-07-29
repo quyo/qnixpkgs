@@ -88,6 +88,7 @@ in
             croc
             cronic
             curl
+            devenv
             diffutils
             direnv
             # dog
@@ -146,7 +147,6 @@ in
         {
           name = "userprofile-global-unstable-${version}";
           paths = with final; [ (q.shellscripts.buildUnstableEnv final) ] ++ [
-            devenv
           ];
         };
     };
