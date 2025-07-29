@@ -8,6 +8,7 @@
   nix.gc.dates = "02:15";
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.trusted-users = [ "root" "johm" ];
 
   nixpkgs.config.allowUnfree = true;
 
