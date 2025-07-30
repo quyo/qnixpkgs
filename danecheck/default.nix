@@ -1,7 +1,7 @@
 #
 # build: nix --no-sandbox build qnixpkgs#danecheck
 #
-{ stdenv, fetchgit, gmp, icu, stack }:
+{ stdenv, fetchgit, gmp, haskell, icu, stack }:
 
 let
   pname = "danecheck";
@@ -24,7 +24,7 @@ stdenv.mkDerivation {
     fetchSubmodules = true;
   };
 
-  nativeBuildInputs = [ stack ];
+  nativeBuildInputs = [ stack haskell.compiler.ghc8107 ];
   buildInputs = [ gmp icu ];
 
   patchPhase = ''
@@ -32,6 +32,7 @@ stdenv.mkDerivation {
 
     sed -i -e 's|^resolver: lts-14\.10$|resolver: lts-18.10|' stack.yaml
 
+    echo 'system-ghc: true' >> stack.yaml
     echo 'extra-include-dirs:' >> stack.yaml
     echo '- ${gmp}/include' >> stack.yaml
     echo '- ${icu}/include' >> stack.yaml
@@ -46,7 +47,7 @@ stdenv.mkDerivation {
     runHook preBuild
 
     mkdir -p $out/bin
-    stack --verbose --stack-root $PWD/.stack --local-bin-path $out/bin install
+    stack --no-nix --system-ghc --verbose --stack-root $PWD/.stack --local-bin-path $out/bin install
 
     runHook postBuild
   '';
