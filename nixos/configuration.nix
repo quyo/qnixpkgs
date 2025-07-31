@@ -9,6 +9,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./qos-config.nix
       ./qos-base.nix
       ./qos-desktop.nix
       ./qos-network.nix

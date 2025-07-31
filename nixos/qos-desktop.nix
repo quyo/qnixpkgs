@@ -1,5 +1,10 @@
 { config, lib, pkgs, ... }:
 
+lib.mkMerge [
+{
+}
+
+(lib.mkIf config.quyo.desktop
 {
 
   # Enable the X11 windowing system.
@@ -45,4 +50,5 @@
   # Install firefox.
   programs.firefox.enable = true;
 
-}
+})
+]
