@@ -90,6 +90,7 @@ in
             curl
             devenv
             diffutils
+            dig
             direnv
             # dog
             dotfiles
