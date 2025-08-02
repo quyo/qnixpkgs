@@ -3,7 +3,7 @@
 {
 
   # Define your hostname.
-  networking.hostName = config.quyo.hostname;
+  networking.hostName = config.quyo.host.name;
 
   # Enables wireless support via wpa_supplicant.
   # networking.wireless.enable = true;
@@ -21,9 +21,11 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.tailscale.enable = config.quyo.tailscale.enable;
+
   services.postfix = {
     enable = true;
-    hostname = config.quyo.fqdn;
+    hostname = config.quyo.host.fqdn;
     rootAlias = "johm@quyo.de";
 
     extraConfig = ''
