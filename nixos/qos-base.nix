@@ -2,17 +2,13 @@
 
 {
 
-  # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  # Set your time zone.
   time.timeZone = "Etc/UTC";
 
-  # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
-
   i18n.extraLocaleSettings = {
     LC_ADDRESS = "de_DE.UTF-8";
     LC_IDENTIFICATION = "de_DE.UTF-8";
@@ -25,7 +21,6 @@
     LC_TIME = "de_DE.UTF-8";
   };
 
-  # Configure console keymap
   console.keyMap = "de";
 
 }

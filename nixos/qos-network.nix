@@ -2,24 +2,32 @@
 
 {
 
-  # Define your hostname.
   networking.hostName = config.quyo.host.name;
 
-  # Enables wireless support via wpa_supplicant.
-  # networking.wireless.enable = true;
-
-  # Enable networking
   networking.networkmanager.enable = true;
 
-  # Open ports in the firewall.
+  # networking.wireless.enable = true;
+
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
-
-  # Or disable the firewall altogether.
   networking.firewall.enable = false;
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    allowSFTP = false;
+
+    settings = {
+      PermitRootLogin = "no";
+      AllowUsers = [ "johm" ];
+
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      ChallengeResponseAuthentication = false;
+
+      MaxAuthTries = 3;
+      MaxSessions = 5;
+    };
+  };
 
   services.tailscale.enable = config.quyo.tailscale.enable;
 
