@@ -13,6 +13,9 @@
   };
   systemd.services.nixosupd = {
     script = ''
+      set -euo pipefail
+      IFS=$'\n\t'
+
       PATH=$PATH:${pkgs.nix}/bin:${pkgs.nixos-rebuild}/bin:${pkgs.git}/bin
 
       nix flake update nixpkgs           --flake /etc/nixos
