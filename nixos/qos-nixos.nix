@@ -41,6 +41,7 @@
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnCalendar = "daily";
+      RandomizedDelaySec = "3600";
       Persistent = true;
     };
   };
@@ -63,6 +64,10 @@
       nix flake update nixpkgs           --flake /etc/nixos
       nix flake update nixpkgs-unstable  --flake /etc/nixos
       nixos-rebuild switch               --flake /etc/nixos
+
+      nix flake metadata nixpkgs          >/dev/null
+      nix flake metadata nixpkgs-unstable >/dev/null
+      nix flake metadata qnixpkgs         >/dev/null
 
       GIT_AUTHOR_NAME="NixOSupd service"  GIT_AUTHOR_EMAIL="nixosupd@${config.quyo.host.fqdn}" \
       GIT_COMMITTER_NAME=$GIT_AUTHOR_NAME GIT_COMMITTER_EMAIL=$GIT_AUTHOR_EMAIL                \
