@@ -26,7 +26,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-     qnixpkgs.userprofile
+    qnixpkgs.userprofile
   ];
 
   # Use the system nixpkgs for nix commands

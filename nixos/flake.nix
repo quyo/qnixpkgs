@@ -24,33 +24,60 @@
     qnixpkgs.inputs.qnixpkgs.follows = "qnixpkgs";
   };
 
-  outputs = { self, nixpkgs, qnixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, qnixpkgs, ... }@inputs:
     let
       hostname = "nyx";
       system = "x86_64-linux";
 
+      overlay-unstable = final: prev: {
+        unstable = import nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+
       overlay-qnixpkgs = final: prev: {
         qnixpkgs = qnixpkgs.packages.${prev.system};
       };
-
-      pkgs = import nixpkgs {
-        inherit system;
-        overlays = [ overlay-qnixpkgs ];
-        config.allowUnfree = true;
-      };
-    in rec
+    in
     {
-      packages.${system} = { userprofile = pkgs.qnixpkgs.userprofile; };
-
       nixosConfigurations.${hostname} = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
 
-          # Overlays-module makes "pkgs.qnixpkgs-userprofile-*" available in configuration.nix
-          ({ config, pkgs, ... }: { nixpkgs.overlays = [ overlay-qnixpkgs ]; })
+          ({ config, pkgs, ... }: {
+
+            nixpkgs.overlays = [ overlay-unstable overlay-qnixpkgs ];
+
+            nix.registry.nixpkgs-unstable = {
+              from = {
+                id = "nixpkgs-unstable";
+                type = "indirect";
+              };
+              to = {
+                type = "github";
+                owner = "NixOS";
+                repo = "nixpkgs";
+                rev = nixpkgs-unstable.rev;
+              };
+            };
+
+            nix.registry.qnixpkgs = {
+              from = {
+                id = "qnixpkgs";
+                type = "indirect";
+              };
+              to = {
+                type = "github";
+                owner = "quyo";
+                repo = "qnixpkgs";
+                rev = qnixpkgs.rev;
+              };
+            };
+
+          })
 
           ./configuration.nix
-
           qnixpkgs.nixosModules.userprofile
 
         ];
