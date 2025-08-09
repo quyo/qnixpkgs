@@ -18,6 +18,13 @@ in
 {
   batgrep = dontCheck prev.batgrep;
   batpipe = dontCheck prev.batpipe;
+  batwatch = dontCheck prev.batwatch;
+
+  python312 = prev.python312 // {
+    pkgs = prev.python312.pkgs.overrideScope (pyfinal: pyprev: {
+      websockets = dontInstallCheck pyprev.websockets;
+    });
+  };
 }
   // lib.optionalAttrs stdenv.hostPlatform.isAarch32
   {
