@@ -22,7 +22,7 @@ let
     # delta - A viewer for git and diff output.
     delta
     # dust - A more intuitive version of du written in rust.
-    du-dust
+    dust
     # duf - A better df alternative.
     duf
     # broot - A new way to see and navigate directory trees.

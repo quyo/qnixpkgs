@@ -1,6 +1,6 @@
 self: final: prev:
 let
-  bat-extras = final.recurseIntoAttrs (final.callPackages ./. { });
+  bat-extras = final.lib.recurseIntoAttrs (final.callPackages ./. { });
 in
 {
   batdiff = bat-extras.batdiff;
