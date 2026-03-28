@@ -1,4 +1,7 @@
-source "$QPROFILE/share/nix-direnv/direnvrc"
+
+if [ -e "$QPROFILE/share/nix-direnv/direnvrc" ]; then
+  source "$QPROFILE/share/nix-direnv/direnvrc"
+fi
 
 # https://github.com/direnv/direnv/issues/73#issuecomment-1242969787
 export_alias() {
