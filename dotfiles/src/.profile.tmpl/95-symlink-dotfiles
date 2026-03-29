@@ -8,7 +8,10 @@
 [ -e "$HOME/.selected_editor" ] || ln -sf "$QDOTFILES/.selected_editor" "$HOME/.selected_editor"
 
 mkdir -p "$HOME/.config/croc"
-[ -e "$HOME/.config/croc/receive.json" ] || ln -sf "$QDOTFILES/.config/croc/receive.json" "$HOME/.config/croc/receive.json"
-[ -e "$HOME/.config/croc/send.json" ]    || ln -sf "$QDOTFILES/.config/croc/send.json"    "$HOME/.config/croc/send.json"
+[ -e "$HOME/.config/croc/receive.json" ]  || ln -sf "$QDOTFILES/.config/croc/receive.json"  "$HOME/.config/croc/receive.json"
+[ -e "$HOME/.config/croc/send.json" ]     || ln -sf "$QDOTFILES/.config/croc/send.json"     "$HOME/.config/croc/send.json"
 
-[ -e "$HOME/.config/starship.toml" ]     || ln -sf "$QDOTFILES/.config/starship.toml"     "$HOME/.config/starship.toml"
+mkdir -p "$HOME/.config/direnv"
+[ -e "$HOME/.config/direnv/direnv.toml" ] || ln -sf "$QDOTFILES/.config/direnv/direnv.toml" "$HOME/.config/direnv/direnv.toml"
+
+[ -e "$HOME/.config/starship.toml" ]      || ln -sf "$QDOTFILES/.config/starship.toml"      "$HOME/.config/starship.toml"
