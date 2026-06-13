@@ -16,8 +16,8 @@
   # prettybat
 , withShFmt ? shfmt != null
 , shfmt ? null
-, withPrettier ? nodePackages?prettier
-, nodePackages ? null
+, withPrettier ? prettier != null
+, prettier ? null
 , withBlack ? python3Packages?black
 , python3Packages ? null
 , withClangTools ? clang-tools != null
@@ -165,7 +165,7 @@ in
   batwatch = script "batwatch" ([ less coreutils ] ++ optionalDep withEntr entr);
   prettybat = script "prettybat" ([ ]
     ++ optionalDep withShFmt shfmt
-    ++ optionalDep withPrettier nodePackages.prettier
+    ++ optionalDep withPrettier prettier
     ++ optionalDep withBlack python3Packages.black
     ++ optionalDep withClangTools clang-tools
     ++ optionalDep withRustFmt rustfmt);

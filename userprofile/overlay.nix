@@ -69,7 +69,7 @@ let
     # zoxide - A smarter cd command inspired by z.
     zoxide
     # dog - A user-friendly command-line DNS client. dig on steroids
-    dogdns
+    doggo
     # starship - The minimal, blazing-fast, and infinitely customizable prompt for any shell.
     starship
   ];

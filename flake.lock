@@ -56,27 +56,27 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1774765493,
-        "narHash": "sha256-lEuCkVyO+ENS1YOmA6+9m2097sOYkP8kbUlM4ohsrAg=",
+        "lastModified": 1781357147,
+        "narHash": "sha256-3Pjl+SEj3VojedPejNDMm4prwqJZQQ7U+puq2YB17N0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "426a303dc353f6818d1f4702c3718bee5c2c8c2a",
+        "rev": "b33abe8fcb45f363e8f804bcbbd2c168ae127eb3",
         "type": "github"
       },
       "original": {
         "owner": "nixos",
-        "ref": "release-25.11",
+        "ref": "release-26.05",
         "repo": "nixpkgs",
         "type": "github"
       }
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1774610258,
-        "narHash": "sha256-HaThtroVD9wRdx7KQk0B75JmFcXlMUoEdDFNOMOlsOs=",
+        "lastModified": 1781268102,
+        "narHash": "sha256-Zn5KTggEmUB3lXn/ccERNcBdddE6IaOFber9dWViWDg=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "832efc09b4caf6b4569fbf9dc01bec3082a00611",
+        "rev": "49a4bd0573c376468dd7996ddb6f9fa31d8c4d97",
         "type": "github"
       },
       "original": {
@@ -111,11 +111,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774772776,
-        "narHash": "sha256-ByHhm5RcMXqmW1CYnyBpXmCGxK7UFe9Qr+f7MzVG81I=",
+        "lastModified": 1776855779,
+        "narHash": "sha256-yRl0n4RY17vrkr4zySzhMMrEhM4st5I/WyWn9jgtiAY=",
         "owner": "quyo",
         "repo": "qnixpkgs",
-        "rev": "f995ac1957a565e9b38936e0c493e85f85908f18",
+        "rev": "c40daa169aac957bd1ab4dca5d77568597363d04",
         "type": "github"
       },
       "original": {
@@ -157,11 +157,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1774777238,
-        "narHash": "sha256-B4pPSqziXZn+RHA6xUCs+URMKqvCEFPtbgoNuTxqZSw=",
+        "lastModified": 1781358034,
+        "narHash": "sha256-qJuhfv7IJDtWiJxrwTfuAwSxenObfV8j3Ka94XdwQr8=",
         "owner": "quyo",
         "repo": "shellscripts.nix",
-        "rev": "33950bcbb4016aa5c79c20be50f50680c4baf7c4",
+        "rev": "4a6d3d4cc901d3b566b7855737f5feb1bbf58c47",
         "type": "github"
       },
       "original": {
