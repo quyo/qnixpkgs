@@ -1,7 +1,14 @@
 #
 # build: nix --no-sandbox build qnixpkgs#danecheck
 #
-{ stdenv, fetchgit, gmp, icu, system }:
+# Hinweis zur glibc-Konsistenz:
+#   GHC 8.10.7 / Stack stammen aus dem gepinnten `oldpkgs` und sind gegen
+#   dessen glibc (2.40) gebaut. Damit es zu keinem glibc-Mix kommt, MUESSEN
+#   alle Bestandteile, die ins Linken/in die Laufzeit eingehen (stdenv, gmp,
+#   icu, fetchgit), aus demselben `oldpkgs` kommen. Das aktuelle Flake-nixpkgs
+#   (z. B. 26.05 mit glibc 2.42) liefert hier nur noch `system` als Argument.
+#
+{ system }:
 
 let
   pname = "danecheck";
@@ -17,7 +24,8 @@ let
 
 in
 
-stdenv.mkDerivation {
+# Das gesamte Derivation im stdenv von `oldpkgs` bauen -> exakt eine glibc.
+oldpkgs.stdenv.mkDerivation {
   inherit pname version;
 
   # Disable the Nix build sandbox for this specific build.
@@ -25,7 +33,7 @@ stdenv.mkDerivation {
   __noChroot = true;
   preferLocalBuild = true;
 
-  src = fetchgit {
+  src = oldpkgs.fetchgit {
     url = "https://github.com/vdukhovni/danecheck.git";
     rev = commit;
     sha256 = "b7Zcsy5BOc3qPnfikLo2y6zNhmjwEdlSEgUsOLVvMi0=";
@@ -33,7 +41,7 @@ stdenv.mkDerivation {
   };
 
   nativeBuildInputs = with oldpkgs; [ stack haskell.compiler.ghc8107 ];
-  buildInputs = [ gmp icu ];
+  buildInputs = with oldpkgs; [ gmp icu ];
 
   patchPhase = ''
     runHook prePatch
@@ -42,11 +50,11 @@ stdenv.mkDerivation {
 
     echo 'system-ghc: true' >> stack.yaml
     echo 'extra-include-dirs:' >> stack.yaml
-    echo '- ${gmp}/include' >> stack.yaml
-    echo '- ${icu}/include' >> stack.yaml
+    echo '- ${oldpkgs.gmp}/include' >> stack.yaml
+    echo '- ${oldpkgs.icu}/include' >> stack.yaml
     echo 'extra-lib-dirs:' >> stack.yaml
-    echo '- ${gmp}/lib' >> stack.yaml
-    echo '- ${icu}/lib' >> stack.yaml
+    echo '- ${oldpkgs.gmp}/lib' >> stack.yaml
+    echo '- ${oldpkgs.icu}/lib' >> stack.yaml
 
     runHook postPatch
   '';
